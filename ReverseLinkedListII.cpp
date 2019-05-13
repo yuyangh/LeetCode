@@ -1,12 +1,6 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
+/*
+ * LeetCode 92
  */
-#define NULL nullptr
 
 #include <iostream>
 #include <sstream>
@@ -23,34 +17,34 @@ struct ListNode {
 
 class Solution {
 public:
-	ListNode* reverseBetween(ListNode* head, int m, int n) {
-		ListNode *front=head,*prev=head,*curr=head,*temp=head,*start,*end;
+	ListNode *reverseBetween(ListNode *head, int m, int n) {
+		ListNode *front = head, *prev = head, *curr = head, *temp = head, *start, *end;
 		
 		// go to the pos that need reverse
-		for(int i=0;i<m-1;i++){
-			front=curr;
-			curr=curr->next;
+		for (int i = 0; i < m - 1; i++) {
+			front = curr;
+			curr = curr->next;
 		}
-		end=curr;
+		end = curr;
 		
 		// do the reverse
 		// curr goes to the one after the start of the reverse
 		// prev is at the start of the reverse
-		for(int i=0;i<n-m+1;i++){
-			temp=curr->next;
-			curr->next=prev;
-			prev=curr;
-			curr=temp;
+		for (int i = 0; i < n - m + 1; i++) {
+			temp = curr->next;
+			curr->next = prev;
+			prev = curr;
+			curr = temp;
 		}
 		
 		// re-link together
-		if(m==1){
-			head=prev;
-		}else{
-			front->next=prev;
+		if (m == 1) {
+			head = prev;
+		} else {
+			front->next = prev;
 		}
 		
-		end->next=curr;
+		end->next = curr;
 		
 		return head;
 		
