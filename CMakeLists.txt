@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.13)
 project(LeetCode)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 
 add_executable(LeetCode
-        main.cpp)
+        main.cpp LongestPalindromicSubstring.h)
+
+add_executable(LeetCode92
+        ReverseLinkedListII.cpp)
