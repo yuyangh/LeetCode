@@ -1,3 +1,5 @@
+#include "LeetCodeLib.h"
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -6,41 +8,46 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
 class Solution {
 public:
-	ListNode* partition(ListNode* head, int x) {
-		ListNode* smallHead=nullptr,* smallTail=nullptr,
-				*largeHead=nullptr,*largeTail=nullptr,
-				*ptr=head;
+	ListNode *partition(ListNode *head, int x) {
+		ListNode *smallHead = nullptr, *smallTail = nullptr,
+				*largeHead = nullptr, *largeTail = nullptr,
+				*ptr = head;
 		
-		if(ptr==nullptr){
+		if (ptr == nullptr) {
 			return ptr;
 		}
-		while(ptr!=nullptr){
-			if(ptr->val<x){
-				if(smallHead==nullptr){
-					smallHead=ptr;
-					smallTail=ptr;
-				}else{
-					smallTail->next=ptr;
-					smallTail=ptr;
+		while (ptr != nullptr) {
+			if (ptr->val < x) {
+				if (smallHead == nullptr) {
+					smallHead = ptr;
+					smallTail = ptr;
+				} else {
+					smallTail->next = ptr;
+					smallTail = ptr;
 				}
-			}else{
-				if(largeHead==nullptr){
-					largeHead=ptr;
-					largeTail=ptr;
-				}else{
-					largeTail->next=ptr;
-					largeTail=ptr;
+			} else {
+				if (largeHead == nullptr) {
+					largeHead = ptr;
+					largeTail = ptr;
+				} else {
+					largeTail->next = ptr;
+					largeTail = ptr;
 				}
 			}
-			ptr=ptr->next;
+			ptr = ptr->next;
 		}
 		
-		if(smallHead==nullptr){
+		if (smallHead == nullptr) {
 			return largeHead;
-		}else{
-			smallTail->next=largeHead;
+		} else {
+			smallTail->next = largeHead;
+			// handle the end of the list!
+			if (largeTail != nullptr) {
+				largeTail->next = nullptr;
+			}
 			return smallHead;
 		}
 	}
@@ -73,14 +80,14 @@ vector<int> stringToIntegerVector(string input) {
 	return output;
 }
 
-ListNode* stringToListNode(string input) {
+ListNode *stringToListNode(string input) {
 	// Generate list from the input
 	vector<int> list = stringToIntegerVector(input);
 	
 	// Now convert that list into linked list
-	ListNode* dummyRoot = new ListNode(0);
-	ListNode* ptr = dummyRoot;
-	for(int item : list) {
+	ListNode *dummyRoot = new ListNode(0);
+	ListNode *ptr = dummyRoot;
+	for (int item : list) {
 		ptr->next = new ListNode(item);
 		ptr = ptr->next;
 	}
@@ -93,7 +100,7 @@ int stringToInteger(string input) {
 	return stoi(input);
 }
 
-string listNodeToString(ListNode* node) {
+string listNodeToString(ListNode *node) {
 	if (node == nullptr) {
 		return "[]";
 	}
@@ -109,11 +116,11 @@ string listNodeToString(ListNode* node) {
 int main() {
 	string line;
 	while (getline(cin, line)) {
-		ListNode* head = stringToListNode(line);
+		ListNode *head = stringToListNode(line);
 		getline(cin, line);
 		int x = stringToInteger(line);
 		
-		ListNode* ret = Solution().partition(head, x);
+		ListNode *ret = Solution().partition(head, x);
 		
 		string out = listNodeToString(ret);
 		cout << out << endl;
