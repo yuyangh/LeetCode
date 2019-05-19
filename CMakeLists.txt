@@ -20,3 +20,6 @@ add_executable(LeetCode23
 
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
+
+add_executable(LeetCode215
+        LeetCodeLib.h 215KthLargestElementInAnArray.cpp)
