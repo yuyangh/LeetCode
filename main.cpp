@@ -1,6 +1,8 @@
 #include <iostream>
+#include "LongestPalindromicSubstring.h"
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	
+	cout<<LongestPalindromicSubstring::longestPalindrome("123321")<<endl;
 	return 0;
 }
