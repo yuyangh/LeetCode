@@ -3,9 +3,6 @@ project(LeetCode)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(LeetCode
-        main.cpp LongestPalindromicSubstring.h)
-
 add_executable(LeetCode003
         LeetCodeLib.h 003LongestSubstringWithoutRepeatingCharacters.cpp)
 
@@ -332,6 +329,9 @@ add_executable(LeetCode146
 
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
+
+add_executable(LeetCode168
+        LeetCodeLib.h 168ExcelSheetColumnTitle.cpp)
 
 add_executable(LeetCode169
         LeetCodeLib.h 169MajorityElement.cpp)
