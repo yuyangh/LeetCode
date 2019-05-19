@@ -17,3 +17,6 @@ add_executable(LeetCode21
 
 add_executable(LeetCode23
         LeetCodeLib.h 023MergeKSortedLists.cpp)
+
+add_executable(LeetCode155
+        LeetCodeLib.h 155MinStack.cpp)
