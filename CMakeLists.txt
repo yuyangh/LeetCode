@@ -7,4 +7,13 @@ add_executable(LeetCode
         main.cpp LongestPalindromicSubstring.h)
 
 add_executable(LeetCode92
-        ReverseLinkedListII.cpp)
+        092ReverseLinkedListII.cpp)
+
+add_executable(LeetCode86
+        LeetCodeLib.h 086PartitionList.cpp)
+
+add_executable(LeetCode21
+        LeetCodeLib.h 021MergeTwoSortedLists.cpp)
+
+add_executable(LeetCode23
+        LeetCodeLib.h 023MergeKSortedLists.cpp)
