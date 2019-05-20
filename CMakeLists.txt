@@ -381,6 +381,9 @@ add_executable(LeetCode236
 add_executable(LeetCode290
         LeetCodeLib.h 290WordPattern.cpp)
 
+add_executable(LeetCode292
+        LeetCodeLib.h 292NimGame.cpp)
+
 add_executable(LeetCode295
         LeetCodeLib.h 295FindMedianfromDataStream.cpp)
 
