@@ -29,3 +29,6 @@ add_executable(LeetCode225
 
 add_executable(LeetCode232
         LeetCodeLib.h 232ImplementQueueUsingStacks.cpp)
+
+add_executable(LeetCode295
+        LeetCodeLib.h 295FindMedianfromDataStream.cpp)
