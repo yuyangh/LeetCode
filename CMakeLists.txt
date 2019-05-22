@@ -24,6 +24,9 @@ add_executable(LeetCode155
 add_executable(LeetCode215
         LeetCodeLib.h 215KthLargestElementInAnArray.cpp)
 
+add_executable(LeetCode224
+        LeetCodeLib.h 224BasicCalculator.cpp)
+
 add_executable(LeetCode225
         LeetCodeLib.h 225ImplementStackUsingQueues.cpp)
 
