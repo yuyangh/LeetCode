@@ -12,6 +12,9 @@ add_executable(LeetCode021
 add_executable(LeetCode023
         LeetCodeLib.h 023MergeKSortedLists.cpp)
 
+add_executable(LeetCode045
+        LeetCodeLib.h 045JumpGameII.cpp)
+
 add_executable(LeetCode055
         LeetCodeLib.h 055JumpGame.cpp)
 
