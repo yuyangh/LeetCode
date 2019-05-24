@@ -60,3 +60,8 @@ int main() {
 	}
 	return 0;
 }
+
+/*
+ * Input: [1,7,4,9,2,5]
+ * Output: 6
+ */
