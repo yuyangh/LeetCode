@@ -45,3 +45,6 @@ add_executable(LeetCode295
 
 add_executable(LeetCode376
         LeetCodeLib.h 376WiggleSubsequence.cpp)
+
+add_executable(LeetCode402
+        LeetCodeLib.h 402RemoveKDigits.cpp)
