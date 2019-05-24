@@ -42,3 +42,6 @@ add_executable(LeetCode232
 
 add_executable(LeetCode295
         LeetCodeLib.h 295FindMedianfromDataStream.cpp)
+
+add_executable(LeetCode376
+        LeetCodeLib.h 376WiggleSubsequence.cpp)
