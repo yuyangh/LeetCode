@@ -11,6 +11,9 @@
 #include <stack>
 #include <algorithm>
 #include <assert.h>
+#include <map>
+#include <unordered_map>
+#include <set>
 
 using namespace std;
 
@@ -19,6 +22,14 @@ struct ListNode {
 	ListNode *next;
 	
 	ListNode(int x) : val(x), next(nullptr) {}
+};
+
+struct TreeNode {
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	
+	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
 #endif //LEETCODE_LEETCODELIB_H

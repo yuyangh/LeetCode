@@ -24,9 +24,20 @@ add_executable(LeetCode086
 add_executable(LeetCode092
         092ReverseLinkedListII.cpp)
 
+add_executable(LeetCode113
+        LeetCodeLib.h 113PathSumII.cpp)
+
+add_executable(LeetCode114
+        LeetCodeLib.h 114FlattenBinaryTreetoLinkedList.cpp)
 
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
+
+add_executable(LeetCode199
+        LeetCodeLib.h 199BinaryTreeRightSideView.cpp)
+
+add_executable(LeetCode207
+        LeetCodeLib.h 207CourseSchedule.cpp)
 
 add_executable(LeetCode215
         LeetCodeLib.h 215KthLargestElementInAnArray.cpp)
@@ -39,6 +50,9 @@ add_executable(LeetCode225
 
 add_executable(LeetCode232
         LeetCodeLib.h 232ImplementQueueUsingStacks.cpp)
+
+add_executable(LeetCode236
+        LeetCodeLib.h 236LowestCommonAncestorofABinaryTree.cpp)
 
 add_executable(LeetCode295
         LeetCodeLib.h 295FindMedianfromDataStream.cpp)
