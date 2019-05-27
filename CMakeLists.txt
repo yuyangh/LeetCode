@@ -12,6 +12,9 @@ add_executable(LeetCode021
 add_executable(LeetCode023
         LeetCodeLib.h 023MergeKSortedLists.cpp)
 
+add_executable(LeetCode033
+        LeetCodeLib.h 033SearchinRotatedSortedArray.cpp)
+
 add_executable(LeetCode045
         LeetCodeLib.h 045JumpGameII.cpp)
 
@@ -35,6 +38,9 @@ add_executable(LeetCode155
 
 add_executable(LeetCode199
         LeetCodeLib.h 199BinaryTreeRightSideView.cpp)
+
+add_executable(LeetCode206
+        LeetCodeLib.h 206ReverseLinkedList.cpp)
 
 add_executable(LeetCode207
         LeetCodeLib.h 207CourseSchedule.cpp)
