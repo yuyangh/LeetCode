@@ -25,7 +25,7 @@
  * Example 1:
  *
  *
- * Input: nums = [5,7,7,8,8,10], target = 8
+ * Input: nums = [5,7,8,8,8,8,8,8,10], target = 8
  * Output: [3,4]
  *
  * Example 2:
@@ -37,32 +37,51 @@
  */
 class Solution {
 public:
+	// reference from online, reach O(logn)
 	vector<int> searchRange(vector<int> &nums, int target) {
 		if (nums.empty()) {
 			return {-1, -1};
 		}
 		
 		// find the element
-		int mid = search(nums, 0, nums.size() - 1, target);
+		int mid = search(nums,0,nums.size()-1,target);
 		if (mid == -1) {
 			return {-1, -1};
 		}
 		
-		// look for the leftist element
-		int low, newLow = mid;
-		do {
-			low = newLow;
-			newLow = search(nums, 0, low - 1, target);
-		} while (newLow != -1);
+		int right= binaryRightSearch(nums, target);
+		int left= binaryLeftSearch(nums, target);
+		return {left,right-1};
+	}
+	
+	int binaryRightSearch(vector<int> &nums, int target) {
+		int lo = 0;
+		int hi = nums.size();
 		
-		// look for the rightist element
-		int high, newHigh = mid;
-		do {
-			high = newHigh;
-			newHigh = search(nums, newHigh + 1, nums.size() - 1, target);
-		} while (newHigh != -1);
+		while (lo < hi) {
+			int mid = (lo + hi) / 2;
+			if (nums[mid] > target) {
+				hi = mid;
+			} else {
+				lo = mid + 1;
+			}
+		}
+		return lo;
+	}
+	
+	int binaryLeftSearch(vector<int> &nums, int target) {
+		int lo = 0;
+		int hi = nums.size();
 		
-		return {low, high};
+		while (lo < hi) {
+			int mid = (lo + hi) / 2;
+			if (nums[mid] >= target) {
+				hi = mid;
+			} else {
+				lo = mid + 1;
+			}
+		}
+		return hi;
 	}
 	
 	// normal binary search
@@ -82,6 +101,37 @@ public:
 		}
 		return -1;
 	}
+	
+	// previous implementation is O(log(n)log(n))
+	// vector<int> searchRange(vector<int> &nums, int target) {
+	// 	if (nums.empty()) {
+	// 		return {-1, -1};
+	// 	}
+	//
+	// 	// find the element
+	// 	int mid = search(nums,0,nums.size()-1,target);
+	// 	if (mid == -1) {
+	// 		return {-1, -1};
+	// 	}
+	//
+	// 	// look for the leftist element
+	// 	int low, newLow = mid;
+	// 	do {
+	// 		low = newLow;
+	// 		newLow = search(nums, 0, low - 1, target);
+	// 	} while (newLow != -1);
+	//
+	// 	// look for the rightist element
+	// 	int high, newHigh = mid;
+	// 	do {
+	// 		high = newHigh;
+	// 		newHigh = search(nums, newHigh + 1, nums.size() - 1, target);
+	// 	} while (newHigh != -1);
+	//
+	// 	return {low, high};
+	// }
+	
+	
 };
 
 void trimLeftTrailingSpaces(string &input) {
