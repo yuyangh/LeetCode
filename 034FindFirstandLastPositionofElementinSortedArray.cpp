@@ -44,16 +44,22 @@ public:
 		}
 		
 		// find the element
-		int mid = search(nums,0,nums.size()-1,target);
+		int mid = search(nums, 0, nums.size() - 1, target);
 		if (mid == -1) {
 			return {-1, -1};
 		}
 		
-		int right= binaryRightSearch(nums, target);
-		int left= binaryLeftSearch(nums, target);
-		return {left,right-1};
+		int right = binaryRightSearch(nums, target);
+		int left = binaryLeftSearch(nums, target);
+		return {left, right};
 	}
 	
+	/**
+	 * search the element on the right most
+	 * @param nums
+	 * @param target
+	 * @return the index of the element on the most right side
+	 */
 	int binaryRightSearch(vector<int> &nums, int target) {
 		int lo = 0;
 		int hi = nums.size();
@@ -66,7 +72,8 @@ public:
 				lo = mid + 1;
 			}
 		}
-		return lo;
+		// lo must be right most +1
+		return lo - 1;
 	}
 	
 	int binaryLeftSearch(vector<int> &nums, int target) {
