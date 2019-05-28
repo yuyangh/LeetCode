@@ -15,6 +15,12 @@ add_executable(LeetCode023
 add_executable(LeetCode033
         LeetCodeLib.h 033SearchinRotatedSortedArray.cpp)
 
+add_executable(LeetCode034
+        LeetCodeLib.h 034FindFirstandLastPositionofElementinSortedArray.cpp)
+
+add_executable(LeetCode035
+        LeetCodeLib.h 035SearchInsertPosition.cpp)
+
 add_executable(LeetCode045
         LeetCodeLib.h 045JumpGameII.cpp)
 
