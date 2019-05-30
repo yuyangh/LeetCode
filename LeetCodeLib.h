@@ -3,14 +3,17 @@
 #ifndef LEETCODE_LEETCODELIB_H
 #define LEETCODE_LEETCODELIB_H
 
+#include <assert.h>
 #include <iostream>
 #include <sstream>
-#include <vector>
+
+#include <algorithm>
+#include <numeric>
+
 #include <string>
+#include <vector>
 #include <queue>
 #include <stack>
-#include <algorithm>
-#include <assert.h>
 #include <map>
 #include <unordered_map>
 #include <set>

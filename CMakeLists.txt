@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(LeetCode
         main.cpp LongestPalindromicSubstring.h)
 
+add_executable(LeetCode003
+        LeetCodeLib.h 003LongestSubstringWithoutRepeatingCharacters.cpp)
+
 add_executable(LeetCode021
         LeetCodeLib.h 021MergeTwoSortedLists.cpp)
 
@@ -69,8 +72,14 @@ add_executable(LeetCode236
 add_executable(LeetCode295
         LeetCodeLib.h 295FindMedianfromDataStream.cpp)
 
+add_executable(LeetCode315
+        LeetCodeLib.h 315CountofSmallerNumbersAfterSelf.cpp)
+
 add_executable(LeetCode376
         LeetCodeLib.h 376WiggleSubsequence.cpp)
 
 add_executable(LeetCode402
         LeetCodeLib.h 402RemoveKDigits.cpp)
+
+add_executable(LeetCode449
+        LeetCodeLib.h 449SerializeandDeserializeBST.cpp)
