@@ -48,6 +48,9 @@ add_executable(LeetCode114
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
+add_executable(LeetCode187
+        LeetCodeLib.h 187RepeatedDNASequences.cpp)
+
 add_executable(LeetCode199
         LeetCodeLib.h 199BinaryTreeRightSideView.cpp)
 
