@@ -25,6 +25,9 @@ add_executable(LeetCode035
         LeetCodeLib.h 035SearchInsertPosition.cpp)
 
 add_executable(LeetCode045
+        LeetCodeLib.h 049GroupAnagrams.cpp)
+
+add_executable(LeetCode049
         LeetCodeLib.h 045JumpGameII.cpp)
 
 add_executable(LeetCode055
