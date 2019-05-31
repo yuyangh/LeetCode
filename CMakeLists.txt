@@ -75,6 +75,9 @@ add_executable(LeetCode232
 add_executable(LeetCode236
         LeetCodeLib.h 236LowestCommonAncestorofABinaryTree.cpp)
 
+add_executable(LeetCode290
+        LeetCodeLib.h 290WordPattern.cpp)
+
 add_executable(LeetCode295
         LeetCodeLib.h 295FindMedianfromDataStream.cpp)
 
