@@ -12,6 +12,9 @@ add_executable(LeetCode003
 add_executable(LeetCode008
         LeetCodeLib.h 008StringtoInteger\(atoi\).cpp)
 
+add_executable(LeetCode015
+        LeetCodeLib.h 0153Sums.cpp)
+
 add_executable(LeetCode021
         LeetCodeLib.h 021MergeTwoSortedLists.cpp)
 
