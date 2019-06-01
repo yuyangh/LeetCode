@@ -90,5 +90,8 @@ add_executable(LeetCode376
 add_executable(LeetCode402
         LeetCodeLib.h 402RemoveKDigits.cpp)
 
+add_executable(LeetCode409
+        LeetCodeLib.h 409LongestPalindrome.cpp)
+
 add_executable(LeetCode449
         LeetCodeLib.h 449SerializeandDeserializeBST.cpp)
