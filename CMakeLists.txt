@@ -36,8 +36,14 @@ add_executable(LeetCode045
 add_executable(LeetCode049
         LeetCodeLib.h 045JumpGameII.cpp)
 
+add_executable(LeetCode053
+        LeetCodeLib.h 053MaximumSubarray.cpp)
+
 add_executable(LeetCode055
         LeetCodeLib.h 055JumpGame.cpp)
+
+add_executable(LeetCode064
+        LeetCodeLib.h 064MinimumPathSum.cpp)
 
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
