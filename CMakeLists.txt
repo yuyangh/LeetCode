@@ -60,6 +60,9 @@ add_executable(LeetCode113
 add_executable(LeetCode114
         LeetCodeLib.h 114FlattenBinaryTreetoLinkedList.cpp)
 
+add_executable(LeetCode120
+        LeetCodeLib.h 120Triangle.cpp)
+
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
