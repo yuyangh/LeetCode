@@ -45,6 +45,9 @@ add_executable(LeetCode055
 add_executable(LeetCode064
         LeetCodeLib.h 064MinimumPathSum.cpp)
 
+add_executable(LeetCode070
+        LeetCodeLib.h 070ClimbingStairs.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
