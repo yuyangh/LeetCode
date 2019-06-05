@@ -72,6 +72,9 @@ add_executable(LeetCode174
 add_executable(LeetCode187
         LeetCodeLib.h 187RepeatedDNASequences.cpp)
 
+add_executable(LeetCode198
+        LeetCodeLib.h 198HouseRobber.cpp)
+
 add_executable(LeetCode199
         LeetCodeLib.h 199BinaryTreeRightSideView.cpp)
 
@@ -101,6 +104,9 @@ add_executable(LeetCode290
 
 add_executable(LeetCode295
         LeetCodeLib.h 295FindMedianfromDataStream.cpp)
+
+add_executable(LeetCode300
+        LeetCodeLib.h 300LongestIncreasingSubsequence.cpp)
 
 add_executable(LeetCode315
         LeetCodeLib.h 315CountofSmallerNumbersAfterSelf.cpp)
