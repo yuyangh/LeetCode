@@ -66,6 +66,9 @@ add_executable(LeetCode120
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
+add_executable(LeetCode174
+        LeetCodeLib.h 174DungeonGame.cpp)
+
 add_executable(LeetCode187
         LeetCodeLib.h 187RepeatedDNASequences.cpp)
 
