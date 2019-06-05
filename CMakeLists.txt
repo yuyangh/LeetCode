@@ -111,6 +111,9 @@ add_executable(LeetCode300
 add_executable(LeetCode315
         LeetCodeLib.h 315CountofSmallerNumbersAfterSelf.cpp)
 
+add_executable(LeetCode322
+        LeetCodeLib.h 322CoinChange.cpp)
+
 add_executable(LeetCode376
         LeetCodeLib.h 376WiggleSubsequence.cpp)
 
