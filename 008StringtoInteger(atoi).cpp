@@ -46,7 +46,6 @@
  * Input: "42"
  * Output: 42
  *
- *
  * Example 2:
  * Input: "   -42"
  * Output: -42
@@ -54,13 +53,11 @@
  * sign.
  * Then take as many numerical digits as possible, which gets 42.
  *
- *
  * Example 3:
  * Input: "4193 with words"
  * Output: 4193
  * Explanation: Conversion stops at digit '3' as the next character is not a
  * numerical digit.
- *
  *
  * Example 4:
  * Input: "words and 987"
@@ -126,6 +123,22 @@ public:
 			num = -num;
 		}
 		return (int) (num);
+	}
+	
+	// more succint version
+	int myAtoiRef(string str) {
+		long result = 0;
+		int indicator = 1;// indicate the sign
+		int i = str.find_first_not_of(' ');
+		if (str[i] == '-' || str[i] == '+')
+			indicator = (str[i++] == '-') ? -1 : 1;
+		while ('0' <= str[i] && str[i] <= '9') {
+			result = result * 10 + (str[i++] - '0');
+			if (result * indicator >= INT_MAX) return INT_MAX;
+			if (result * indicator <= INT_MIN) return INT_MIN;
+		}
+		
+		return result * indicator;
 	}
 };
 
