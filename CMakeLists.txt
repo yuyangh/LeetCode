@@ -15,6 +15,9 @@ add_executable(LeetCode008
 add_executable(LeetCode015
         LeetCodeLib.h 0153Sums.cpp)
 
+add_executable(LeetCode020
+        LeetCodeLib.h 020ValidParentheses.cpp)
+
 add_executable(LeetCode021
         LeetCodeLib.h 021MergeTwoSortedLists.cpp)
 
