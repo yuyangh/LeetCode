@@ -24,6 +24,9 @@ add_executable(LeetCode021
 add_executable(LeetCode023
         LeetCodeLib.h 023MergeKSortedLists.cpp)
 
+add_executable(LeetCode028
+        LeetCodeLib.h 028ImplementstrStr\(\).cpp)
+
 add_executable(LeetCode033
         LeetCodeLib.h 033SearchinRotatedSortedArray.cpp)
 
