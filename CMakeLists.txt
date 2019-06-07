@@ -48,6 +48,9 @@ add_executable(LeetCode053
 add_executable(LeetCode055
         LeetCodeLib.h 055JumpGame.cpp)
 
+add_executable(LeetCode056
+        LeetCodeLib.h 056MergeIntervals.cpp)
+
 add_executable(LeetCode064
         LeetCodeLib.h 064MinimumPathSum.cpp)
 
