@@ -42,6 +42,9 @@ add_executable(LeetCode045
 add_executable(LeetCode049
         LeetCodeLib.h 045JumpGameII.cpp)
 
+add_executable(LeetCode050
+        LeetCodeLib.h 050Pow\(x,\ n\).cpp)
+
 add_executable(LeetCode053
         LeetCodeLib.h 053MaximumSubarray.cpp)
 
