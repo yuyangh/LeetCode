@@ -72,6 +72,9 @@ add_executable(LeetCode086
 add_executable(LeetCode092
         092ReverseLinkedListII.cpp)
 
+add_executable(LeetCode098
+        098ValidateBinarySearchTree.cpp)
+
 add_executable(LeetCode113
         LeetCodeLib.h 113PathSumII.cpp)
 
