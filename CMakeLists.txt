@@ -63,6 +63,9 @@ add_executable(LeetCode064
 add_executable(LeetCode070
         LeetCodeLib.h 070ClimbingStairs.cpp)
 
+add_executable(LeetCode073
+        LeetCodeLib.h 073SetMatrixZeroes.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
