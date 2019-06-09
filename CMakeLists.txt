@@ -13,7 +13,7 @@ add_executable(LeetCode008
         LeetCodeLib.h 008StringtoInteger\(atoi\).cpp)
 
 add_executable(LeetCode015
-        LeetCodeLib.h 0153Sums.cpp)
+        LeetCodeLib.h 015_3Sums.cpp)
 
 add_executable(LeetCode020
         LeetCodeLib.h 020ValidParentheses.cpp)
@@ -86,6 +86,9 @@ add_executable(LeetCode120
 
 add_executable(LeetCode125
         LeetCodeLib.h 125ValidPalindrome.cpp)
+
+add_executable(LeetCode127
+        LeetCodeLib.h 127WordLadder.cpp)
 
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)

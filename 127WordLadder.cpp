@@ -1,0 +1,137 @@
+#include "LeetCodeLib.h"
+
+/*
+ * @lc app=leetcode id=127 lang=cpp
+ *
+ * [127] Word Ladder
+ *
+ * https://leetcode.com/problems/word-ladder/description/
+ *
+ * algorithms
+ * Medium (23.96%)
+ * Likes:    1442
+ * Dislikes: 801
+ * Total Accepted:    260.7K
+ * Total Submissions: 1.1M
+ * Testcase Example:  '"hit"\n"cog"\n["hot","dot","dog","lot","log","cog"]'
+ *
+ * Given two words (beginWord and endWord), and a dictionary's word list, find
+ * the length of shortest transformation sequence from beginWord to endWord,
+ * such that:
+ *
+ *
+ * Only one letter can be changed at a time.
+ * Each transformed word must exist in the word list. Note that beginWord is
+ * not a transformed word.
+ *
+ *
+ * Note:
+ * Return 0 if there is no such transformation sequence.
+ * All words have the same length.
+ * All words contain only lowercase alphabetic characters.
+ * You may assume no duplicates in the word list.
+ * You may assume beginWord and endWord are non-empty and are not the same.
+ *
+ *
+ * Example 1:
+ * Input:
+ * beginWord = "hit",
+ * endWord = "cog",
+ * wordList = ["hot","dot","dog","lot","log","cog"]
+ *
+ * Output: 5
+ *
+ * Explanation: As one shortest transformation is "hit" -> "hot" -> "dot" ->
+ * "dog" -> "cog",
+ * return its length 5.
+ *
+ *
+ * Example 2:
+ * Input:
+ * beginWord = "hit"
+ * endWord = "cog"
+ * wordList = ["hot","dot","dog","lot","log"]
+ *
+ * Output: 0
+ *
+ * Explanation: The endWord "cog" is not in wordList, therefore no possible
+ * transformation.
+ */
+class Solution {
+public:
+	// O(n*n*L)
+	int ladderLength(string beginWord, string endWord, vector<string> &wordList) {
+		if (wordList.empty()) {
+			return 0;
+		}
+		vector<vector<int>> adjacentList(wordList.size(), vector<int>());
+		unordered_set<int> exploredWords;
+		queue<int> wordQueue;
+		bool endWordExist = false;
+		
+		// check endWord exist or not
+		for (int i = 0; i < wordList.size(); i++) {
+			if (wordList[i] == endWord) {
+				endWordExist = true;
+			}
+			if (wordDiff(wordList[i], beginWord) == 1) {
+				wordQueue.push(i);
+			}
+		}
+		if (!endWordExist) {
+			return 0;
+		}
+		// build the adjacent list
+		for (int i = 0; i < wordList.size(); i++) {
+			for (int j = i + 1; j < wordList.size(); j++) {
+				int diff = wordDiff(wordList[i], wordList[j]);
+				if (diff == 1) {
+					adjacentList[i].emplace_back(j);
+					adjacentList[j].emplace_back(i);
+				}
+			}
+		}
+		// bfs
+		int length = 2, roundSize = wordQueue.size(), usedSize = 0;
+		while (!wordQueue.empty()) {
+			int wordIndex = wordQueue.front();
+			usedSize++;
+			// count how many rounds of queue
+			if (usedSize > roundSize) {
+				length++;
+				roundSize = wordQueue.size();
+				usedSize = 1;
+			}
+			wordQueue.pop();
+			// check whether word used before
+			if (exploredWords.find(wordIndex) != exploredWords.end()) {
+				continue;
+			} else {
+				exploredWords.insert(wordIndex);
+			}
+			// check endWord
+			if (wordList[wordIndex] == endWord) {
+				return length;
+			}
+			
+			for (int i = 0; i < adjacentList[wordIndex].size(); i++) {
+				wordQueue.push(adjacentList[wordIndex][i]);
+			}
+		}
+		return 0;
+	}
+	
+	int wordDiff(string &lhs, string &rhs) {
+		int diff = 0;
+		for (int i = 0; i < lhs.size(); i++) {
+			if (lhs[i] != rhs[i]) {
+				diff++;
+				if (diff > 1) {
+					break;
+				}
+			}
+		}
+		return diff;
+	}
+};
+
