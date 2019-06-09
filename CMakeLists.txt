@@ -21,6 +21,9 @@ add_executable(LeetCode020
 add_executable(LeetCode021
         LeetCodeLib.h 021MergeTwoSortedLists.cpp)
 
+add_executable(LeetCode022
+        LeetCodeLib.h 022GenerateParentheses.cpp)
+
 add_executable(LeetCode023
         LeetCodeLib.h 023MergeKSortedLists.cpp)
 
