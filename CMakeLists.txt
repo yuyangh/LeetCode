@@ -84,6 +84,9 @@ add_executable(LeetCode114
 add_executable(LeetCode120
         LeetCodeLib.h 120Triangle.cpp)
 
+add_executable(LeetCode125
+        LeetCodeLib.h 125ValidPalindrome.cpp)
+
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
