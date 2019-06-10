@@ -30,6 +30,9 @@ add_executable(LeetCode023
 add_executable(LeetCode024
         LeetCodeLib.h 024SwapNodesinPairs.cpp)
 
+add_executable(LeetCode027
+        LeetCodeLib.h 027RemoveElement.cpp)
+
 add_executable(LeetCode028
         LeetCodeLib.h 028ImplementstrStr\(\).cpp)
 
