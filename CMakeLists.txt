@@ -27,6 +27,9 @@ add_executable(LeetCode022
 add_executable(LeetCode023
         LeetCodeLib.h 023MergeKSortedLists.cpp)
 
+add_executable(LeetCode024
+        LeetCodeLib.h 024SwapNodesinPairs.cpp)
+
 add_executable(LeetCode028
         LeetCodeLib.h 028ImplementstrStr\(\).cpp)
 
