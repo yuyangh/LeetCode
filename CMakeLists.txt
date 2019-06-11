@@ -46,10 +46,13 @@ add_executable(LeetCode035
         LeetCodeLib.h 035SearchInsertPosition.cpp)
 
 add_executable(LeetCode045
-        LeetCodeLib.h 049GroupAnagrams.cpp)
+        LeetCodeLib.h 045JumpGameII.cpp)
+
+add_executable(LeetCode046
+        LeetCodeLib.h 046Permutations.cpp)
 
 add_executable(LeetCode049
-        LeetCodeLib.h 045JumpGameII.cpp)
+        LeetCodeLib.h 049GroupAnagrams.cpp)
 
 add_executable(LeetCode050
         LeetCodeLib.h 050Pow\(x,\ n\).cpp)
