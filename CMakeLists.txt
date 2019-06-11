@@ -72,6 +72,9 @@ add_executable(LeetCode057
 add_executable(LeetCode064
         LeetCodeLib.h 064MinimumPathSum.cpp)
 
+add_executable(LeetCode067
+        LeetCodeLib.h 067AddBinary.cpp)
+
 add_executable(LeetCode070
         LeetCodeLib.h 070ClimbingStairs.cpp)
 
