@@ -84,6 +84,9 @@ add_executable(LeetCode070
 add_executable(LeetCode073
         LeetCodeLib.h 073SetMatrixZeroes.cpp)
 
+add_executable(LeetCode077
+        LeetCodeLib.h 077Combinations.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
