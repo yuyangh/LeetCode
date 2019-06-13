@@ -90,6 +90,9 @@ add_executable(LeetCode077
 add_executable(LeetCode078
         LeetCodeLib.h 078Subsets.cpp)
 
+add_executable(LeetCode079
+        LeetCodeLib.h 079WordSearch.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
