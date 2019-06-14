@@ -96,10 +96,13 @@ add_executable(LeetCode079
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
-add_executable(LeetCode092
+add_executable(LeetCode091 LeetCodeLib.h
+        091DecodeWays.cpp)
+
+add_executable(LeetCode092 LeetCodeLib.h
         092ReverseLinkedListII.cpp)
 
-add_executable(LeetCode098
+add_executable(LeetCode098 LeetCodeLib.h
         098ValidateBinarySearchTree.cpp)
 
 add_executable(LeetCode102
