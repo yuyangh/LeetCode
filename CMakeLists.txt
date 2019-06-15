@@ -15,6 +15,9 @@ add_executable(LeetCode008
 add_executable(LeetCode015
         LeetCodeLib.h 015_3Sums.cpp)
 
+add_executable(LeetCode017
+        LeetCodeLib.h 017LetterCombinationsofaPhoneNumber.cpp)
+
 add_executable(LeetCode020
         LeetCodeLib.h 020ValidParentheses.cpp)
 
@@ -125,6 +128,9 @@ add_executable(LeetCode127
 
 add_executable(LeetCode129
         LeetCodeLib.h 129SumRoottoLeafNumbers.cpp)
+
+add_executable(LeetCode131
+        LeetCodeLib.h 131PalindromePartitioning.cpp)
 
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
