@@ -123,6 +123,9 @@ add_executable(LeetCode125
 add_executable(LeetCode127
         LeetCodeLib.h 127WordLadder.cpp)
 
+add_executable(LeetCode129
+        LeetCodeLib.h 129SumRoottoLeafNumbers.cpp)
+
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
