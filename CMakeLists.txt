@@ -36,6 +36,9 @@ add_executable(LeetCode023
 add_executable(LeetCode024
         LeetCodeLib.h 024SwapNodesinPairs.cpp)
 
+add_executable(LeetCode026
+        LeetCodeLib.h 026RemoveDuplicatesfromSortedArray.cpp)
+
 add_executable(LeetCode027
         LeetCodeLib.h 027RemoveElement.cpp)
 
