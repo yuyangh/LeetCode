@@ -18,6 +18,9 @@ add_executable(LeetCode015
 add_executable(LeetCode017
         LeetCodeLib.h 017LetterCombinationsofaPhoneNumber.cpp)
 
+add_executable(LeetCode019
+        LeetCodeLib.h 019RemoveNthNodeFromEndofList.cpp)
+
 add_executable(LeetCode020
         LeetCodeLib.h 020ValidParentheses.cpp)
 
