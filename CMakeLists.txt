@@ -45,6 +45,9 @@ add_executable(LeetCode027
 add_executable(LeetCode028
         LeetCodeLib.h 028ImplementstrStr\(\).cpp)
 
+add_executable(LeetCode029
+        LeetCodeLib.h 029DivideTwoIntegers.cpp)
+
 add_executable(LeetCode033
         LeetCodeLib.h 033SearchinRotatedSortedArray.cpp)
 
