@@ -57,6 +57,9 @@ add_executable(LeetCode034
 add_executable(LeetCode035
         LeetCodeLib.h 035SearchInsertPosition.cpp)
 
+add_executable(LeetCode039
+        LeetCodeLib.h 039CombinationSum.cpp)
+
 add_executable(LeetCode045
         LeetCodeLib.h 045JumpGameII.cpp)
 
