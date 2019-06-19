@@ -90,6 +90,9 @@ add_executable(LeetCode057
 add_executable(LeetCode062
         LeetCodeLib.h 062UniquePaths.cpp)
 
+add_executable(LeetCode063
+        LeetCodeLib.h 063UniquePathsII.cpp)
+
 add_executable(LeetCode064
         LeetCodeLib.h 064MinimumPathSum.cpp)
 
