@@ -87,6 +87,9 @@ add_executable(LeetCode056
 add_executable(LeetCode057
         LeetCodeLib.h 057InsertInterval.cpp)
 
+add_executable(LeetCode062
+        LeetCodeLib.h 062UniquePaths.cpp)
+
 add_executable(LeetCode064
         LeetCodeLib.h 064MinimumPathSum.cpp)
 
