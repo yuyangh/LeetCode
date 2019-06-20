@@ -25,8 +25,6 @@
  *
  *
  * Example 1:
- *
- *
  * Input:
  * matrix = [
  * ⁠ [1,   3,  5,  7],
@@ -38,8 +36,6 @@
  *
  *
  * Example 2:
- *
- *
  * Input:
  * matrix = [
  * ⁠ [1,   3,  5,  7],
