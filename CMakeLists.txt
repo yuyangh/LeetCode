@@ -105,6 +105,9 @@ add_executable(LeetCode069
 add_executable(LeetCode070
         LeetCodeLib.h 070ClimbingStairs.cpp)
 
+add_executable(LeetCode072
+        LeetCodeLib.h 072Searcha2DMatrix.cpp)
+
 add_executable(LeetCode073
         LeetCodeLib.h 073SetMatrixZeroes.cpp)
 

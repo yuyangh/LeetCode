@@ -1,72 +1,1 @@
-# Summary
-
-## Overall
-* 注意边界条件
-* 多使用temp variable来记住一些condition，帮助解题 e.g.008, 049
-
-## LinkedList
-* 如果更改结构，可以考虑用多个temp pointer来记住之前的 e.g.206
-
-## Dynamic Programming
-* 如果一下子没有idea，先写出recursion的方法，再思考这个recursion是从哪里开始计算的，DP就是按照这个顺序 e.g.300
-* 如果问一开始的时候需要多少数值才能完成任务，思考bottom up的DP e.g.174
-* 如果要取走或者不取走，最后数值最大，思考DP e.g.053
-* 规定搜索方向的path cost思考使用DP e.g.064
-
-## HashTable 使用场景
-* 如果有明确数值目标，寻找一个数值对应的内容，用hashtable e.g.015, 003
-
-## Binary Search
-* 基础的binary search是当left超过right退出，所以如果数值不存在，要插入的位置是left的结果 e.g.035
-* binary search 延伸，rightMostSearch，leftMostSearch 不return mid，return left 和right e.g.034
-
-## Binary Search Tree
-* 寻找数值的时候，可以用recursion来找，把是否存在的信息保存在return里面 e.g.236
-* 改变结构的时候，recursion可以用temp variable来记住parent， e.g.114
-* traverse order
-    * pre-order: self, left, right. used to copy the structure
-* serialize and deserialize BST e.g.449
-* heap结构适用于tree左右较为平衡的结构
-
-## Greedy algorithm
-* 思考schedule的时候列出各种样式来尝试 e.g.452
-* 创建extra variable来记住当前状态 e.g.376
-
-## string operation
-* 如果用int来保存string里面的字符的时候，要注意special character也会被保存为数字，和数字信息相冲突！ e.g.224
-
-## stack 使用场景
-* 两两match e.g.020
-* 保存一个个parent e.g.449
-
-## Custom Comparator
-* 当持续不断地添加并且获取最大/最小的数值的时候，考虑priority_queue
-* priority_queue<int, vector<int>, less<int>> 是把大的数字放在前面 e.g.295
-* auto ListNodeComp=[](ListNode *lhs, ListNode *rhs){return lhs->val > rhs->val;} // 把小的放在前面
-* priority_queue<ListNode* vector<ListNode*>, decltype(ListNodeComp)> pq(ListNodeComp); // e.g.023
-    * decltyple(comp) is a function, similar to greater<int>
-    * yourself defined comparator is a function object, which is still an object
-    * comp class we usually used has its own 括号运算符, so we do not need to pass comparator object to pq
-    * self-defined function's 括号运算符 replies on function
-    * so this decltype(comp) needs its comp object
-
-
-## Data Structure Methods
-* stack
-    * top, push, emplace, pop
-* queue
-    * front, push, emplace, pop, back,
-* priority_queue
-    * top, push, emplace, pop
-* set
-    *
-* map
-* unordered_map
-* unordered_set
-
-## STD method
-* isdigit
-    * int isdigit ( int c );// c is a Character to be checked, casted to an int, or EOF.
-* isalpha
-* max_element
-    * iterator std::max_element(iterator begin, iterator end)
+# Summary## Overall* 注意边界条件* 多使用temp variable来记住一些condition，帮助解题 e.g.008, 049## LinkedList* 如果更改结构，可以考虑用多个temp pointer来记住之前的 e.g.206## Dynamic Programming* 如果一下子没有idea，先写出recursion的方法，再思考这个recursion是从哪里开始计算的，DP就是按照这个顺序 e.g.300* 如果问一开始的时候需要多少数值才能完成任务，思考bottom up的DP e.g.174* 计算到终点有多少种方法，是+=累积能够抵达当前state的走法 e.g.091* 如果要取走或者不取走，最后数值最大，思考DP e.g.053* 规定搜索方向的path cost思考使用DP e.g.064## HashTable 使用场景* 如果有明确数值目标，寻找一个数值对应的内容，用hashtable e.g.015, 003## Binary Search* 基础的binary search是当left超过right退出，所以如果数值不存在，要插入的位置是left的结果 e.g.035* binary search 延伸，rightMostSearch，leftMostSearch 不return mid，return left 和right e.g.034## Binary Search Tree* 寻找数值的时候，可以用recursion来找，把是否存在的信息保存在return里面 e.g.236* 改变结构的时候，recursion可以用temp variable来记住parent， e.g.114* traverse order    * pre-order: self, left, right. used to copy the structure* serialize and deserialize BST e.g.449* heap结构适用于tree左右较为平衡的结构## Greedy algorithm* 思考schedule的时候列出各种样式来尝试 e.g.452* 创建extra variable来记住当前状态 e.g.376## string operation* 如果用int来保存string里面的字符的时候，要注意special character也会被保存为数字，和数字信息相冲突！ e.g.224## stack 使用场景* 两两match e.g.020* 保存一个个parent e.g.449## Custom Comparator* 当持续不断地添加并且获取最大/最小的数值的时候，考虑priority_queue* priority_queue<int, vector<int>, less<int>> 是把大的数字放在前面 e.g.295* auto ListNodeComp=[](ListNode *lhs, ListNode *rhs){return lhs->val > rhs->val;} // 把小的放在前面* priority_queue<ListNode* vector<ListNode*>, decltype(ListNodeComp)> pq(ListNodeComp); // e.g.023    * decltyple(comp) is a function, similar to greater<int>    * yourself defined comparator is a function object, which is still an object    * comp class we usually used has its own 括号运算符, so we do not need to pass comparator object to pq    * self-defined function's 括号运算符 replies on function    * so this decltype(comp) needs its comp object## Data Structure Methods* string    * [], pop_back* vector    * iterator erase(iterator position);        * Iterator pointing to a single element to be removed from the vector.    * iterator erase(iterator first, iterator last);        * Iterators specifying a range within the vector] to be removed: [first,last)* stack    * top, push, emplace, pop* queue    * front, push, emplace, pop, back,* priority_queue    * top, push, emplace, pop* set    ** map* unordered_map* unordered_set## STD method* sort    * sort's comp is different from priority_queue's comp    * smaller content would be at the front with std::less<int>* remove(ForwardIterator first, ForwardIterator last, const T& val)    * return: template <class ForwardIterator, class T> ForwardIterator    * Transforms the range [first,last) into a range with all the elements that compare equal to val removed, and returns an iterator to the new end of that range.* isalnum ( int c )    * return: int    * Checks whether c is either a decimal digit or an uppercase or lowercase letter.* isdigit ( int c )    * return int ;    * c is a Character to be checked, casted to an int, or EOF.* isalpha* max_element (iterator begin, iterator end)    * return: iterator## Git* change most recent commit date    *  git commit --amend --date="June 7 17:20:19 2019  +0800"
