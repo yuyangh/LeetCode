@@ -1,3 +1,4 @@
+#include <fstream>
 #include "LeetCodeLib.h"
 /*
  * @lc app=leetcode id=82 lang=cpp
@@ -129,6 +130,8 @@ string listNodeToString(ListNode *node) {
 
 int main() {
 	string line;
+	// input from file
+	ifstream in("../temp.txt");
 	while (getline(cin, line)) {
 		ListNode *head = stringToListNode(line);
 		
