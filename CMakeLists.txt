@@ -120,6 +120,9 @@ add_executable(LeetCode078
 add_executable(LeetCode079
         LeetCodeLib.h 079WordSearch.cpp)
 
+add_executable(LeetCode081
+        LeetCodeLib.h 081SearchinRotatedSortedArrayII.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
