@@ -28,15 +28,11 @@
  * Your algorithm's runtime complexity must be in the order of O(log n).
  *
  * Example 1:
- *
- *
  * Input: nums = [4,5,6,7,0,1,2], target = 0
  * Output: 4
  *
  *
  * Example 2:
- *
- *
  * Input: nums = [4,5,6,7,0,1,2], target = 3
  * Output: -1
  *
@@ -67,11 +63,22 @@ public:
 		return -1;
 	}
 	
-	// find the position of the pivot
+	// find the position of the pivot,
+	// pivot pos is the largest element moving forward
 	int pivotPos(vector<int> &nums) {
 		int mid = nums.size() - 1, low = 0, hi = nums.size() - 1;
+		while(nums[low] == nums[hi]){
+			--hi;
+			if(hi<=0){
+				return 0;
+			}
+		}
 		while (nums[low] > nums[hi]) {
 			mid = (hi + low) / 2;
+			// handle out of bound case
+			if(mid+1>=nums.size()){
+				return nums.size()-1;
+			}
 			if (nums[mid] > nums[mid + 1]) {
 				break;
 			} else {
