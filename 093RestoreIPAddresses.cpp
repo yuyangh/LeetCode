@@ -73,13 +73,13 @@ public:
 	}
 };
 
-int main(){
-	string input="25525511135";
+int main() {
+	string input = "25525511135";
 	Solution solution;
-	cout<<"input is:\t"<<input<<endl;
-	cout<<"combination is:"<<endl;
+	cout << "input is:\t" << input << endl;
+	cout << "combination is:" << endl;
 	for (const auto &item : solution.restoreIpAddresses(input)) {
-		cout<<item<<endl;
+		cout << item << endl;
 	}
 	return 0;
 }
