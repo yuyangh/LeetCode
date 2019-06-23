@@ -141,6 +141,9 @@ add_executable(LeetCode092 LeetCodeLib.h
 add_executable(LeetCode093 LeetCodeLib.h
         093RestoreIPAddresses.cpp)
 
+add_executable(LeetCode094 LeetCodeLib.h
+        094BinaryTreeInorderTraversal.cpp)
+
 add_executable(LeetCode098 LeetCodeLib.h
         098ValidateBinarySearchTree.cpp)
 
