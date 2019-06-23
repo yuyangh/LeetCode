@@ -60,8 +60,8 @@ public:
 		return result;
 	}
 	
-	// use queue to store one level nodes
-	// use queue size [queue.size() - 1 - i]
+	// use queue to store nodes on one level
+	// use queue size [queue.size() - 1 - i],
 	// to store nodes' values in reverse order if needed
 	vector<vector<int> > zigzagLevelOrderRef(TreeNode *root) {
 		if (root == NULL) {
