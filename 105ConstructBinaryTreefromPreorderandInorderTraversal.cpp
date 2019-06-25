@@ -81,6 +81,7 @@ public:
 			return nullptr;
 		}
 		
+		// at the leaf
 		TreeNode *node = new TreeNode(value);
 		++index;
 		if (start == end) {
