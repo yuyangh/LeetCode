@@ -162,6 +162,12 @@ add_executable(LeetCode106
 add_executable(LeetCode108
         LeetCodeLib.h 108ConvertSortedArraytoBinarySearchTree.cpp)
 
+add_executable(LeetCode109
+        LeetCodeLib.h 109ConvertSortedListtoBinarySearchTree.cpp)
+
+add_executable(LeetCode112
+        LeetCodeLib.h 112PathSum.cpp)
+
 add_executable(LeetCode113
         LeetCodeLib.h 113PathSumII.cpp)
 
