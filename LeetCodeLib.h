@@ -36,4 +36,31 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+static void PreOrderRecursiveTraversal(TreeNode *node, vector<int> &result) {
+	if (node == nullptr) {
+		return;
+	}
+	result.emplace_back(node->val);
+	PreOrderRecursiveTraversal(node->left, result);
+	PreOrderRecursiveTraversal(node->right, result);
+}
+
+template<class T>
+static void PrintVector(vector<T>& arr) {
+	for (const auto &item : arr) {
+		cout << item << " ";
+	}
+	cout << endl;
+}
+
+template<class T>
+static void PrintVectorVector(vector<vector<T>>& arr) {
+	for (const auto &row : arr) {
+		for (const auto &item : row) {
+			cout << item << " ";
+		}
+		cout << endl;
+	}
+}
+
 #endif //LEETCODE_LEETCODELIB_H
