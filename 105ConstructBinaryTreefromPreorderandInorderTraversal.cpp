@@ -96,14 +96,7 @@ public:
 		return node;
 	}
 	
-	void preOrderRecursive(TreeNode *node, vector<int> &result) {
-		if (node == nullptr) {
-			return;
-		}
-		result.emplace_back(node->val);
-		preOrderRecursive(node->left, result);
-		preOrderRecursive(node->right, result);
-	}
+	
 };
 
 int main() {
@@ -125,7 +118,7 @@ int main() {
 	Solution solution;
 	auto tree = solution.buildTree(preorder, inorder);
 	vector<int> result;
-	solution.preOrderRecursive(tree, result);
+	PreOrderRecursiveTraversal(tree, result);
 	for (const auto &item : result) {
 		cout << item << " ";
 	}
