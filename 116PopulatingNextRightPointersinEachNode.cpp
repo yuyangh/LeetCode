@@ -68,23 +68,23 @@ public:
 */
 class Solution {
 public:
-	Node* connect(Node* root) {
+	Node *connect(Node *root) {
 		connectNodes(root);
 		return root;
 	}
 
 private:
-	void connectNodes(Node* node){
-		if(node== nullptr){
+	void connectNodes(Node *node) {
+		if (node == nullptr) {
 			return;
 		}
-		Node* left=node->left;
-		Node* right=node->right;
+		Node *left = node->left;
+		Node *right = node->right;
 		// connect all nodes between the left and right gap
-		while(left!=nullptr){
-			left->next=right;
-			left=left->right;
-			right=right->left;
+		while (left != nullptr) {
+			left->next = right;
+			left = left->right;
+			right = right->left;
 		}
 		connectNodes(node->left);
 		connectNodes(node->right);
