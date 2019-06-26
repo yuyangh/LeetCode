@@ -186,6 +186,9 @@ add_executable(LeetCode125
 add_executable(LeetCode127
         LeetCodeLib.h 127WordLadder.cpp)
 
+add_executable(LeetCode128
+        LeetCodeLib.h 128LongestConsecutiveSequence.cpp)
+
 add_executable(LeetCode129
         LeetCodeLib.h 129SumRoottoLeafNumbers.cpp)
 
