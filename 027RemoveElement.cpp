@@ -70,6 +70,11 @@
 class Solution {
 public:
 	int removeElement(vector<int> &nums, int val) {
+		// succint way
+		nums.erase(remove(nums.begin(),nums.end(),val),nums.end());
+		return nums.size();
+		
+		// traditional
 		// delete in reverse order avoid updating index
 		for (int i = nums.size() - 1; i >= 0; i--) {
 			if (nums[i] == val) {
