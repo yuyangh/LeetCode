@@ -192,6 +192,9 @@ add_executable(LeetCode128
 add_executable(LeetCode129
         LeetCodeLib.h 129SumRoottoLeafNumbers.cpp)
 
+add_executable(LeetCode130
+        LeetCodeLib.h 130SurroundedRegions.cpp)
+
 add_executable(LeetCode131
         LeetCodeLib.h 131PalindromePartitioning.cpp)
 
