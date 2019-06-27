@@ -22,8 +22,6 @@
  * same letter cell may not be used more than once.
  *
  * Example:
- *
- *
  * board =
  * [
  * ⁠ ['A','B','C','E'],
@@ -34,8 +32,6 @@
  * Given word = "ABCCED", return true.
  * Given word = "SEE", return true.
  * Given word = "ABCB", return false.
- *
- *
  */
 class Solution {
 public:
@@ -53,6 +49,7 @@ public:
 			visited.emplace_back(vector<bool>(board[0].size(), false));
 		}
 		
+		// find word on board
 		for (int row = 0; row < board.size(); ++row) {
 			for (int col = 0; col < board[0].size(); ++col) {
 				if (exist(board, row, col, 0, word)) {
@@ -65,10 +62,10 @@ public:
 	
 	bool exist(vector<vector<char>> &board, int row, int col, int wordIndex, string &word) {
 		// check for bounds
-		if (row < 0||row >= board.size()) {
+		if (row < 0 || row >= board.size()) {
 			return false;
 		}
-		if (col < 0||col >= board[0].size()) {
+		if (col < 0 || col >= board[0].size()) {
 			return false;
 		}
 		
@@ -77,17 +74,20 @@ public:
 			if (wordIndex == word.size() - 1) {
 				return true;
 			}
+			// backtracking
 			visited[row][col] = true;
+			
 			// check all directions
 			bool up, down, right, left;
 			wordIndex++;
-			up = exist(board, row-1, col, wordIndex, word);
-			down = exist(board, row+ 1, col , wordIndex, word);
-			left = exist(board, row , col- 1, wordIndex, word);
+			up = exist(board, row - 1, col, wordIndex, word);
+			down = exist(board, row + 1, col, wordIndex, word);
+			left = exist(board, row, col - 1, wordIndex, word);
 			right = exist(board, row, col + 1, wordIndex, word);
 			if (up || down || right || left) {
 				return true;
 			} else {
+				// will not visit here
 				visited[row][col] = false;
 				return false;
 			}
@@ -101,8 +101,8 @@ int main() {
 	vector<vector<char>> data = {{'A', 'B', 'C', 'E'},
 	                             {'S', 'F', 'C', 'S'},
 	                             {'A', 'D', 'E', 'E'}};
-	string word="ABCCED";
+	string word = "ABCCED";
 	Solution solution;
-	auto result=solution.exist(data,word);
-	cout<<"result:"<<result<<endl;
+	auto result = solution.exist(data, word);
+	cout << "result:" << result << endl;
 }

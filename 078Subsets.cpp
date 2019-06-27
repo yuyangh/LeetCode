@@ -40,7 +40,6 @@ public:
 	vector<vector<int>> result;
 	
 	vector<vector<int>> subsets(vector<int> &nums) {
-		
 		if (nums.empty()) {
 			result.emplace_back(vector<int>());
 			return result;
@@ -58,6 +57,7 @@ public:
 			result.emplace_back(comb);
 			return;
 		}
+		// backtracking
 		for (int i = startPos; i <= endPos; i++) {
 			comb.emplace_back(nums[i]);
 			combination(comb, nums, i + 1, endPos + 1, remain - 1);

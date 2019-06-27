@@ -54,6 +54,7 @@ public:
 			result.emplace_back(nums);
 			return;
 		}
+		// backtracking
 		for (int i = lower; i <= upper; i++) {
 			nums.emplace_back(i);
 			// combine with numbers larger
