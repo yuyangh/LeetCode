@@ -66,6 +66,12 @@ add_executable(LeetCode034
 add_executable(LeetCode035
         LeetCodeLib.h 035SearchInsertPosition.cpp)
 
+add_executable(LeetCode036
+        LeetCodeLib.h 036ValidSudoku.cpp)
+
+add_executable(LeetCode038
+        LeetCodeLib.h 038CountandSay.cpp)
+
 add_executable(LeetCode039
         LeetCodeLib.h 039CombinationSum.cpp)
 
