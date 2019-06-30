@@ -75,6 +75,9 @@ add_executable(LeetCode038
 add_executable(LeetCode039
         LeetCodeLib.h 039CombinationSum.cpp)
 
+add_executable(LeetCode040
+        LeetCodeLib.h 040CombinationSumII.cpp)
+
 add_executable(LeetCode043
         LeetCodeLib.h 043MultiplyStrings.cpp)
 
