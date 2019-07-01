@@ -90,6 +90,12 @@ add_executable(LeetCode045
 add_executable(LeetCode046
         LeetCodeLib.h 046Permutations.cpp)
 
+add_executable(LeetCode047
+        LeetCodeLib.h 047PermutationsII.cpp)
+
+add_executable(LeetCode048
+        LeetCodeLib.h 048RotateImage.cpp)
+
 add_executable(LeetCode049
         LeetCodeLib.h 049GroupAnagrams.cpp)
 
