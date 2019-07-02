@@ -63,18 +63,24 @@
 class Solution {
 public:
 	void rotate(vector<vector<int>> &matrix) {
+		// according to linear algebra
+		// [0,  1] will rotate numbers clockwisely for 90 degress
+		// [-1, 0]
+		// so, x'= y, y'= -x + size - 1
 		if (matrix.empty()) {
 			return;
 		}
 		size_ = matrix.size();
 		int columnLimit = size_;
 		int halfSize = ceil(0.5 * size_);
+		// rotate non-overlapping points
 		for (int row = 0; row < halfSize; ++row) {
 			for (int col = row; col < size_ - 1 - row; ++col) {
 				int x = row, y = col;
 				pair<int, int> nextPos;
 				int currValue;
 				int prevValue = matrix[x][y];
+				// rotate for 4 times
 				for (int side = 0; side < 4; ++side) {
 					nextPos = rotate(x, y);
 					currValue = matrix[nextPos.first][nextPos.second];
