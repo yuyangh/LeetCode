@@ -105,6 +105,9 @@ add_executable(LeetCode050
 add_executable(LeetCode053
         LeetCodeLib.h 053MaximumSubarray.cpp)
 
+add_executable(LeetCode054
+        LeetCodeLib.h 054SpiralMatrix.cpp)
+
 add_executable(LeetCode055
         LeetCodeLib.h 055JumpGame.cpp)
 
