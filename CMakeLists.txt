@@ -120,6 +120,9 @@ add_executable(LeetCode057
 add_executable(LeetCode059
         LeetCodeLib.h 059SpiralMatrixII.cpp)
 
+add_executable(LeetCode061
+        LeetCodeLib.h 061RotateList.cpp)
+
 add_executable(LeetCode062
         LeetCodeLib.h 062UniquePaths.cpp)
 
