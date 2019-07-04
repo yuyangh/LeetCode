@@ -42,8 +42,29 @@
  */
 class Solution {
 public:
-	// todo can optimize
+	// suitable for self increase
 	vector<int> plusOne(vector<int> &digits) {
+		if (digits.empty()) {
+			return {1};
+		}
+		// add 1 to the last element
+		++digits.back();
+		
+		bool carry=false;
+		for (int i = digits.size()-1; i >=0; --i) {
+			int num=digits[i]+carry;
+			digits[i]=num%10;
+			carry=num>=10;
+		}
+		// if there is a carry, it must be at the front
+		if(carry){
+			digits.insert(digits.begin(),1);
+		}
+		return digits;
+	}
+	
+	// spend time on reverse
+	vector<int> plusOneWithReverse(vector<int> &digits) {
 		if (digits.empty()) {
 			return {1};
 		}
@@ -52,6 +73,7 @@ public:
 		
 		bool carry = false;
 		++digits[0];
+		// increase the number from orginal's end to first
 		for (int &digit : digits) {
 			int num = digit + carry;
 			if (num > 9) {
