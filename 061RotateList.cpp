@@ -49,7 +49,40 @@
  */
 class Solution {
 public:
+	// link the list to a cycle to walk and modify
 	ListNode *rotateRight(ListNode *head, int k) {
+		if (head == nullptr || k == 0) {
+			return head;
+		}
+		
+		// get the size of the list
+		int list_size = 1;
+		ListNode *tail = head, *new_head = head;
+		while (tail->next != nullptr) {
+			tail = tail->next;
+			++list_size;
+		}
+		// link the list to be a cycle
+		tail->next = head;
+		
+		// walk tail until before the new head
+		int target = k % list_size;
+		if (target != 0) {
+			for (int i = 0; i < list_size - target; ++i) {
+				tail = tail->next;
+			}
+		}
+		
+		// update new head and tail
+		new_head = tail->next;
+		tail->next = nullptr;
+		return new_head;
+	}
+	
+	// use first recursion to get the size
+	// second recursion if needed
+	// modify the list
+	ListNode *rotateRightRecursion(ListNode *head, int k) {
 		if (head == nullptr || k == 0) {
 			return head;
 		}
