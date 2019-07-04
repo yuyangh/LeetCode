@@ -138,6 +138,9 @@ add_executable(LeetCode066
 add_executable(LeetCode067
         LeetCodeLib.h 067AddBinary.cpp)
 
+add_executable(LeetCode068
+        LeetCodeLib.h 068TextJustification.cpp)
+
 add_executable(LeetCode069
         LeetCodeLib.h 069Sqrt\(x\).cpp)
 

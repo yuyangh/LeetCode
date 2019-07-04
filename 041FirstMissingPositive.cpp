@@ -39,6 +39,7 @@ public:
 	// visit each number once,
 	// and each number will be put in its right place at most once,
 	// so it is O(n) + O(n)
+	// use the numerical feature to solve
 	int firstMissingPositive(vector<int> &nums) {
 		// Put each number in its right place.
 		// For example:
