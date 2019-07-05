@@ -41,8 +41,6 @@
  *
  *
  * Example 1:
- *
- *
  * Input:
  * words = ["This", "is", "an", "example", "of", "text", "justification."]
  * maxWidth = 16
@@ -55,8 +53,6 @@
  *
  *
  * Example 2:
- *
- *
  * Input:
  * words = ["What","must","be","acknowledgment","shall","be"]
  * maxWidth = 16
@@ -88,8 +84,6 @@
  * "everything  else  we",
  * "do                  "
  * ]
- *
- *
  */
 class Solution {
 public:
