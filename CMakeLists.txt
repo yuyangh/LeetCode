@@ -165,6 +165,9 @@ add_executable(LeetCode078
 add_executable(LeetCode079
         LeetCodeLib.h 079WordSearch.cpp)
 
+add_executable(LeetCode080
+        LeetCodeLib.h 080RemoveDuplicatesfromSortedArrayII.cpp)
+
 add_executable(LeetCode081
         LeetCodeLib.h 081SearchinRotatedSortedArrayII.cpp)
 
