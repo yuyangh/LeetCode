@@ -183,6 +183,9 @@ add_executable(LeetCode084
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
+add_executable(LeetCode089
+        LeetCodeLib.h 089GrayCode.cpp)
+
 add_executable(LeetCode091 LeetCodeLib.h
         091DecodeWays.cpp)
 
