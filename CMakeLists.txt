@@ -186,6 +186,9 @@ add_executable(LeetCode086
 add_executable(LeetCode089
         LeetCodeLib.h 089GrayCode.cpp)
 
+add_executable(LeetCode090
+        LeetCodeLib.h 090SubsetsII.cpp)
+
 add_executable(LeetCode091 LeetCodeLib.h
         091DecodeWays.cpp)
 
