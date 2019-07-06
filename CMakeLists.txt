@@ -177,6 +177,9 @@ add_executable(LeetCode082
 add_executable(LeetCode083
         LeetCodeLib.h 083RemoveDuplicatesfromSortedList.cpp)
 
+add_executable(LeetCode084
+        LeetCodeLib.h 084LargestRectangleinHistogram.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
