@@ -228,6 +228,9 @@ add_executable(LeetCode108
 add_executable(LeetCode109
         LeetCodeLib.h 109ConvertSortedListtoBinarySearchTree.cpp)
 
+add_executable(LeetCode110
+        LeetCodeLib.h 110BalancedBinaryTree.cpp)
+
 add_executable(LeetCode112
         LeetCodeLib.h 112PathSum.cpp)
 
