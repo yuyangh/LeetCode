@@ -18,19 +18,21 @@
 #include <unordered_map>
 #include <set>
 #include <unordered_set>
+#include <fstream>
 
 using namespace std;
+ifstream INPUT_FILE("../temp.txt");
 
 class Node {
 public:
 	int val;
-	Node* left;
-	Node* right;
-	Node* next;
+	Node *left;
+	Node *right;
+	Node *next;
 	
 	Node() {}
 	
-	Node(int _val, Node* _left, Node* _right, Node* _next) {
+	Node(int _val, Node *_left, Node *_right, Node *_next) {
 		val = _val;
 		left = _left;
 		right = _right;
@@ -63,7 +65,7 @@ static void PreOrderRecursiveTraversal(TreeNode *node, vector<int> &result) {
 }
 
 template<class T>
-static void PrintVector(vector<T>& arr) {
+static void PrintVector(vector<T> &arr) {
 	for (const auto &item : arr) {
 		cout << item << " ";
 	}
@@ -71,7 +73,7 @@ static void PrintVector(vector<T>& arr) {
 }
 
 template<class T>
-static void PrintVectorVector(vector<vector<T>>& arr) {
+static void PrintVectorVector(vector<vector<T>> &arr) {
 	for (const auto &row : arr) {
 		for (const auto &item : row) {
 			cout << item << " ";
