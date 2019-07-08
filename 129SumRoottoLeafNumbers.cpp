@@ -25,8 +25,6 @@
  * Note: A leaf is a node with no children.
  *
  * Example:
- *
- *
  * Input: [1,2,3]
  * ⁠   1
  * ⁠  / \
@@ -38,8 +36,6 @@
  * Therefore, sum = 12 + 13 = 25.
  *
  * Example 2:
- *
- *
  * Input: [4,9,0,5,1]
  * ⁠   4
  * ⁠  / \
@@ -72,7 +68,8 @@ public:
 		traverse(root, 0);
 		return sum;
 	}
-	
+
+private:
 	void traverse(TreeNode *node, int value) {
 		if (node == nullptr) {
 			return;

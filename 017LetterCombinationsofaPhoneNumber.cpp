@@ -22,22 +22,44 @@
  * below. Note that 1 does not map to any letters.
  *
  *
- *
  * Example:
- *
- *
  * Input: "23"
  * Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
  *
- *
  * Note:
- *
  * Although the above answer is in lexicographical order, your answer could be
  * in any order you want.
  *
  */
 class Solution {
 public:
+	vector<string> letterCombinations(string digits) {
+		if (digits.empty()) {
+			return result;
+		}
+		result.reserve(static_cast<unsigned int>(pow(digits.size(), 3)));
+		string buffer;
+		combine(0, buffer, digits);
+		return result;
+	}
+
+private:
+	void combine(int pos, string &str, string &digits) {
+		if (pos == digits.size()) {
+			result.emplace_back(str);
+			return;
+		}
+		// get corresponding index of the list
+		int num = digits[pos] - '0';
+		
+		// append each possible char with backtracking
+		for (char ch : digitLetterMap[num]) {
+			str += ch;
+			combine(pos + 1, str, digits);
+			str.pop_back();
+		}
+	}
+	
 	// number to char O(1) conversion
 	vector<vector<char>> digitLetterMap = {{},
 	                                       {},
@@ -50,30 +72,6 @@ public:
 	                                       {'t', 'u', 'v'},
 	                                       {'w', 'x', 'y', 'z'}};
 	vector<string> result;
-	
-	vector<string> letterCombinations(string digits) {
-		if (digits.empty()) {
-			return result;
-		}
-		result.reserve(static_cast<unsigned int>(pow(digits.size(), 3)));
-		string buffer;
-		combine(0, buffer, digits);
-		return result;
-	}
-	
-	void combine(int pos, string &str, string &digits) {
-		if (pos == digits.size()) {
-			result.emplace_back(str);
-			return;
-		}
-		int num = digits[pos] - '0';
-		// append each possible char with backtracking
-		for (int i = 0; i < digitLetterMap[num].size(); i++) {
-			str += digitLetterMap[num][i];
-			combine(pos + 1, str, digits);
-			str.pop_back();
-		}
-	}
 };
 
 int main() {

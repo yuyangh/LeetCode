@@ -18,27 +18,20 @@
  * A message containing letters from A-Z is being encoded to numbers using the
  * following mapping:
  *
- *
  * 'A' -> 1
  * 'B' -> 2
  * ...
  * 'Z' -> 26
  *
- *
  * Given a non-empty string containing only digits, determine the total number
  * of ways to decode it.
  *
  * Example 1:
- *
- *
  * Input: "12"
  * Output: 2
  * Explanation: It could be decoded as "AB" (1 2) or "L" (12).
  *
- *
  * Example 2:
- *
- *
  * Input: "226"
  * Output: 3
  * Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2
@@ -48,7 +41,7 @@
 class Solution {
 public:
 	int numDecodings(string s) {
-		// iterative
+		// dp, iterative
 		if (s.empty()) {
 			return 0;
 		}
@@ -60,7 +53,7 @@ public:
 		return sum;
 	}
 	
-	// iterative
+	// dp, iterative
 	int decode(string &s) {
 		vector<int> data(s.size(), 0);
 		// base case
@@ -74,19 +67,19 @@ public:
 				data[i] = data[i - 1];
 			}
 			// check for 0 case
-			if(data[i]+data[i-1]==0){
+			if (data[i] + data[i - 1] == 0) {
 				return 0;
 			}
 			// two digit case
 			int twoNum = singleNum + (s[i - 1] - '0') * 10;
 			if (10 <= twoNum && twoNum <= 26) {
-				if(i==1){
+				if (i == 1) {
 					data[i]++;
 					continue;
 				}
 				// this is very important
 				// it is accumulate all counts that that can sum exactly to this position
-				data[i]+=data[i-2];
+				data[i] += data[i - 2];
 			}
 		}
 		return data.back();
