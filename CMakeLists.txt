@@ -243,6 +243,9 @@ add_executable(LeetCode114
 add_executable(LeetCode116
         LeetCodeLib.h 116PopulatingNextRightPointersinEachNode.cpp)
 
+add_executable(LeetCode117
+        LeetCodeLib.h 117PopulatingNextRightPointersinEachNodeII.cpp)
+
 add_executable(LeetCode120
         LeetCodeLib.h 120Triangle.cpp)
 
