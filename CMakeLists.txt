@@ -249,6 +249,9 @@ add_executable(LeetCode117
 add_executable(LeetCode120
         LeetCodeLib.h 120Triangle.cpp)
 
+add_executable(LeetCode124
+        LeetCodeLib.h 124BinaryTreeMaximumPathSum.cpp)
+
 add_executable(LeetCode125
         LeetCodeLib.h 125ValidPalindrome.cpp)
 
