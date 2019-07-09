@@ -103,6 +103,12 @@ static void PreOrderRecursiveTraversal(TreeNode *node, vector<int> &result) {
 	PreOrderRecursiveTraversal(node->right, result);
 }
 
+
+template<class T>
+static void PrintSingleResult(T result) {
+	cout << "Result:\t" << result << endl;
+}
+
 template<class T>
 static void PrintVector(vector<T> &arr) {
 	for (const auto &item : arr) {
