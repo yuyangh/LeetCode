@@ -1,5 +1,3 @@
-
-
 #ifndef LEETCODE_LEETCODELIB_H
 #define LEETCODE_LEETCODELIB_H
 
@@ -25,18 +23,39 @@ ifstream INPUT_FILE("../temp.txt");
 
 class Node {
 public:
-	int val;
-	Node *left;
-	Node *right;
-	Node *next;
+	int val = -1;
+	Node *left = nullptr;
+	Node *right = nullptr;
+	Node *next = nullptr;
 	
-	Node() {}
+	Node() : val(-1), right(nullptr), left(nullptr), next(nullptr) {}
+	
+	explicit Node(int val) : val(val), right(nullptr), left(nullptr), next(nullptr) {}
 	
 	Node(int _val, Node *_left, Node *_right, Node *_next) {
 		val = _val;
 		left = _left;
 		right = _right;
 		next = _next;
+	}
+	
+	static void levelOrder(vector<vector<int>> &result, Node *root) {
+		levelOrder(result, root, 0);
+	}
+
+private:
+	static void levelOrder(vector<vector<int>> &result, Node *node, int level) {
+		if (node == nullptr) {
+			return;
+		}
+		// add the vector for that level
+		if (level >= result.size()) {
+			result.emplace_back(vector<int>());
+		}
+		result[level].emplace_back(node->val);
+		// add for the next level
+		levelOrder(result, node->left, level + 1);
+		levelOrder(result, node->right, level + 1);
 	}
 };
 
@@ -48,11 +67,31 @@ struct ListNode {
 };
 
 struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
+	int val = -1;
+	TreeNode *left = nullptr;
+	TreeNode *right = nullptr;
 	
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+	
+	static void levelOrder(vector<vector<int>> &result, TreeNode *root) {
+		levelOrder(result, root, 0);
+	}
+
+private:
+	static void levelOrder(vector<vector<int>> &result, TreeNode *node, int level) {
+		if (node == nullptr) {
+			return;
+		}
+		// add the vector for that level
+		if (level >= result.size()) {
+			result.emplace_back(vector<int>());
+		}
+		result[level].emplace_back(node->val);
+		// add for the next level
+		levelOrder(result, node->left, level + 1);
+		levelOrder(result, node->right, level + 1);
+	}
+	
 };
 
 static void PreOrderRecursiveTraversal(TreeNode *node, vector<int> &result) {
