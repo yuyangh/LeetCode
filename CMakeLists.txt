@@ -21,6 +21,9 @@ add_executable(LeetCode011
 add_executable(LeetCode015
         LeetCodeLib.h 015_3Sums.cpp)
 
+add_executable(LeetCode016
+        LeetCodeLib.h 016_3SumClosest.cpp)
+
 add_executable(LeetCode017
         LeetCodeLib.h 017LetterCombinationsofaPhoneNumber.cpp)
 
