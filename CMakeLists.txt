@@ -9,6 +9,9 @@ add_executable(LeetCode
 add_executable(LeetCode003
         LeetCodeLib.h 003LongestSubstringWithoutRepeatingCharacters.cpp)
 
+add_executable(LeetCode006
+        LeetCodeLib.h 006ZigZagConversion.cpp)
+
 add_executable(LeetCode008
         LeetCodeLib.h 008StringtoInteger\(atoi\).cpp)
 
