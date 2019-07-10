@@ -35,8 +35,6 @@
  */
 class Solution {
 public:
-	vector<vector<int>> result;
-	
 	vector<vector<int>> permute(vector<int> &nums) {
 		if (nums.empty()) {
 			return result;
@@ -44,6 +42,9 @@ public:
 		permute(nums, 0);
 		return result;
 	}
+
+private:
+	vector<vector<int>> result;
 	
 	// for permutations, think about backtracking
 	void permute(vector<int> &nums, int pos) {
@@ -59,4 +60,12 @@ public:
 		}
 	}
 };
+
+int main() {
+	vector<int> arr = {1, 2, 3};
+	Solution solution;
+	auto result = solution.permute(arr);
+	PrintVectorVector(result);
+	return 0;
+}
 
