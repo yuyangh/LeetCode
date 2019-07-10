@@ -41,6 +41,7 @@ public:
 		}
 		access_ = vector<vector<State>>(max((size_t) 1, s1.size()),
 		                                vector<State>(max((size_t) 1, s2.size()), Unexplored));
+		// bool match = recursionNoMemorize(s1, 0, s2, 0, s3, 0);
 		bool match = recursionMemorize(s1, 0, s2, 0, s3, 0);
 		return match;
 	}
