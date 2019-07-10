@@ -41,11 +41,13 @@
 
 class Solution {
 public:
+	// O(n) method, use bitwise operation to try divisor<<=1
 	int divide(int dividend, int divisor) {
-		// O(n) method, use bitwise operation to try divisor<<=1
 		return calculate(dividend, divisor);
-		
-		// O(2^n) subtract divisor n times method
+	}
+	
+	// O(2^n) subtract divisor n times method
+	int divideSlow(int dividend, int divisor){
 		bool positive = true;
 		int result = calculate(dividend, divisor, positive);
 		if (result != 0 && !positive) {
@@ -56,9 +58,6 @@ public:
 	
 	/**
 	 * O(n) method, use bitwise operation to try divisor<<=1
-	 * @param dividend
-	 * @param divisor
-	 * @return
 	 */
 	int calculate(int dividend, int divisor) {
 		if (dividend == INT_MIN && divisor == -1) {
@@ -66,11 +65,14 @@ public:
 		}
 		int sign = getResultSign(dividend, divisor),ans=0;
 		int result = 0;
+		// labs() is abs() for long
 		long long dvd = labs(dividend), dvs = labs(divisor);
 		
+		// accumulate the divisor
 		while (dvd >= dvs) {
 			long temp = dvs;
 			result = 1;
+			// find largest multiples of divisor exponentially
 			while ((temp << 1) <= dvd) {
 				temp <<= 1;
 				result <<= 1;
@@ -110,6 +112,7 @@ public:
 	
 	/**
 	 * dividend and divisor are both negative to avoid overflow
+	 * use dividend -= divisor to calculate
 	 * this is O(2^n), too slow
 	 */
 	int division(int dividend, int divisor) {

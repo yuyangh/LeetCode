@@ -22,11 +22,8 @@
  * Each number in candidates may only be used once in the combination.
  *
  * Note:
- *
- *
  * All numbers (including target) will be positive integers.
  * The solution set must not contain duplicate combinations.
- *
  *
  * Example 1:
  * Input: candidates = [10,1,2,7,6,1,5], target = 8,
@@ -37,7 +34,6 @@
  * ⁠ [2, 6],
  * ⁠ [1, 1, 6]
  * ]
- *
  *
  * Example 2:
  * Input: candidates = [2,5,2,1,2], target = 5,
@@ -63,6 +59,8 @@ public:
 private:
 	vector<vector<int>> result;
 	
+	// backtracking by decrease distance and emplace number
+	// if successful, jump over all identical number (because all numbers are positive)
 	bool combine(vector<int> &candidates, vector<int> &single, int index, int distance) {
 		// base case
 		if (distance < 0) {
@@ -84,6 +82,7 @@ private:
 			bool complete = combine(candidates, single, i + 1, distance - candidates[i]);
 			trySuccessful |= complete;
 			single.pop_back();
+			// because all positiv numbers,
 			// if the number is successful, same value would also be successful
 			// so jump over same values, avoid duplicates
 			if (complete) {
