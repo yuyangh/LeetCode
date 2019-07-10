@@ -34,6 +34,9 @@
  */
 class Solution {
 public:
+	// O(n^3) moderately slow, idea is:
+	// build valueCountPosMap,
+	// key: number value, value:pair(number of existence, position in nonDuplicateNums)
 	vector<vector<int>> fourSum(vector<int> &nums, int target) {
 		if (nums.empty() || nums.size() < 4) {
 			return vector<vector<int>>();
@@ -69,6 +72,10 @@ private:
 	vector<vector<int>> result;
 	int goal;
 	
+	// backtracking algorithm, decrease number count and emplace the value
+	// ensure no duplicate
+	// when we emplace the last number,
+	// check whether number is after 2nd last number to avoid duplicate
 	void sum(vector<int> &nums, vector<int> &single, int index, int remain) {
 		// base case
 		if (remain == 1) {
