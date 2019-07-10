@@ -23,7 +23,6 @@
  * After removing the second node from the end, the linked list becomes
  * 1->2->3->5.
  *
- *
  * Note:
  * Given n will always be valid.
  *
@@ -40,15 +39,18 @@
  */
 class Solution {
 public:
-	ListNode *listHead;
-	
 	ListNode *removeNthFromEnd(ListNode *head, int n) {
 		listHead = head;
 		int distToEnd = -1;
 		remove(nullptr, head, distToEnd, n);
 		return listHead;
 	}
+
+private:
+	ListNode *listHead;
 	
+	// save parent node, next node,
+	// and distance to enable remember parent
 	void remove(ListNode *parent, ListNode *node, int &distToEnd, int n) {
 		// base case, count from end of the list
 		if (node == nullptr) {

@@ -39,7 +39,6 @@
  *
  *
  * Clarification:
- *
  * Confused why the returned value is an integer but your answer is an array?
  *
  * Note that the input array is passed in by reference, which means
@@ -55,7 +54,6 @@
  * for (int i = 0; i < len; i++) {
  * print(nums[i]);
  * }
- *
  */
 class Solution {
 public:
