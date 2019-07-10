@@ -4,7 +4,6 @@
  * @lc app=leetcode id=15 lang=cpp
  *
  * [15] 3Sum
- *
  * https://leetcode.com/problems/3sum/description/
  *
  * algorithms
@@ -33,7 +32,7 @@
  */
 class Solution {
 public:
-	// O(n*n)
+	// O(n*n), relatively slow
 	vector<vector<int>> threeSum(vector<int> &nums) {
 		if (nums.empty()) {
 			return vector<vector<int>>();
