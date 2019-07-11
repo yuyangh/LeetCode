@@ -52,11 +52,12 @@ private:
 			result.emplace_back(nums);
 			return;
 		}
-		// swap and re-swap back
-		for (int i = 0; i < nums.size() - pos; i++) {
-			swap(nums[pos], nums[pos + i]);
+		// backtracking
+		for (int i = pos; i < nums.size(); i++) {
+			swap(nums[pos], nums[i]);
+			// permute from place after current position
 			permute(nums, pos + 1);
-			swap(nums[pos], nums[pos + i]);
+			swap(nums[pos], nums[i]);
 		}
 	}
 };
