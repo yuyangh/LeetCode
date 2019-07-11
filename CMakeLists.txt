@@ -129,6 +129,9 @@ add_executable(LeetCode058
 add_executable(LeetCode059
         LeetCodeLib.h 059SpiralMatrixII.cpp)
 
+add_executable(LeetCode060
+        LeetCodeLib.h 060PermutationSequence.cpp)
+
 add_executable(LeetCode061
         LeetCodeLib.h 061RotateList.cpp)
 
@@ -209,6 +212,9 @@ add_executable(LeetCode093 LeetCodeLib.h
 
 add_executable(LeetCode094 LeetCodeLib.h
         094BinaryTreeInorderTraversal.cpp)
+
+add_executable(LeetCode096 LeetCodeLib.h
+        096UniqueBinarySearchTrees.cpp)
 
 add_executable(LeetCode097 LeetCodeLib.h
         097InterleavingString.cpp)
