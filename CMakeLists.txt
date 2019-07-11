@@ -123,6 +123,9 @@ add_executable(LeetCode056
 add_executable(LeetCode057
         LeetCodeLib.h 057InsertInterval.cpp)
 
+add_executable(LeetCode058
+        LeetCodeLib.h 058LengthofLastWord.cpp)
+
 add_executable(LeetCode059
         LeetCodeLib.h 059SpiralMatrixII.cpp)
 
