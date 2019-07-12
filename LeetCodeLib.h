@@ -17,9 +17,35 @@
 #include <set>
 #include <unordered_set>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 ifstream INPUT_FILE("../temp.txt");
+
+static string GenerateSpaces(int n) {
+	string spaces;
+	for (int i = 0; i < n; ++i) {
+		spaces += ' ';
+	}
+	return spaces;
+}
+
+/*
+ * calculate the maximum height of the tree
+ */
+template <class T>
+static int TreeHeight(T *node);
+
+/*
+ * print the tree out nicely,
+ * the gap between %d is space_width spaces, default value is 2
+ *       %d
+ *   %d      %d
+ * %d  %d  %d  %d
+ */
+template <class T>
+static void PrintTree(T *root, int space_width=2);
+
 
 class Node {
 public:
@@ -32,38 +58,18 @@ public:
 	
 	explicit Node(int val) : val(val), right(nullptr), left(nullptr), next(nullptr) {}
 	
-	Node(int _val, Node *_left, Node *_right, Node *_next) {
-		val = _val;
-		left = _left;
-		right = _right;
-		next = _next;
-	}
-	
-	static void levelOrder(vector<vector<int>> &result, Node *root) {
-		levelOrder(result, root, 0);
-	}
-
+	Node(int _val, Node *_left, Node *_right, Node *_next) :
+			val(_val), left(_left), right(_right), next(_next) {}
+			
 private:
-	static void levelOrder(vector<vector<int>> &result, Node *node, int level) {
-		if (node == nullptr) {
-			return;
-		}
-		// add the vector for that level
-		if (level >= result.size()) {
-			result.emplace_back(vector<int>());
-		}
-		result[level].emplace_back(node->val);
-		// add for the next level
-		levelOrder(result, node->left, level + 1);
-		levelOrder(result, node->right, level + 1);
-	}
+	
 };
 
 struct ListNode {
 	int val;
 	ListNode *next;
 	
-	ListNode(int x) : val(x), next(nullptr) {}
+	explicit ListNode(int x) : val(x), next(nullptr) {}
 };
 
 struct TreeNode {
@@ -71,30 +77,14 @@ struct TreeNode {
 	TreeNode *left = nullptr;
 	TreeNode *right = nullptr;
 	
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+	explicit TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 	
-	static void levelOrder(vector<vector<int>> &result, TreeNode *root) {
-		levelOrder(result, root, 0);
-	}
-
 private:
-	static void levelOrder(vector<vector<int>> &result, TreeNode *node, int level) {
-		if (node == nullptr) {
-			return;
-		}
-		// add the vector for that level
-		if (level >= result.size()) {
-			result.emplace_back(vector<int>());
-		}
-		result[level].emplace_back(node->val);
-		// add for the next level
-		levelOrder(result, node->left, level + 1);
-		levelOrder(result, node->right, level + 1);
-	}
 	
 };
 
-static void PreOrderRecursiveTraversal(TreeNode *node, vector<int> &result) {
+template<class T>
+static void PreOrderRecursiveTraversal(T *node, vector<int> &result) {
 	if (node == nullptr) {
 		return;
 	}
@@ -124,6 +114,75 @@ static void PrintVectorVector(vector<vector<T>> &arr) {
 			cout << item << " ";
 		}
 		cout << endl;
+	}
+}
+
+/*
+ * calculate the maximum height of the tree
+ */
+template <class T>
+static int TreeHeight(T *node) {
+	if (node == nullptr) {
+		return 0;
+	}
+	int left = TreeHeight(node->left);
+	int right = TreeHeight(node->right);
+	return max(left, right) + 1;
+}
+
+/*
+ * print the tree out nicely
+ *       %d
+ *   %d      %d
+ * %d  %d  %d  %d
+ */
+template <class T>
+static void PrintTree(T *root, int space_width) {
+	queue<T *> current_level;
+	queue<T *> next_level;
+	
+	current_level.push(root);
+	int level = 0;
+	int height = TreeHeight(root);
+	string spaces = GenerateSpaces(space_width);
+	
+	while (!current_level.empty()) {
+		++level;
+		
+		// print out the left spaces
+		int left_spaces = static_cast<int>(pow(2, height - level)) - 1;
+		for (int left_space = 0; left_space < left_spaces; ++left_space) {
+			cout << spaces;
+		}
+		
+		// print out values and middle spaces
+		while (!current_level.empty() && level <= height) {
+			auto node = current_level.front();
+			current_level.pop();
+			
+			// print out values, nullptr also needs spaces
+			if (node != nullptr) {
+				cout << setw(space_width) << setfill('0') << node->val;
+				next_level.push(node->left);
+				next_level.push(node->right);
+			} else {
+				cout << spaces;
+				next_level.push(nullptr);
+				next_level.push(nullptr);
+			}
+			flush(cout);
+			
+			// print out middle spaces
+			int middle_spaces = 2 * left_spaces + 1;
+			for (int middle_space = 0; middle_space < middle_spaces; ++middle_space) {
+				cout << spaces;
+			}
+		}
+		swap(current_level, next_level);
+		cout << endl;
+		if (level > height) {
+			break;
+		}
 	}
 }
 
