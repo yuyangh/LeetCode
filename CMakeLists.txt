@@ -213,6 +213,9 @@ add_executable(LeetCode093 LeetCodeLib.h
 add_executable(LeetCode094 LeetCodeLib.h
         094BinaryTreeInorderTraversal.cpp)
 
+add_executable(LeetCode095 LeetCodeLib.h
+        095UniqueBinarySearchTreesII.cpp)
+
 add_executable(LeetCode096 LeetCodeLib.h
         096UniqueBinarySearchTrees.cpp)
 
