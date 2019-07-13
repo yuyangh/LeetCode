@@ -15,6 +15,7 @@
 #include <map>
 #include <unordered_map>
 #include <set>
+#include <list>
 #include <unordered_set>
 #include <fstream>
 #include <iomanip>
@@ -62,7 +63,7 @@ public:
 			val(_val), left(_left), right(_right), next(_next) {}
 			
 private:
-	
+
 };
 
 struct ListNode {
@@ -80,7 +81,7 @@ struct TreeNode {
 	explicit TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 	
 private:
-	
+
 };
 
 template<class T>
