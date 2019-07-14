@@ -35,7 +35,7 @@ static string GenerateSpaces(int n) {
  * calculate the maximum height of the tree
  */
 template <class T>
-static int TreeHeight(T *node);
+static int TreeMaxHeight(T *node);
 
 /*
  * print the tree out nicely,
@@ -122,12 +122,12 @@ static void PrintVectorVector(vector<vector<T>> &arr) {
  * calculate the maximum height of the tree
  */
 template <class T>
-static int TreeHeight(T *node) {
+static int TreeMaxHeight(T *node) {
 	if (node == nullptr) {
 		return 0;
 	}
-	int left = TreeHeight(node->left);
-	int right = TreeHeight(node->right);
+	int left = TreeMaxHeight(node->left);
+	int right = TreeMaxHeight(node->right);
 	return max(left, right) + 1;
 }
 
@@ -144,7 +144,7 @@ static void PrintTree(T *root, int space_width) {
 	
 	current_level.push(root);
 	int level = 0;
-	int height = TreeHeight(root);
+	int height = TreeMaxHeight(root);
 	string spaces = GenerateSpaces(space_width);
 	
 	while (!current_level.empty()) {
