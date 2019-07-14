@@ -279,6 +279,9 @@ add_executable(LeetCode117
 add_executable(LeetCode118
         LeetCodeLib.h 118Pascal'sTriangle.cpp)
 
+add_executable(LeetCode119
+        LeetCodeLib.h 119Pascal'sTriangleII.cpp)
+
 add_executable(LeetCode120
         LeetCodeLib.h 120Triangle.cpp)
 
