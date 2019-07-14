@@ -225,6 +225,9 @@ add_executable(LeetCode097 LeetCodeLib.h
 add_executable(LeetCode098 LeetCodeLib.h
         098ValidateBinarySearchTree.cpp)
 
+add_executable(LeetCode100 LeetCodeLib.h
+        100SameTree.cpp)
+
 add_executable(LeetCode102
         LeetCodeLib.h 102BinaryTreeLevelOrderTraversal.cpp)
 
