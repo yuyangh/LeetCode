@@ -237,6 +237,9 @@ add_executable(LeetCode101
 add_executable(LeetCode103
         LeetCodeLib.h 103BinaryTreeZigzagLevelOrderTraversal.cpp)
 
+add_executable(LeetCode104
+        LeetCodeLib.h 104MaximumDepthofBinaryTree.cpp)
+
 add_executable(LeetCode105
         LeetCodeLib.h 105ConstructBinaryTreefromPreorderandInorderTraversal.cpp)
 
