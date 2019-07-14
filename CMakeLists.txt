@@ -258,6 +258,9 @@ add_executable(LeetCode109
 add_executable(LeetCode110
         LeetCodeLib.h 110BalancedBinaryTree.cpp)
 
+add_executable(LeetCode111
+        LeetCodeLib.h 111MinimumDepthofBinaryTree.cpp)
+
 add_executable(LeetCode112
         LeetCodeLib.h 112PathSum.cpp)
 
