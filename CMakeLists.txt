@@ -276,6 +276,9 @@ add_executable(LeetCode116
 add_executable(LeetCode117
         LeetCodeLib.h 117PopulatingNextRightPointersinEachNodeII.cpp)
 
+add_executable(LeetCode118
+        LeetCodeLib.h 118Pascal'sTriangle.cpp)
+
 add_executable(LeetCode120
         LeetCodeLib.h 120Triangle.cpp)
 
