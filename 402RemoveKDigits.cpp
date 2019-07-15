@@ -5,8 +5,22 @@
  *
  * [402] Remove K Digits
  *
+ * Companies: google | snapchat
+ *
  * "1234567890"
  * 9
+ * "1432219"
+ * 3
+ * "1234"
+ * 1
+ * "1234"
+ * 2
+ * "7541"
+ * 3
+ * "7541"
+ * 2
+ * "17651"
+ * 3
  */
 class Solution {
 public:
