@@ -4,70 +4,109 @@
  * @lc app=leetcode id=402 lang=cpp
  *
  * [402] Remove K Digits
+ *
+ * "1234567890"
+ * 9
  */
 class Solution {
 public:
+	/*
+	 * use stack to reach the feature of the problem,
+	 * which is removing prev digit larger than self
+	 */
 	string removeKdigits(string num, int k) {
+		// remove all digits
 		if (k >= num.size()) {
 			return "0";
 		}
-		for (int i = 0; i < num.size() - 1; i++) {
-			if (k == 0) {
+		
+		string result;
+		stack<char> num_stack;
+		int pop_need = k;
+		
+		// remove prev digit if prev > curr
+		for (char digit : num) {
+			while (!num_stack.empty() && num_stack.top() > digit && pop_need > 0) {
+				num_stack.pop();
+				--pop_need;
+			}
+			num_stack.push(digit);
+		}
+		
+		// pop the ending numbers
+		while (pop_need > 0) {
+			num_stack.pop();
+			pop_need--;
+		}
+		
+		// put stack into string
+		while (!num_stack.empty()) {
+			result += num_stack.top();
+			num_stack.pop();
+		}
+		
+		for (int i = static_cast<int>(result.size()) - 1; i > 0; --i) {
+			if (result[i] != '0') {
 				break;
+			} else {
+				result.pop_back();
 			}
-			if (num[i] > num[i + 1]) {
-				num[i] = '#';
-				i--;
-				k--;
-			}
+		}
+		
+		// result string is in reverse order
+		reverse(result.begin(), result.end());
+		return result;
+	}
+	
+	// do string manipulation
+	string removeKdigitsString(string num, int k) {
+		// remove all digits
+		if (k >= num.size()) {
+			return "0";
 		}
 		
 		while (k > 0) {
-			num.pop_back();
+			int i = 0;
+			// remove prev digit if prev > curr
+			while (i + 1 < num.size() && num[i] <= num[i + 1]) { i++; }
+			num.erase(i, 1);
 			k--;
 		}
+		// trim leading zeros
+		int s = 0;
+		while (s < (int) num.size() - 1 && num[s] == '0') { s++; }
+		num.erase(0, s);
 		
-		num.erase(remove(num.begin(), num.end(), '#'), num.end());
-		
-		int zeroCount = 0;
-		for (int i = 0; i < num.size() - 1; ++i) {
-			if (num[i] != '0') {
-				break;
-			} else {
-				zeroCount++;
-			}
-		}
-		num.erase(0, zeroCount);
-		return num;
+		return num == "" ? "0" : num;
 	}
 	
 	// works, but take too much memory
-	// string removeKdigits(string num, int k) {
-	// 	string buffer=num;
-	// 	int minNum=INT_MAX;
-	//
-	// 	for(int i=0;i<k;i++){
-	// 		vector<string> reducedNums(buffer.size(),buffer);
-	// 		for (int j = 0; j < reducedNums.size(); ++j) {
-	// 			reducedNums[j].erase(j,1);
-	// 			if(reducedNums[j].empty()){
-	// 				return "0";
-	// 			}
-	// 		}
-	// 		buffer=*min_element(reducedNums.begin(),reducedNums.end());
-	// 	}
-	// 	// get rid of leading zero
-	// 	for (int i = 0; i < buffer.size()-1; ++i) {
-	// 		if(buffer[i]=='0'){
-	// 			buffer.erase(i,1);
-	// 			i--;
-	// 		}else{
-	// 			break;
-	// 		}
-	// 	}
-	//
-	// 	return buffer;
-	// }
+	string removeKdigitsSlow(string num, int k) {
+		string buffer = num;
+		int minNum = INT_MAX;
+		
+		for (int i = 0; i < k; i++) {
+			vector<string> reducedNums(buffer.size(), buffer);
+			for (int j = 0; j < reducedNums.size(); ++j) {
+				reducedNums[j].erase(j, 1);
+				if (reducedNums[j].empty()) {
+					return "0";
+				}
+			}
+			buffer = *min_element(reducedNums.begin(), reducedNums.end());
+		}
+		// get rid of leading zero
+		for (int i = 0; i < buffer.size() - 1; ++i) {
+			if (buffer[i] == '0') {
+				buffer.erase(i, 1);
+				i--;
+			} else {
+				break;
+			}
+		}
+		
+		return buffer;
+	}
 };
 
 string stringToString(string input) {
