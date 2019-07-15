@@ -291,6 +291,9 @@ add_executable(LeetCode121
 add_executable(LeetCode122
         LeetCodeLib.h 122BestTimetoBuyandSellStockII.cpp)
 
+add_executable(LeetCode123
+        LeetCodeLib.h 123BestTimetoBuyandSellStockIII.cpp)
+
 add_executable(LeetCode124
         LeetCodeLib.h 124BinaryTreeMaximumPathSum.cpp)
 
