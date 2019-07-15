@@ -195,6 +195,9 @@ add_executable(LeetCode084
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
+add_executable(LeetCode088
+        LeetCodeLib.h 088MergeSortedArray.cpp)
+
 add_executable(LeetCode089
         LeetCodeLib.h 089GrayCode.cpp)
 
