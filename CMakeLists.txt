@@ -363,6 +363,9 @@ add_executable(LeetCode295
 add_executable(LeetCode300
         LeetCodeLib.h 300LongestIncreasingSubsequence.cpp)
 
+add_executable(LeetCode307
+        LeetCodeLib.h 307RangeSumQueryMutable.cpp)
+
 add_executable(LeetCode315
         LeetCodeLib.h 315CountofSmallerNumbersAfterSelf.cpp)
 
