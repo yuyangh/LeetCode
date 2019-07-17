@@ -318,6 +318,9 @@ add_executable(LeetCode130
 add_executable(LeetCode131
         LeetCodeLib.h 131PalindromePartitioning.cpp)
 
+add_executable(LeetCode136
+        LeetCodeLib.h 136SingleNumber.cpp)
+
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
