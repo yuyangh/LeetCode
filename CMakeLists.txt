@@ -327,6 +327,9 @@ add_executable(LeetCode137
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
+add_executable(LeetCode169
+        LeetCodeLib.h 169MajorityElement.cpp)
+
 add_executable(LeetCode174
         LeetCodeLib.h 174DungeonGame.cpp)
 
