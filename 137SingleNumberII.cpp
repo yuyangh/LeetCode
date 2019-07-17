@@ -24,15 +24,11 @@
  * it without using extra memory?
  *
  * Example 1:
- *
- *
  * Input: [2,2,3,2]
  * Output: 3
  *
  *
  * Example 2:
- *
- *
  * Input: [0,1,0,1,0,1,99]
  * Output: 99
  *
