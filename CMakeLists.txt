@@ -336,6 +336,9 @@ add_executable(LeetCode174
 add_executable(LeetCode187
         LeetCodeLib.h 187RepeatedDNASequences.cpp)
 
+add_executable(LeetCode190
+        LeetCodeLib.h 190ReverseBits.cpp)
+
 add_executable(LeetCode198
         LeetCodeLib.h 198HouseRobber.cpp)
 
