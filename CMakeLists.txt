@@ -324,6 +324,9 @@ add_executable(LeetCode136
 add_executable(LeetCode137
         LeetCodeLib.h 137SingleNumberII.cpp)
 
+add_executable(LeetCode146
+        LeetCodeLib.h 146LRUCache.cpp)
+
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
 
