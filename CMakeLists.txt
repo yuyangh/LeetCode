@@ -354,6 +354,9 @@ add_executable(LeetCode206
 add_executable(LeetCode207
         LeetCodeLib.h 207CourseSchedule.cpp)
 
+add_executable(LeetCode208
+        LeetCodeLib.h 208ImplementTriePrefixTree.cpp)
+
 add_executable(LeetCode215
         LeetCodeLib.h 215KthLargestElementInAnArray.cpp)
 
