@@ -333,6 +333,9 @@ add_executable(LeetCode155
 add_executable(LeetCode169
         LeetCodeLib.h 169MajorityElement.cpp)
 
+add_executable(LeetCode173
+        LeetCodeLib.h 173BinarySearchTreeIterator.cpp)
+
 add_executable(LeetCode174
         LeetCodeLib.h 174DungeonGame.cpp)
 
