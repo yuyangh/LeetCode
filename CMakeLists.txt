@@ -413,3 +413,6 @@ add_executable(LeetCode449
 
 add_executable(LeetCode621
         LeetCodeLib.h 621TaskScheduler.cpp)
+
+add_executable(LeetCode687
+        LeetCodeLib.h 687LongestUnivaluePath.cpp)
