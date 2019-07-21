@@ -369,6 +369,9 @@ add_executable(LeetCode208
 add_executable(LeetCode215
         LeetCodeLib.h 215KthLargestElementInAnArray.cpp)
 
+add_executable(LeetCode222
+        LeetCodeLib.h 222CountCompleteTreeNodes.cpp)
+
 add_executable(LeetCode224
         LeetCodeLib.h 224BasicCalculator.cpp)
 
