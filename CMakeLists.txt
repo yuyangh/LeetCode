@@ -410,3 +410,6 @@ add_executable(LeetCode409
 
 add_executable(LeetCode449
         LeetCodeLib.h 449SerializeandDeserializeBST.cpp)
+
+add_executable(LeetCode621
+        LeetCodeLib.h 621TaskScheduler.cpp)
