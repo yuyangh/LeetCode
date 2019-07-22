@@ -1,0 +1,130 @@
+#include "LeetCodeLib.h"
+
+/*
+ * @lc app=leetcode id=208 lang=cpp
+ *
+ * [208] Implement Trie (Prefix Tree)
+ *
+ * https://leetcode.com/problems/implement-trie-prefix-tree/description/
+ *
+ * algorithms
+ * Medium (39.28%)
+ * Likes:    1694
+ * Dislikes: 34
+ * Total Accepted:    188.5K
+ * Total Submissions: 478.6K
+ * Testcase Example:  '["Trie","insert","search","search","startsWith","insert","search"]\n' +
+  '[[],["apple"],["apple"],["app"],["app"],["app"],["app"]]'
+ *
+ * Implement a trie with insert, search, and startsWith methods.
+ *
+ * Example:
+ *
+ *
+ * Trie trie = new Trie();
+ *
+ * trie.insert("apple");
+ * trie.search("apple");   // returns true
+ * trie.search("app");     // returns false
+ * trie.startsWith("app"); // returns true
+ * trie.insert("app");
+ * trie.search("app");     // returns true
+ *
+ *
+ * Note:
+ *
+ *
+ * You may assume that all inputs are consist of lowercase letters a-z.
+ * All inputs are guaranteed to be non-empty strings.
+ *
+ *
+ */
+class Trie {
+public:
+	/** Initialize your data structure here. */
+	Trie() :  _word_end(false) {
+		for (auto & trie_ptr : _tries) {
+			trie_ptr= nullptr;
+		}
+	}
+	
+	/** Inserts a word into the trie. */
+	void insert(string word) {
+		auto trie_ptr = this;
+		for (const auto &item : word) {
+			int index = item - 'a';
+			Trie *trie;
+			// build a connection or reuse
+			if (trie_ptr->_tries[index] != nullptr) {
+				trie = trie_ptr->_tries[index];
+			} else {
+				trie = new Trie();
+			}
+			trie_ptr->_tries[index] = trie;
+			trie_ptr = trie;
+		}
+		trie_ptr->_word_end = true;
+	}
+	
+	/** Returns if the word is in the trie. */
+	bool search(string word) {
+		auto trie_ptr = this;
+		for (const auto &item : word) {
+			int index = item - 'a';
+			auto trie = trie_ptr->_tries[index];
+			if (trie != nullptr) {
+				trie_ptr = trie;
+			} else {
+				return false;
+			}
+		}
+		// check if the we reach the leaf of the trie
+		return (trie_ptr->_word_end);
+	}
+	
+	/** Returns if there is any word in the trie that starts with the given prefix. */
+	bool startsWith(string prefix) {
+		auto trie_ptr = this;
+		for (const auto &item : prefix) {
+			int index = item - 'a';
+			auto trie = trie_ptr->_tries[index];
+			if (trie != nullptr) {
+				trie_ptr = trie;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
+private:
+	Trie * _tries[26]{};
+	bool _word_end;
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+
+int main() {
+	Trie trie = Trie();
+	bool result;
+	
+	trie.insert("apple");
+	result = trie.search("apple");   // returns true
+	PrintSingleResult(result);
+	result = trie.search("app");     // returns false
+	PrintSingleResult(result);
+	result = trie.startsWith("app"); // returns true
+	PrintSingleResult(result);
+	trie.insert("app");
+	result = trie.search("app");     // returns true
+	PrintSingleResult(result);
+	
+	return 0;
+}
+
