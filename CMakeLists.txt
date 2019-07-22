@@ -429,5 +429,8 @@ add_executable(LeetCode687
 add_executable(LeetCode929
         LeetCodeLib.h 929UniqueEmailAddresses.cpp)
 
+add_executable(LeetCode1057
+        LeetCodeLib.h 1057CampusBikes.cpp)
+
 add_executable(XORSum
         LeetCodeLib.h XORSum.cpp)
