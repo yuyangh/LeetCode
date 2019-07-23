@@ -23,7 +23,7 @@
 using namespace std;
 ifstream INPUT_FILE("../temp.txt");
 
-static string GenerateSpaces(int n) {
+string GenerateSpaces(int n) {
 	string spaces;
 	for (int i = 0; i < n; ++i) {
 		spaces += ' ';
@@ -34,8 +34,8 @@ static string GenerateSpaces(int n) {
 /*
  * calculate the maximum height of the tree
  */
-template <class T>
-static int TreeMaxHeight(T *node);
+template<class T>
+int TreeMaxHeight(T *node);
 
 /*
  * print the tree out nicely,
@@ -44,8 +44,8 @@ static int TreeMaxHeight(T *node);
  *   %d      %d
  * %d  %d  %d  %d
  */
-template <class T>
-static void PrintTree(T *root, int space_width=2);
+template<class T>
+void PrintTree(T *root, int space_width = 2);
 
 
 class Node {
@@ -61,7 +61,7 @@ public:
 	
 	Node(int _val, Node *_left, Node *_right, Node *_next) :
 			val(_val), left(_left), right(_right), next(_next) {}
-			
+
 private:
 
 };
@@ -78,14 +78,16 @@ struct TreeNode {
 	TreeNode *left = nullptr;
 	TreeNode *right = nullptr;
 	
-	explicit TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+	explicit TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 	
+	TreeNode() : val(-1), left(nullptr), right(nullptr) {}
+
 private:
 
 };
 
 template<class T>
-static void PreOrderRecursiveTraversal(T *node, vector<int> &result) {
+void PreOrderRecursiveTraversal(T *node, vector<int> &result) {
 	if (node == nullptr) {
 		return;
 	}
@@ -96,12 +98,17 @@ static void PreOrderRecursiveTraversal(T *node, vector<int> &result) {
 
 
 template<class T>
-static void PrintSingleResult(T result) {
+void PrintSingleResult(T result) {
 	cout << "Result:\t" << result << endl;
 }
 
+template<>
+void PrintSingleResult<bool>(bool result) {
+	cout << "Result:\t" << (result ? "True" : "False") << endl;
+}
+
 template<class T>
-static void PrintVector(vector<T> &arr) {
+void PrintVector(vector<T> &arr) {
 	for (const auto &item : arr) {
 		cout << item << " ";
 	}
@@ -109,7 +116,7 @@ static void PrintVector(vector<T> &arr) {
 }
 
 template<class T>
-static void PrintVectorVector(vector<vector<T>> &arr) {
+void PrintVectorVector(vector<vector<T>> &arr) {
 	for (const auto &row : arr) {
 		for (const auto &item : row) {
 			cout << item << " ";
@@ -121,8 +128,8 @@ static void PrintVectorVector(vector<vector<T>> &arr) {
 /*
  * calculate the maximum height of the tree
  */
-template <class T>
-static int TreeMaxHeight(T *node) {
+template<class T>
+int TreeMaxHeight(T *node) {
 	if (node == nullptr) {
 		return 0;
 	}
@@ -137,8 +144,9 @@ static int TreeMaxHeight(T *node) {
  *   %d      %d
  * %d  %d  %d  %d
  */
-template <class T>
-static void PrintTree(T *root, int space_width) {
+template<class T>
+void PrintTree(T *root, int space_width) {
+	printf("Binary Tree is: \n");
 	queue<T *> current_level;
 	queue<T *> next_level;
 	
