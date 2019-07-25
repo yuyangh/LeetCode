@@ -189,6 +189,9 @@ add_executable(LeetCode083
 add_executable(LeetCode084
         LeetCodeLib.h 084LargestRectangleinHistogram.cpp)
 
+add_executable(LeetCode085
+        LeetCodeLib.h 085MaximalRectangle.cpp)
+
 add_executable(LeetCode086
         LeetCodeLib.h 086PartitionList.cpp)
 
