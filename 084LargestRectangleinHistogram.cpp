@@ -41,10 +41,12 @@
  */
 class Solution {
 public:
-	// use dynamic programming to memorize
-	// the left most and right most bound for one number
-	// if the jth element is larger than ith element,
-	// than i's bound must be larger than j's
+	/*
+	 * use dynamic programming to memorize
+	 * the left most and right most bound for one number
+	 * if the jth element is larger than ith element,
+	 * than i's bound must be larger than j's
+	 */
 	int largestRectangleArea(vector<int> &heights) {
 		if (heights.empty()) {
 			return 0;
@@ -56,26 +58,26 @@ public:
 		vector<int> non_smaller_index_from_left(heights.size(), 0);
 		vector<int> non_smaller_index_from_right(heights.size(), heights.size() - 1);
 		
-		for (int i = 0; i < heights.size(); ++i) {
-			int left = i - 1;
-			while (left >= 0 && heights[left] >= heights[i]) {
-				// find the available bound
+		for (int col = 0; col < heights.size(); ++col) {
+			int left = col - 1;
+			while (left >= 0 && heights[left] >= heights[col]) {
+				// find the available left bound
 				left = non_smaller_index_from_left[left];
 				--left;
 			}
-			left = min(max(0, left + 1), i);
+			left = min(max(0, left + 1), col);
 			// memorize the bound
-			non_smaller_index_from_left[i] = left;
+			non_smaller_index_from_left[col] = left;
 		}
 		
-		for (int i = heights.size() - 1; i >= 0; --i) {
-			int right = i + 1;
-			while (right <= heights.size() - 1 && heights[right] >= heights[i]) {
+		for (int col = heights.size() - 1; col >= 0; --col) {
+			int right = col + 1;
+			while (right <= heights.size() - 1 && heights[right] >= heights[col]) {
 				right = non_smaller_index_from_right[right];
 				++right;
 			}
-			right = max(min((int) (heights.size() - 1), right - 1), i);
-			non_smaller_index_from_right[i] = right;
+			right = max(min((int) (heights.size() - 1), right - 1), col);
+			non_smaller_index_from_right[col] = right;
 		}
 		
 		int max_area = 0;
