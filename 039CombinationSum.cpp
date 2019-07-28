@@ -49,6 +49,7 @@ public:
 		if (candidates.empty()) {
 			return result;
 		}
+		
 		// sort in ascending orders
 		sort(candidates.begin(), candidates.end());
 		vector<int> single;
