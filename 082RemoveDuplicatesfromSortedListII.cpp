@@ -1,4 +1,3 @@
-#include <fstream>
 #include "LeetCodeLib.h"
 /*
  * @lc app=leetcode id=82 lang=cpp
@@ -21,7 +20,6 @@
  * Example 1:
  * Input: 1->2->3->3->4->4->5
  * Output: 1->2->5
- *
  *
  * Example 2:
  * Input: 1->1->1->2->3
@@ -52,6 +50,7 @@ public:
 					del = 2;
 				}
 			}
+			
 			if (del) {
 				--del;
 				// deal with head
@@ -66,6 +65,7 @@ public:
 				// update prev only when the node is not going to be deleted
 				prev = node;
 			}
+			
 			node = nextNode;
 		}
 		return newHead;
