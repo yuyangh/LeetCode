@@ -18,8 +18,6 @@
  * non-negative.
  *
  * Example 1:
- *
- *
  * Input: 1->2->3->4->5->NULL, k = 2
  * Output: 4->5->1->2->3->NULL
  * Explanation:
@@ -28,8 +26,6 @@
  *
  *
  * Example 2:
- *
- *
  * Input: 0->1->2->NULL, k = 4
  * Output: 2->0->1->NULL
  * Explanation:
@@ -39,6 +35,7 @@
  * rotate 4 steps to the right: 2->0->1->NULL
  *
  */
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -47,9 +44,12 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+ 
 class Solution {
 public:
-	// link the list to a cycle to walk and modify
+	/* O(n)
+	 * link the list to a cycle to walk and modify
+	 */
 	ListNode *rotateRight(ListNode *head, int k) {
 		if (head == nullptr || k == 0) {
 			return head;
@@ -79,9 +79,12 @@ public:
 		return new_head;
 	}
 	
-	// use first recursion to get the size
-	// second recursion if needed
-	// modify the list
+	/*
+	 * O(n)
+	 * use first recursion to get the size
+	 * second recursion if needed
+	 * modify the list
+	 */
 	ListNode *rotateRightRecursion(ListNode *head, int k) {
 		if (head == nullptr || k == 0) {
 			return head;
