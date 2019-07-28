@@ -53,18 +53,12 @@ public:
 		}
 		
 		path.reserve(n);
+		// because top row and left col both only have 1 path
 		for(int row=0;row<n;row++){
-			path.emplace_back(m,0);
+			path.emplace_back(m,1);
 		}
 		
 		// dynamic programming
-		path[0][0]=1;
-		for(int col=1;col<m;col++){
-			path[0][col]=1;
-		}
-		for(int row=1;row<n;row++){
-			path[row][0]=1;
-		}
 		for(int row=1;row<n;row++){
 			for(int col=1;col<m;col++){
 				path[row][col]=path[row-1][col]+path[row][col-1];
