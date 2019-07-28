@@ -39,7 +39,45 @@
  */
 class Solution {
 public:
+	/*
+	 * average O(logn)
+	 * only do binary search once
+	 * use 2 conditions to check to ensure target is in one side
+	 */
 	int search(vector<int> &nums, int target) {
+		int left = 0, right = nums.size() - 1, mid;
+		
+		while (left <= right) {
+			mid = (left + right) / 2;
+			if (nums[mid] == target) {
+				return mid;
+			}
+			
+			// decide the direction to search
+			if (nums[left] <= nums[mid]) {
+				// ensure target is in the left half
+				if ((nums[left] <= target) && (nums[mid] > target)) {
+					right = mid - 1;
+				} else {
+					left = mid + 1;
+				}
+			} else {
+				if ((nums[mid] < target) && (nums[right] >= target)) {
+					left = mid + 1;
+				} else {
+					right = mid - 1;
+				}
+			}
+		}
+		return -1;
+	}
+	
+	/*
+	 * average O(logn)
+	 * first find the pivot
+	 * then do binary search on both sides
+	 */
+	int searchTwice(vector<int> &nums, int target) {
 		if (nums.empty()) {
 			return -1;
 		}
