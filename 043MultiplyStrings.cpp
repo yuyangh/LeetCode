@@ -38,6 +38,40 @@
 class Solution {
 public:
 	string multiply(string num1, string num2) {
+		// allocate the size
+		string sum(num1.size() + num2.size(), '0');
+		
+		// do the multiplication from the end
+		for (int i = num1.size() - 1; i >= 0; --i) {
+			int carry = 0;
+			for (int j = num2.size() - 1; j >= 0; --j) {
+				int tmp = (sum[i + j + 1] - '0') +
+				          (num1[i] - '0') * (num2[j] - '0') + carry;
+				sum[i + j + 1] = tmp % 10 + '0';
+				carry = tmp / 10;
+			}
+			
+			// write leading carry after a loop
+			sum[i] += carry;
+		}
+		
+		// trim any leading zeros
+		size_t startpos = sum.find_first_not_of("0");
+		if (string::npos != startpos) {
+			return sum.substr(startpos);
+		}
+		
+		// return 0 if we computed nothing but zeros
+		return "0";
+	}
+	
+	/*
+	 * reverse the string and
+	 * do multiplication for entire num1 with each digit of num2
+	 * it is slow because
+	 * the reverse operation and add string operation takes time
+	 */
+	string multiplySlow(string num1, string num2) {
 		// check 0 case
 		if (num1.empty() || num2.empty()) {
 			return "0";
@@ -59,10 +93,10 @@ public:
 				multiplication += '0';
 			}
 			// do multiplication for each digit
-			for (int j = 0; j < num2.size(); j++) {
+			for (char num2digit : num2) {
 				
 				int digit1 = getDigit(num1[i]);
-				int digit2 = getDigit(num2[j]);
+				int digit2 = getDigit(num2digit);
 				int num = digit1 * digit2 + carry;
 				int digit = (num) % 10;
 				carry = (num) / 10;
