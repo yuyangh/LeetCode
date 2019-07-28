@@ -25,8 +25,6 @@
  * Now consider if some obstacles are added to the grids. How many unique paths
  * would there be?
  *
- *
- *
  * An obstacle and empty space is marked as 1 and 0 respectively in the grid.
  *
  * Note: m and n will be at most 100.
@@ -38,6 +36,7 @@
  * [0,1,0],
  * [0,0,0]
  * ]
+ *
  * Output: 2
  * Explanation:
  * There is one obstacle in the middle of the 3x3 grid above.
@@ -45,14 +44,15 @@
  * 1. Right -> Right -> Down -> Down
  * 2. Down -> Down -> Right -> Right
  */
+
 class Solution {
 public:
-	vector<vector<unsigned long long>> path;
-	
 	int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
 		if (obstacleGrid.empty()) {
 			return 0;
 		}
+		
+		vector<vector<unsigned long long>> path;
 		
 		// initialize slots to be 0
 		path.reserve(obstacleGrid.size());
