@@ -1,8 +1,89 @@
 #include "LeetCodeLib.h"
 
+/*
+ * @lc app=leetcode id=81 lang=cpp
+ *
+ * [81] Search in Rotated Sorted Array II
+ *
+ * https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/
+ *
+ * algorithms
+ * Medium (32.63%)
+ * Likes:    674
+ * Dislikes: 315
+ * Total Accepted:    174.2K
+ * Total Submissions: 533.7K
+ * Testcase Example:  '[2,5,6,0,0,1,2]\n0'
+ *
+ * Suppose an array sorted in ascending order is rotated at some pivot unknown
+ * to you beforehand.
+ *
+ * (i.e., [0,0,1,2,2,5,6] might become [2,5,6,0,0,1,2]).
+ *
+ * You are given a target value to search. If found in the array return true,
+ * otherwise return false.
+ *
+ * Example 1:
+ * Input: nums = [2,5,6,0,0,1,2], target = 0
+ * Output: true
+ *
+ * Example 2:
+ * Input: nums = [2,5,6,0,0,1,2], target = 3
+ * Output: false
+ *
+ * Follow up:
+ * This is a follow up problem to Search in Rotated Sorted Array, where nums
+ * may contain duplicates.
+ * Would this affect the run-time complexity? How and why?
+ *
+ */
+
 class Solution {
 public:
+	/*
+	 * average O(logn)
+	 * only do binary search once
+	 * use 2 conditions to check to ensure target is in one side
+	 */
 	bool search(vector<int> &nums, int target) {
+		int left = 0, right = nums.size() - 1, mid;
+		
+		while (left <= right) {
+			// update left and right if they are the same to avoid duplicates
+			while ((right >= 0 && left != right && nums[left] == nums[right])) {
+				--right;
+			}
+			
+			mid = (left + right) / 2;
+			if (nums[mid] == target) {
+				return true;
+			}
+			
+			// decide the direction to search
+			if (nums[left] <= nums[mid]) {
+				// ensure target is in the left half
+				if ((nums[left] <= target) && (nums[mid] > target)) {
+					right = mid - 1;
+				} else {
+					left = mid + 1;
+				}
+			} else {
+				if ((nums[mid] < target) && (nums[right] >= target)) {
+					left = mid + 1;
+				} else {
+					right = mid - 1;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/*
+	 * average O(logn)
+	 * first find the pivot
+	 * then do binary search on both sides
+	 */
+	bool searchTwice(vector<int> &nums, int target) {
 		if (nums.empty()) {
 			return false;
 		}
@@ -21,11 +102,12 @@ public:
 		}
 		bool right = binary_search(nums.begin() + pos + 1, nums.end(), target);
 		return right;
-		
 	}
 	
-	// find the position of the pivot,
-	// pivot pos is the largest element moving forward
+	/*
+	 * find the position of the pivot,
+	 * pivot pos is the largest element moving forward
+	 */
 	int pivotPos(vector<int> &nums) {
 		int mid = -1, low = 0, hi = nums.size() - 1;
 		// deal with duplicate number situation
