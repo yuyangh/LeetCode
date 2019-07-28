@@ -23,7 +23,6 @@
  * The first integer of each row is greater than the last integer of the
  * previous row.
  *
- *
  * Example 1:
  * Input:
  * matrix = [
@@ -33,7 +32,6 @@
  * ]
  * target = 3
  * Output: true
- *
  *
  * Example 2:
  * Input:
@@ -48,6 +46,10 @@
  */
 class Solution {
 public:
+	/*
+	 * O(logm*logn)= O(log(m+n))
+	 * first search for row, and then for col
+	 */
 	bool searchMatrix(vector<vector<int>> &matrix, int target) {
 		// handle empty case
 		if (matrix.empty() || matrix[0].empty()) {
@@ -61,7 +63,11 @@ public:
 		return binary_search(matrix[rowIndex].begin(), matrix[rowIndex].end(), target);
 	}
 	
-	// search for row
+	/*
+	 * O(logn)
+	 * search for target row
+	 * the target row will be high if low>high
+	 */
 	int binaryRowSearch(vector<vector<int>> &matrix, int target) {
 		int low = 0, high = matrix.size() - 1, mid;
 		while (low <= high) {
