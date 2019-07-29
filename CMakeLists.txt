@@ -156,11 +156,11 @@ add_executable(LeetCode069
 add_executable(LeetCode070
         LeetCodeLib.h 070ClimbingStairs.cpp)
 
-add_executable(LeetCode072
-        LeetCodeLib.h 072Searcha2DMatrix.cpp)
-
 add_executable(LeetCode073
         LeetCodeLib.h 073SetMatrixZeroes.cpp)
+
+add_executable(LeetCode074
+        LeetCodeLib.h 074Searcha2DMatrix.cpp)
 
 add_executable(LeetCode075
         LeetCodeLib.h 075SortColors.cpp)
@@ -419,3 +419,9 @@ add_executable(LeetCode621
 
 add_executable(LeetCode687
         LeetCodeLib.h 687LongestUnivaluePath.cpp)
+
+add_executable(LeetCode929
+        LeetCodeLib.h 929UniqueEmailAddresses.cpp)
+
+add_executable(XORSum
+        LeetCodeLib.h XORSum.cpp)
