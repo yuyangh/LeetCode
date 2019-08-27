@@ -65,6 +65,7 @@ Summary of LeetCode problems
 * serialize and deserialize BST e.g.449
 * heap结构适用于tree左右较为平衡的结构
 * 展现每层的内容：用层数来作为参数，存储在vector里面
+* 计算tree里面最长的list时，是either取2个children or 取parent+ 1 child 
 
 ## State Machine
 * 用array[][]来记住状态机 e.g.017
@@ -107,6 +108,9 @@ Summary of LeetCode problems
     * self-defined function's 括号运算符 replies on function
     * so this decltype(comp) needs its comp object
 
+## Scheduling
+* 安排时考虑：间隔gap，很多同种类型的task，很多不同类型的task
+* 有没有可能用array[][]来表示 e.g.621
 
 ## Data Structure Methods
 * string
