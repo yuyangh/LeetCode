@@ -27,25 +27,14 @@
  * You need to return the least number of intervals the CPU will take to finish
  * all the given tasks.
  *
- *
- *
  * Example:
- *
- *
  * Input: tasks = ["A","A","A","B","B","B"], n = 2
  * Output: 8
  * Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
  *
- *
- *
- *
  * Note:
- *
- *
  * The number of tasks is in the range [1, 10000].
  * The integer n is in the range [0, 100].
- *
- *
  */
 class Solution {
 public:
@@ -115,6 +104,6 @@ int main() {
 	
 	Solution solution;
 	solution.leastInterval(arr, gap);
-	
+	return 0;
 }
 

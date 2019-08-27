@@ -22,10 +22,7 @@
  * The length of path between two nodes is represented by the number of edges
  * between them.
  *
- *
- *
  * Example 1:
- *
  * Input:
  *
  *
@@ -38,10 +35,7 @@
  *
  * Output: 2
  *
- *
- *
  * Example 2:
- *
  * Input:
  *
  *
@@ -53,12 +47,8 @@
  *
  *
  * Output: 2
- *
- *
- *
  * Note: The given binary tree has not more than 10000 nodes. The height of the
  * tree is not more than 1000.
- *
  */
 /**
  * Definition for a binary tree node.
