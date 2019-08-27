@@ -19,8 +19,6 @@
  * Implement a trie with insert, search, and startsWith methods.
  *
  * Example:
- *
- *
  * Trie trie = new Trie();
  *
  * trie.insert("apple");
@@ -32,23 +30,29 @@
  *
  *
  * Note:
- *
- *
  * You may assume that all inputs are consist of lowercase letters a-z.
  * All inputs are guaranteed to be non-empty strings.
  *
- *
+ */
+/**
+ * each node has n pointers to the next level
+ * each node has a mark that whether current node is an end of word
  */
 class Trie {
 public:
-	/** Initialize your data structure here. */
+	/** Initialize your data structure here.
+	 * initialize each pointer to nullptr
+	 */
 	Trie() :  _word_end(false) {
 		for (auto & trie_ptr : _tries) {
 			trie_ptr= nullptr;
 		}
 	}
 	
-	/** Inserts a word into the trie. */
+	/** Inserts a word into the trie.
+	 * either create a connection or reuse current one
+	 * mark the node as an end for a word
+	 */
 	void insert(string word) {
 		auto trie_ptr = this;
 		for (const auto &item : word) {
@@ -66,7 +70,10 @@ public:
 		trie_ptr->_word_end = true;
 	}
 	
-	/** Returns if the word is in the trie. */
+	/** Returns if the word is in the trie.
+	 * check whether word exist in the trie
+	 * and whether that node is an end of a word
+	 * */
 	bool search(string word) {
 		auto trie_ptr = this;
 		for (const auto &item : word) {
@@ -82,7 +89,9 @@ public:
 		return (trie_ptr->_word_end);
 	}
 	
-	/** Returns if there is any word in the trie that starts with the given prefix. */
+	/** Returns if there is any word in the trie that starts with the given prefix.
+	 * similar to seach method
+	 */
 	bool startsWith(string prefix) {
 		auto trie_ptr = this;
 		for (const auto &item : prefix) {
