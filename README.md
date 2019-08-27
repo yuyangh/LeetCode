@@ -1,5 +1,5 @@
 # Summary
-LeetCode problems I have solved
+Summary of LeetCode problems 
 
 ## Overall
 * average runtime 就是amortized runtime,注意这个和runtime的差异
