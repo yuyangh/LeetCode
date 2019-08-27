@@ -19,8 +19,6 @@
  * an Excel sheet.
  *
  * For example:
- *
- *
  * ⁠   1 -> A
  * ⁠   2 -> B
  * ⁠   3 -> C
@@ -32,33 +30,25 @@
  *
  *
  * Example 1:
- *
- *
  * Input: 1
  * Output: "A"
  *
- *
  * Example 2:
- *
- *
  * Input: 28
  * Output: "AB"
  *
- *
  * Example 3:
- *
- *
  * Input: 701
  * Output: "ZY"
- *
  */
 class Solution {
 public:
 	string convertToTitle(int n) {
 		string result;
+		// reserve the space
 		result.reserve(ceil(log(n) / log(26)));
 		while (n > 0) {
-			// because excel starts at 1
+			// because excel's range is 1-26
 			--n;
 			int index = n % 26;
 			result += 'A' + index;

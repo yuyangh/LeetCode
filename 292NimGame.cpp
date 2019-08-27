@@ -25,8 +25,6 @@
  * stones in the heap.
  *
  * Example:
- *
- *
  * Input: 4
  * Output: false
  * Explanation: If there are 4 stones in the heap, then you will never win the
