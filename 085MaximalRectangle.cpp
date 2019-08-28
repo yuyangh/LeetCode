@@ -19,8 +19,6 @@
  * containing only 1's and return its area.
  *
  * Example:
- *
- *
  * Input:
  * [
  * ⁠ {"1","0","1","0","0"},
@@ -29,12 +27,11 @@
  * ⁠ {"1","0","0","1","0"}
  * ]
  * Output: 6
- *
- *
  */
 class Solution {
 public:
 	/*
+	 * runtime O(n*n)
 	 * This question is similar as [084 Largest Rectangle in Histogram]:
 	 * maintain a row length of Integer array H recorded its height of '1's,
 	 * and scan and update row by row to find out the largest rectangle of each row.

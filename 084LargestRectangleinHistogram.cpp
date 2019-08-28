@@ -19,29 +19,20 @@
  * the width of each bar is 1, find the area of largest rectangle in the
  * histogram.
  *
- *
- *
- *
  * Above is a histogram where width of each bar is 1, given height =
  * [2,1,5,6,2,3].
- *
- *
- *
  *
  * The largest rectangle is shown in the shaded area, which has area = 10
  * unit.
  *
- *
- *
  * Example:
  * Input: [2,1,5,6,2,3]
  * Output: 10
- *
- *
  */
 class Solution {
 public:
 	/*
+	 * runtime O(n)
 	 * use dynamic programming to memorize
 	 * the left most and right most bound for one number
 	 * if the jth element is larger than ith element,
@@ -58,6 +49,7 @@ public:
 		vector<int> non_smaller_index_from_left(heights.size(), 0);
 		vector<int> non_smaller_index_from_right(heights.size(), heights.size() - 1);
 		
+		// from left to right to calculate left bound
 		for (int col = 0; col < heights.size(); ++col) {
 			int left = col - 1;
 			while (left >= 0 && heights[left] >= heights[col]) {
@@ -70,6 +62,7 @@ public:
 			non_smaller_index_from_left[col] = left;
 		}
 		
+		// from right to left to calculate right bound
 		for (int col = heights.size() - 1; col >= 0; --col) {
 			int right = col + 1;
 			while (right <= heights.size() - 1 && heights[right] >= heights[col]) {
@@ -80,6 +73,7 @@ public:
 			non_smaller_index_from_right[col] = right;
 		}
 		
+		// go through each bar to calculate the area
 		int max_area = 0;
 		for (int i = 0; i < heights.size(); ++i) {
 			int area = CalculateArea(heights, i,
@@ -89,7 +83,6 @@ public:
 				max_area = area;
 			}
 		}
-		
 		return max_area;
 	}
 
