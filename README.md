@@ -29,6 +29,7 @@ Summary of LeetCode problems
 * 计算到终点有多少种方法,是+=累积能够抵达当前state的走法 e.g.091
 * 如果要取走或者不取走,最后数值最大,思考DP e.g.053
 * 规定搜索方向的path cost思考使用DP e.g.064
+* 可以记住之前到达这个state的信息 e.g.084， 085
 
 ## HashTable 使用场景
 * 如果有明确数值目标,寻找一个数值对应的内容,用hashtable e.g.015, 003
