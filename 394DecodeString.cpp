@@ -46,7 +46,6 @@
 
 class Solution {
 public:
-	
 	string decodeString(string s) {
 		// base case for empty
 		if (s.empty()) {
@@ -121,5 +120,5 @@ int main() {
 	result = solution.decodeString("2[abc]3[cd]ef");
 	PrintSingleResult(result);
 	
-	
+	return 0;
 }
