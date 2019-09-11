@@ -407,6 +407,8 @@ add_executable(LeetCode322
 
 add_executable(LeetCode376
         LeetCodeLib.h 376WiggleSubsequence.cpp)
+add_executable(LeetCode394
+        LeetCodeLib.h 394DecodeString.cpp)
 
 add_executable(LeetCode402
         LeetCodeLib.h 402RemoveKDigits.cpp)
@@ -425,6 +427,9 @@ add_executable(LeetCode621
 
 add_executable(LeetCode687
         LeetCodeLib.h 687LongestUnivaluePath.cpp)
+
+add_executable(LeetCode904
+        LeetCodeLib.h 904FruitIntoBaskets.cpp)
 
 add_executable(LeetCode929
         LeetCodeLib.h 929UniqueEmailAddresses.cpp)
