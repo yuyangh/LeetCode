@@ -37,19 +37,21 @@ class Solution {
 public:
 	vector<vector<bool>> visited;
 	
-	// DFS can do search for exist or not
+	/* DFS can do search for exist or not
+	 * this is a backtracking problem
+	 */
 	bool exist(vector<vector<char>> &board, string word) {
 		if (board.empty()) {
 			return false;
 		}
 		
-		// this can integrated into the recursion as well
+		// initialize the visited to be not visited
 		visited.reserve(board.size());
 		for (int row = 0; row < board.size(); ++row) {
 			visited.emplace_back(vector<bool>(board[0].size(), false));
 		}
 		
-		// find word on board
+		// find word on board by checking on each cell
 		for (int row = 0; row < board.size(); ++row) {
 			for (int col = 0; col < board[0].size(); ++col) {
 				if (exist(board, row, col, 0, word)) {
@@ -69,7 +71,7 @@ public:
 			return false;
 		}
 		
-		// check for equal and visited
+		// check for equal and not visited
 		if (board[row][col] == word[wordIndex] && !visited[row][col]) {
 			if (wordIndex == word.size() - 1) {
 				return true;
