@@ -61,15 +61,27 @@
  *
  */
 class Solution {
+/*
+ * Approach 1 : Transpose and then reverse  O(2*n*n)
+ * Approach 2 : Rotation (implemented)      O(n*n)
+ */
 public:
+	/*
+	 * according to linear algebra
+	 * [0 (horizontal right),  1(vertically down)]  will rotate numbers clockwisely
+	 * for 90 degrees to [-1,0]
+	 * so, x'= y, y'= -x + size - 1
+	 * for example
+	 * 3*3, rotation is x part for 4 times
+	 * XXO
+	 * OXO
+	 * OOO
+	 */
 	void rotate(vector<vector<int>> &matrix) {
-		// according to linear algebra
-		// [0,  1] will rotate numbers clockwisely for 90 degress
-		// [-1, 0]
-		// so, x'= y, y'= -x + size - 1
 		if (matrix.empty()) {
 			return;
 		}
+		
 		size_ = matrix.size();
 		int columnLimit = size_;
 		int halfSize = ceil(0.5 * size_);
