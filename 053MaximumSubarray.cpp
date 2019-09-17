@@ -43,16 +43,16 @@ public:
 		vector<int> buffer;
 		buffer.reserve(nums.size());
 		
-		// set the initial value
+		// set the initial valuew
 		int maxSum = max(INT_MIN, nums[0]);
 		buffer.emplace_back(maxSum);
 		
-		// memorize the max value uptill here
+		// memorize the max value up until here
 		for (int i = 1; i < nums.size(); i++) {
 			int sum = buffer[i - 1] + nums[i];
-			buffer[i] = max(nums[i], sum);
-			if (maxSum < buffer[i]) {
-				maxSum = buffer[i];
+			buffer.emplace_back(max(nums[i], sum));
+			if (maxSum < buffer.back()) {
+				maxSum = buffer.back();
 			}
 		}
 		return maxSum;
