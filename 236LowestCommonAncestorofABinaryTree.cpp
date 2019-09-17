@@ -1,4 +1,5 @@
 #include "LeetCodeLib.h"
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -10,32 +11,41 @@
  */
 class Solution {
 public:
-	vector<TreeNode*> nodes;
-	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-		// It's recursive and expands the meaning of the function.
-		// If the current (sub)tree contains both p and q,
-		// then the function result is their LCA.
-		// If only one of them is in that subtree,
-		// then the result is that one of them.
-		// If neither are in that subtree, the result is null
-		if (root==nullptr || root == p || root == q){
+	vector<TreeNode *> nodes;
+	
+	/*
+	 * It's recursive and expands the meaning of the function.
+	 * If the current (sub)tree contains both p and q,
+	 * then the function result is their LCA.
+	 * If only one of them is in that subtree,
+	 * then the result is that one of them.
+	 * If neither are in that subtree, the result is null
+	 */
+	TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+		if (root == nullptr || root == p || root == q) {
 			return root;
 		}
-		TreeNode* left = lowestCommonAncestor(root->left, p, q);
-		TreeNode* right = lowestCommonAncestor(root->right, p, q);
-		if(left==nullptr){
+		
+		// check left and right
+		TreeNode *left = lowestCommonAncestor(root->left, p, q);
+		TreeNode *right = lowestCommonAncestor(root->right, p, q);
+		
+		// if left has nothing, then see the stuff in the right
+		if (left == nullptr) {
 			return right;
-		}else{
-			if(right==nullptr){
+		} else {
+			// if there are something in the left
+			if (right == nullptr) {
 				return left;
-			}else{
+			} else {
+				// both side has stuff
 				return root;
 			}
 		}
 	}
 	
 	// heap implementation, use too much memory when unbalanced
-	bool debug=false;
+	bool debug = false;
 	// TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 	// 	if(root==nullptr){
 	// 		return nullptr;
@@ -128,7 +138,7 @@ void trimRightTrailingSpaces(string &input) {
 	}).base(), input.end());
 }
 
-TreeNode* stringToTreeNode(string input) {
+TreeNode *stringToTreeNode(string input) {
 	trimLeftTrailingSpaces(input);
 	trimRightTrailingSpaces(input);
 	input = input.substr(1, input.length() - 2);
@@ -141,12 +151,12 @@ TreeNode* stringToTreeNode(string input) {
 	ss.str(input);
 	
 	getline(ss, item, ',');
-	TreeNode* root = new TreeNode(stoi(item));
-	queue<TreeNode*> nodeQueue;
+	TreeNode *root = new TreeNode(stoi(item));
+	queue<TreeNode *> nodeQueue;
 	nodeQueue.push(root);
 	
 	while (true) {
-		TreeNode* node = nodeQueue.front();
+		TreeNode *node = nodeQueue.front();
 		nodeQueue.pop();
 		
 		if (!getline(ss, item, ',')) {
@@ -174,16 +184,16 @@ TreeNode* stringToTreeNode(string input) {
 	return root;
 }
 
-string treeNodeToString(TreeNode* root) {
+string treeNodeToString(TreeNode *root) {
 	if (root == nullptr) {
 		return "[]";
 	}
 	
 	string output = "";
-	queue<TreeNode*> q;
+	queue<TreeNode *> q;
 	q.push(root);
-	while(!q.empty()) {
-		TreeNode* node = q.front();
+	while (!q.empty()) {
+		TreeNode *node = q.front();
 		q.pop();
 		
 		if (node == nullptr) {
@@ -201,13 +211,13 @@ string treeNodeToString(TreeNode* root) {
 int main() {
 	string line;
 	while (getline(cin, line)) {
-		TreeNode* root = stringToTreeNode(line);
+		TreeNode *root = stringToTreeNode(line);
 		getline(cin, line);
-		TreeNode* p = stringToTreeNode(line);
+		TreeNode *p = stringToTreeNode(line);
 		getline(cin, line);
-		TreeNode* q = stringToTreeNode(line);
+		TreeNode *q = stringToTreeNode(line);
 		
-		TreeNode* ret = Solution().lowestCommonAncestor(root, p, q);
+		TreeNode *ret = Solution().lowestCommonAncestor(root, p, q);
 		
 		string out = treeNodeToString(ret);
 		cout << out << endl;
