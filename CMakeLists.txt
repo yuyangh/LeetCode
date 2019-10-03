@@ -3,6 +3,9 @@ project(LeetCode)
 
 set(CMAKE_CXX_STANDARD 11)
 
+add_executable(LeetCode002
+        LeetCodeLib.h 002AddTwoNumbers.cpp)
+
 add_executable(LeetCode003
         LeetCodeLib.h 003LongestSubstringWithoutRepeatingCharacters.cpp)
 
@@ -83,6 +86,9 @@ add_executable(LeetCode040
 
 add_executable(LeetCode041
         LeetCodeLib.h 041FirstMissingPositive.cpp)
+
+add_executable(LeetCode042
+        LeetCodeLib.h 042TrappingRainWater.cpp)
 
 add_executable(LeetCode043
         LeetCodeLib.h 043MultiplyStrings.cpp)
@@ -384,6 +390,9 @@ add_executable(LeetCode232
 add_executable(LeetCode236
         LeetCodeLib.h 236LowestCommonAncestorofABinaryTree.cpp)
 
+add_executable(LeetCode253
+        LeetCodeLib.h 253MeetingRoomsII.cpp)
+
 add_executable(LeetCode290
         LeetCodeLib.h 290WordPattern.cpp)
 
@@ -407,6 +416,7 @@ add_executable(LeetCode322
 
 add_executable(LeetCode376
         LeetCodeLib.h 376WiggleSubsequence.cpp)
+
 add_executable(LeetCode394
         LeetCodeLib.h 394DecodeString.cpp)
 
@@ -434,8 +444,15 @@ add_executable(LeetCode904
 add_executable(LeetCode929
         LeetCodeLib.h 929UniqueEmailAddresses.cpp)
 
+add_executable(LeetCode974
+        LeetCodeLib.h 974SubarraySumsDivisiblebyK.cpp)
+
 add_executable(LeetCode1057
         LeetCodeLib.h 1057CampusBikes.cpp)
 
 add_executable(XORSum
         LeetCodeLib.h XORSum.cpp)
+
+add_executable(BBMapping LeetCodeLib.h BBMapping.cpp)
+add_executable(BBSort LeetCodeLib.h BBSort.cpp)
+add_executable(BBBricks LeetCodeLib.h BBBricks.cpp)
