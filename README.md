@@ -17,6 +17,7 @@ Summary of LeetCode problems
     * 或者unsigned long long来保存两个int index
 
 ## LinkedList
+* 相较于stack和queue，可以从头和尾读取，双向
 * 如果更改结构,考虑用多个temp pointer来记住之前的 e.g.206,024
 * 交换位置，更改结构之类，都要记住之前的node，避免next断链 e.g.024，082
 * 把list断开，重新续接，可以考虑改造成环形列表来处理 e.g.061
@@ -98,9 +99,13 @@ Summary of LeetCode problems
 * 每一次 num XOR i, num 会记或忘i，可以用多个variable来检查num是否出现过 e.g.137
 * 使用bitwise 来指数级增长数字，和target 进行比较，这样是O(n) e.g.029
 
-## Custom Comparator
+## Priority Queue
+* 要查询是否是序列中最早(晚)时，可以把所有state放入pq，把新加入的和pq.top()比较 e.g.253
+* 要保持top k element 的时候，把要持有的放在pq的底部，这样到了size之后，就pop顶部的 e.g.692
+
+## Priority Queue Custom Comparator
 * 当持续不断地添加并且获取最大/最小的数值的时候,考虑priority_queue
-* priority_queue<int, vector<int>, less<int>> 是把大的数字放在前面 e.g.295
+* priority_queue<int, vector<int>, less<int>> maxheap,less<T>是把大的数字放在前面 e.g.295
 * auto ListNodeComp=[](ListNode *lhs, ListNode *rhs){return lhs->val > rhs->val;} // 把小的放在前面
 * priority_queue<ListNode* vector<ListNode*>, decltype(ListNodeComp)> pq(ListNodeComp); // e.g.023
     * decltyple(comp) is a function, similar to greater<int>
@@ -112,6 +117,10 @@ Summary of LeetCode problems
 ## Scheduling
 * 安排时考虑：间隔gap，很多同种类型的task，很多不同类型的task
 * 有没有可能用array[][]来表示 e.g.621
+
+## Prefix Sum
+* 到当前位置的累积sum，适合计算continuous array
+* 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
 
 ## Data Structure Methods
 * string
