@@ -438,6 +438,9 @@ add_executable(LeetCode621
 add_executable(LeetCode687
         LeetCodeLib.h 687LongestUnivaluePath.cpp)
 
+add_executable(LeetCode692
+        LeetCodeLib.h 692TopKFrequentWords.cpp)
+
 add_executable(LeetCode904
         LeetCodeLib.h 904FruitIntoBaskets.cpp)
 
