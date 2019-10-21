@@ -31,6 +31,27 @@
  */
 class Solution {
 public:
+	vector<string> generateParenthesis(int n) {
+		vector<string> res;
+		addingpar(res, "", n, 0);
+		return res;
+	}
+	
+	void addingpar(vector<string> &v, string str, int left, int right) {
+		if (left == 0 && right == 0) {
+			v.push_back(str);
+			return;
+		}
+		
+		if (right > 0) { addingpar(v, str + ")", left, right - 1); }
+		
+		// if we add a left parenthesis, we need to add a right one as well
+		if (left > 0) { addingpar(v, str + "(", left - 1, right + 1); }
+	}
+};
+
+class OwnSolution {
+public:
 	vector<string> result;
 	
 	vector<string> generateParenthesis(int n) {
@@ -41,21 +62,21 @@ public:
 	
 	// base on the left and right remaining,
 	// add "(" or ")" accordingly
-	void generate(string str, int left, int right) {
-		if (left == 0) {
-			while (right > 0) {
+	void generate(string str, int leftRemain, int rightRemain) {
+		if (rightRemain + leftRemain == 0) {
+			while (rightRemain > 0) {
 				str += ')';
-				right--;
+				rightRemain--;
 			}
 			result.emplace_back(str);
 			return;
 		}
-		if (left < right) {
-			generate(str + '(', left - 1, right);
-			generate(str + ')', left, right - 1);
+		if (leftRemain < rightRemain) {
+			generate(str + '(', leftRemain - 1, rightRemain);
+			generate(str + ')', leftRemain, rightRemain - 1);
 		} else {
-			if (left == right) {
-				generate(str + '(', left - 1, right);
+			if (leftRemain == rightRemain) {
+				generate(str + '(', leftRemain - 1, rightRemain);
 			}
 		}
 		
