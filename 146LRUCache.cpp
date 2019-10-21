@@ -50,6 +50,9 @@ class LRUCache {
 public:
 	/*
 	 * use a hashtable and double-linked list to implement
+	 * iterator of the list will not change
+	 * unordered_map<int, pair<int, std::list<int>::iterator>> _record : key to value
+	 * list<int> _order: a list of keys
 	 */
 	LRUCache(int capacity) : _capacity(capacity) {
 		// reserve enough space to decrease number of rehash
