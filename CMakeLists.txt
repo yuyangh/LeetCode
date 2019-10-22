@@ -414,6 +414,9 @@ add_executable(LeetCode315
 add_executable(LeetCode322
         LeetCodeLib.h 322CoinChange.cpp)
 
+add_executable(LeetCode348
+        LeetCodeLib.h 348DesignTicTacToe.cpp)
+
 add_executable(LeetCode376
         LeetCodeLib.h 376WiggleSubsequence.cpp)
 
@@ -425,6 +428,9 @@ add_executable(LeetCode402
 
 add_executable(LeetCode409
         LeetCodeLib.h 409LongestPalindrome.cpp)
+
+add_executable(LeetCode445
+        LeetCodeLib.h 445AddTwoNumbersII.cpp)
 
 add_executable(LeetCode449
         LeetCodeLib.h 449SerializeandDeserializeBST.cpp)
