@@ -50,57 +50,24 @@
  */
 class Solution {
 public:
-	vector<vector<int>> result;
 	
+	/*
+	 * use reverse method to get the result
+	 */
 	vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
-		traverse(root, 0);
+		vector<vector<int>> result;
+		traverse(result, root, 0);
+		
 		for (int level = 1; level < result.size(); level += 2) {
 			reverse(result[level].begin(), result[level].end());
 		}
 		return result;
 	}
 	
-	// use queue to store nodes on one level
-	// use queue size [queue.size() - 1 - i],
-	// to store nodes' values in reverse order if needed
-	vector<vector<int> > zigzagLevelOrderRef(TreeNode *root) {
-		if (root == NULL) {
-			return vector<vector<int> >();
-		}
-		vector<vector<int> > result;
-		
-		queue<TreeNode *> nodesQueue;
-		nodesQueue.push(root);
-		bool leftToRight = true;
-		
-		while (!nodesQueue.empty()) {
-			int size = nodesQueue.size();
-			// allocate the size of the row
-			vector<int> row(size);
-			for (int i = 0; i < size; i++) {
-				TreeNode *node = nodesQueue.front();
-				nodesQueue.pop();
-				
-				// find position to fill node's value
-				int index = (leftToRight) ? i : (size - 1 - i);
-				
-				row[index] = node->val;
-				if (node->left) {
-					nodesQueue.push(node->left);
-				}
-				if (node->right) {
-					nodesQueue.push(node->right);
-				}
-			}
-			// after this level
-			leftToRight = !leftToRight;
-			result.push_back(row);
-		}
-		return result;
-	}
-	
-	// use reverse
-	void traverse(TreeNode *node, int level) {
+	/*
+	 * use reverse
+	 */
+	void traverse(vector<vector<int>> &result, TreeNode *node, int level) {
 		if (node == nullptr) {
 			return;
 		}
@@ -109,8 +76,57 @@ public:
 		} else {
 			result[level].emplace_back(node->val);
 		}
-		traverse(node->left, level + 1);
-		traverse(node->right, level + 1);
+		traverse(result, node->left, level + 1);
+		traverse(result, node->right, level + 1);
 	}
+	
+	/*
+	 * only result will be reverted for odd even line
+	 * discover order does not change
+	 */
+	vector<vector<int> > zigzagLevelOrderBFS(TreeNode *root) {
+		if (root == nullptr) {
+			return {};
+		}
+		
+		queue<TreeNode *> nodeQueue;
+		
+		// initial node
+		vector<vector<int>> result;
+		nodeQueue.emplace(root);
+		
+		int height = 0;
+		while (!nodeQueue.empty()) {
+			// number of elements to search for this level
+			size_t size = nodeQueue.size();
+			vector<int> row(size, 0);
+			
+			for (size_t i = 0; i < size; ++i) {
+				TreeNode *node = nodeQueue.front();
+				nodeQueue.pop();
+				if (node != nullptr) {
+					if (node->left != nullptr) {
+						nodeQueue.emplace(node->left);
+					}
+					if (node->right != nullptr) {
+						nodeQueue.emplace(node->right);
+					}
+					size_t index;
+					
+					// decide to put in from left to right or reverse
+					if (height % 2 == 0) {
+						index = i;
+					} else {
+						index = size - 1 - i;
+					}
+					row[index] = node->val;
+				}
+			}
+			result.emplace_back(row);
+			height++;
+		}
+		return result;
+	}
+	
 };
 
