@@ -9,6 +9,9 @@ add_executable(LeetCode002
 add_executable(LeetCode003
         LeetCodeLib.h 003LongestSubstringWithoutRepeatingCharacters.cpp)
 
+add_executable(LeetCode005
+        LeetCodeLib.h 005LongestPalindromicSubstring.cpp)
+
 add_executable(LeetCode006
         LeetCodeLib.h 006ZigZagConversion.cpp)
 

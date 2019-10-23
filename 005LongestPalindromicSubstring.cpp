@@ -1,0 +1,139 @@
+//
+// Created by Yuyang Huang on 10/22/19.
+//
+
+#include "LeetCodeLib.h"
+
+/*
+ * @lc app=leetcode id=5 lang=cpp
+ *
+ * [5] Longest Palindromic Substring
+ *
+ * https://leetcode.com/problems/longest-palindromic-substring/description/
+ *
+ * algorithms
+ * Medium (28.10%)
+ * Likes:    4581
+ * Dislikes: 416
+ * Total Accepted:    689.9K
+ * Total Submissions: 2.5M
+ * Testcase Example:  '"babad"'
+ *
+ * Given a string s, find the longest palindromic substring in s. You may
+ * assume that the maximum length of s is 1000.
+ *
+ * Example 1:
+ *
+ *
+ * Input: "babad"
+ * Output: "bab"
+ * Note: "aba" is also a valid answer.
+ *
+ *
+ * Example 2:
+ *
+ *
+ * Input: "cbbd"
+ * Output: "bb"
+ *
+ *
+ */
+
+// @lc code=start
+class Solution {
+public:
+	/*
+	 * time complexity O(n*n)
+	 */
+	string longestPalindrome(string s) {
+		string result;
+		for (size_t i = 0; i < s.size(); i++) {
+			// Expand Around Center with odd and even expansion
+			auto even = checkPalindrome(s, i, i + 1);
+			auto odd = checkPalindrome(s, i, i);
+			if (even.first != -1 && even.second - even.first + 1 > result.size()) {
+				result = s.substr(even.first, even.second - even.first + 1);
+			}
+			if (odd.first != -1 && odd.second - odd.first + 1 > result.size()) {
+				result = s.substr(odd.first, odd.second - odd.first + 1);
+			}
+			
+		}
+		return result;
+	}
+	
+	pair<int, int> checkPalindrome(string &s, int left, int right) {
+		// memorize previous left and right
+		int prevLeft = -1, prevRight = -1;
+		while (!(left < 0 || right >= s.size())
+		       && s[left] == s[right]) {
+			prevLeft = left;
+			prevRight = right;
+			left--;
+			right++;
+		}
+		return {prevLeft, prevRight};
+	}
+};
+// @lc code=end
+
+
+string stringToString(string input) {
+	assert(input.length() >= 2);
+	string result;
+	for (int i = 1; i < input.length() - 1; i++) {
+		char currentChar = input[i];
+		if (input[i] == '\\') {
+			char nextChar = input[i + 1];
+			switch (nextChar) {
+				case '\"':
+					result.push_back('\"');
+					break;
+				case '/' :
+					result.push_back('/');
+					break;
+				case '\\':
+					result.push_back('\\');
+					break;
+				case 'b' :
+					result.push_back('\b');
+					break;
+				case 'f' :
+					result.push_back('\f');
+					break;
+				case 'r' :
+					result.push_back('\r');
+					break;
+				case 'n' :
+					result.push_back('\n');
+					break;
+				case 't' :
+					result.push_back('\t');
+					break;
+				default:
+					break;
+			}
+			i++;
+		} else {
+			result.push_back(currentChar);
+		}
+	}
+	return result;
+}
+
+int main() {
+	// Solution solution;
+	// solution.longestPalindrome("ababd");
+	string line;
+	while (getline(cin, line)) {
+		string s = stringToString(line);
+
+		string ret = Solution().longestPalindrome(s);
+
+		string out = (ret);
+		cout << out << endl;
+	}
+	return 0;
+}
+
+
