@@ -393,6 +393,9 @@ add_executable(LeetCode232
 add_executable(LeetCode236
         LeetCodeLib.h 236LowestCommonAncestorofABinaryTree.cpp)
 
+add_executable(LeetCode240
+        LeetCodeLib.h 240Searcha2DMatrixII.cpp)
+
 add_executable(LeetCode253
         LeetCodeLib.h 253MeetingRoomsII.cpp)
 
