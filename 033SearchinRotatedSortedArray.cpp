@@ -47,6 +47,7 @@ public:
 	int search(vector<int> &nums, int target) {
 		int left = 0, right = nums.size() - 1, mid;
 		
+		// search in left and right range
 		while (left <= right) {
 			mid = (left + right) / 2;
 			if (nums[mid] == target) {
@@ -55,14 +56,14 @@ public:
 			
 			// decide the direction to search
 			if (nums[left] <= nums[mid]) {
-				// ensure target is in the left half
-				if ((nums[left] <= target) && (nums[mid] > target)) {
+				// limit the target place to be strictly on the left half
+				if (target < nums[mid] && target >= nums[left]) {
 					right = mid - 1;
 				} else {
 					left = mid + 1;
 				}
 			} else {
-				if ((nums[mid] < target) && (nums[right] >= target)) {
+				if (target > nums[mid] && target <= nums[right]) {
 					left = mid + 1;
 				} else {
 					right = mid - 1;
@@ -105,17 +106,17 @@ public:
 	// pivot pos is the largest element moving forward
 	int pivotPos(vector<int> &nums) {
 		int mid = nums.size() - 1, low = 0, hi = nums.size() - 1;
-		while(nums[low] == nums[hi]){
+		while (nums[low] == nums[hi]) {
 			--hi;
-			if(hi<=0){
+			if (hi <= 0) {
 				return 0;
 			}
 		}
 		while (nums[low] > nums[hi]) {
 			mid = (hi + low) / 2;
 			// handle out of bound case
-			if(mid+1>=nums.size()){
-				return nums.size()-1;
+			if (mid + 1 >= nums.size()) {
+				return nums.size() - 1;
 			}
 			if (nums[mid] > nums[mid + 1]) {
 				break;
