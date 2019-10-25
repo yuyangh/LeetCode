@@ -67,6 +67,10 @@ public:
 		return valid(root, LONG_MIN, LONG_MAX);
 	}
 	
+	/*
+	 * set a bound and check node value in the bound or not
+	 * recursively doing so
+	 */
 	bool valid(TreeNode *node, long long lower, long long upper) {
 		if (node == nullptr) {
 			return true;
