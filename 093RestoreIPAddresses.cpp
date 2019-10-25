@@ -24,15 +24,20 @@
  */
 class Solution {
 public:
-	vector<vector<string>> combination;
-	
+	/*
+	 * backtracking algorithm
+	 */
 	vector<string> restoreIpAddresses(string s) {
+		vector<vector<string>> combination;
 		vector<string> buffer;
-		ip(buffer, s, 0, 4);
+		
+		ip(combination, buffer, s, 0, 4);
+		
 		vector<string> ans;
+		
 		// concat 4 parts into 1 string
 		for (auto &item:combination) {
-			for (int i = 1; i < item.size(); i++) {
+			for (unsigned int i = 1; i < item.size(); i++) {
 				item[0] += '.' + item[i];
 			}
 			ans.emplace_back(item[0]);
@@ -40,21 +45,30 @@ public:
 		return ans;
 	}
 	
-	void ip(vector<string> &buffer, string &s, int start, int remain) {
-		// base
+	/**
+	 *
+	 * @param combination all ip combinations
+	 * @param buffer one attempt
+	 * @param s
+	 * @param pos character position we are at
+	 * @param remain number of characters remain
+	 */
+	void ip(vector<vector<string>> &combination, vector<string> &buffer, string &s, int pos, int remain) {
+		// base case
 		if (remain == 0) {
-			if (start == s.size()) {
+			if (pos == s.size()) {
 				combination.emplace_back(buffer);
 			}
 			return;
 		}
 		
 		for (int len = 1; len <= 3; len++) {
-			if (start + len > s.size()) {
+			// deal with substr over the length of the string
+			if (pos + len > s.size()) {
 				return;
 			}
 			// deal with leading 0 situation
-			string temp = s.substr(start, len);
+			string temp = s.substr(pos, len);
 			if (temp[0] == '0' && temp.size() != 1) {
 				continue;
 			}
@@ -67,7 +81,7 @@ public:
 				continue;
 			}
 			// backtracking
-			ip(buffer, s, start + len, remain - 1);
+			ip(combination, buffer, s, pos + len, remain - 1);
 			buffer.pop_back();
 		}
 	}

@@ -369,6 +369,9 @@ add_executable(LeetCode198
 add_executable(LeetCode199
         LeetCodeLib.h 199BinaryTreeRightSideView.cpp)
 
+add_executable(LeetCode200
+        LeetCodeLib.h 200NumberofIslands.cpp)
+
 add_executable(LeetCode206
         LeetCodeLib.h 206ReverseLinkedList.cpp)
 
@@ -443,6 +446,9 @@ add_executable(LeetCode445
 
 add_executable(LeetCode449
         LeetCodeLib.h 449SerializeandDeserializeBST.cpp)
+
+add_executable(LeetCode470
+        LeetCodeLib.h 470ImplementRand10UsingRand7.cpp)
 
 add_executable(LeetCode482
         LeetCodeLib.h 482LicenseKeyFormatting.cpp)
