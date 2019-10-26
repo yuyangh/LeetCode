@@ -453,6 +453,9 @@ add_executable(LeetCode470
 add_executable(LeetCode482
         LeetCodeLib.h 482LicenseKeyFormatting.cpp)
 
+add_executable(LeetCode560
+        LeetCodeLib.h 560SubarraySumEqualsK.cpp)
+
 add_executable(LeetCode621
         LeetCodeLib.h 621TaskScheduler.cpp)
 
