@@ -83,7 +83,7 @@ public:
 		nums.pop_back();
 		// if the num is the current minimum, pop the minNums
 		if (num == minNums.back()) {
-			nums.pop_back();
+			minNums.pop_back();
 		}
 	}
 	
