@@ -357,6 +357,9 @@ add_executable(LeetCode173
 add_executable(LeetCode174
         LeetCodeLib.h 174DungeonGame.cpp)
 
+add_executable(LeetCode186
+        LeetCodeLib.h 186ReverseWordsinaStringII.cpp)
+
 add_executable(LeetCode187
         LeetCodeLib.h 187RepeatedDNASequences.cpp)
 
