@@ -405,6 +405,9 @@ add_executable(LeetCode240
 add_executable(LeetCode253
         LeetCodeLib.h 253MeetingRoomsII.cpp)
 
+add_executable(LeetCode277
+        LeetCodeLib.h 277FindtheCelebrity.cpp)
+
 add_executable(LeetCode290
         LeetCodeLib.h 290WordPattern.cpp)
 
