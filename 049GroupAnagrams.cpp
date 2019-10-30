@@ -54,12 +54,9 @@ public:
 				// modify count of char in key
 				key[ch - 'a']++;
 			}
-			auto find = result.find(key);
-			if (find == result.end()) {
-				result.emplace(key, vector<string>(1, str));
-			} else {
-				find->second.emplace_back(str);
-			}
+			result[key].emplace_back(str);
+			
+			
 		}
 		
 		vector<vector<string>> groups;
