@@ -11,20 +11,23 @@
 class Solution {
 public:
 	// iteritive
-	// ListNode* reverseList(ListNode* head) {
-	//     ListNode* temp,*prev=nullptr,*curr=head ;
-	//     while(curr!=nullptr){
-	//         temp=curr->next;
-	//         curr->next=prev;
-	//         prev=curr;
-	//         curr=temp;
-	//     }
-	//     return prev;
-	// }
+	ListNode* reverseListIteritive(ListNode* head) {
+	    ListNode* temp,*prev=nullptr,*curr=head ;
+	    while(curr!=nullptr){
+	        temp=curr->next;
+	        curr->next=prev;
+	        prev=curr;
+	        curr=temp;
+	    }
+	    return prev;
+	}
 	
 	
-	// recursive
-	// Assume from node n_(k+1) to n_m had been reversed and you are at node n_k.
+	/* recursive
+	 * return value is always the new head
+	 * Assume from node n_(k+1) to n_m had been reversed and you are at node n_k.
+	 * A->B->C<-D, change B->C into B<-C
+	 */
 	ListNode *reverseList(ListNode *head) {
 		if (head != nullptr && head->next != nullptr) {
 			ListNode *p = reverseList(head->next);
