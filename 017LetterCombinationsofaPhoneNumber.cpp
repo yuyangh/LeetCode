@@ -44,19 +44,19 @@ public:
 	}
 
 private:
-	void combine(int pos, string &str, string &digits) {
+	void combine(int pos, string &possibleStr, string &digits) {
 		if (pos == digits.size()) {
-			result.emplace_back(str);
+			result.emplace_back(possibleStr);
 			return;
 		}
 		// get corresponding index of the list
 		int num = digits[pos] - '0';
 		
-		// append each possible char with backtracking
+		// backtracking append each possible char and pop back
 		for (char ch : digitLetterMap[num]) {
-			str += ch;
-			combine(pos + 1, str, digits);
-			str.pop_back();
+			possibleStr += ch;
+			combine(pos + 1, possibleStr, digits);
+			possibleStr.pop_back();
 		}
 	}
 	
