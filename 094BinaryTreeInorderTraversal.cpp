@@ -38,15 +38,14 @@
  */
 class Solution {
 public:
-	vector<int> result;
-	
 	vector<int> inorderTraversal(TreeNode *root) {
-		inOrderIterative(root);
+		vector<int> result;
+		inOrderIterative(result, root);
 		// inOrderRecursive(root);
 		return result;
 	}
 	
-	void inOrderIterative(TreeNode *node) {
+	void inOrderIterative(vector<int> &result, TreeNode *node) {
 		stack<TreeNode *> nodeStack;
 		TreeNode *curr = node;
 		while (curr != nullptr || !nodeStack.empty()) {
@@ -65,13 +64,13 @@ public:
 		}
 	}
 	
-	void inOrderRecursive(TreeNode *node) {
+	void inOrderRecursive(vector<int> &result, TreeNode *node) {
 		if (node == nullptr) {
 			return;
 		}
-		inOrderRecursive(node->left);
+		inOrderRecursive(result, node->left);
 		result.emplace_back(node->val);
-		inOrderRecursive(node->right);
+		inOrderRecursive(result, node->right);
 	}
 };
 
