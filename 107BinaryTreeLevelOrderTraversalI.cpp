@@ -51,25 +51,24 @@
 class Solution {
 public:
 	vector<vector<int>> levelOrderBottom(TreeNode *root) {
-		traverse(root, 0);
+		vector<vector<int>> result;
+		traverse(result, root, 0);
 		// reverse operation is O(logn) because the height of the tree is log(n)
-		reverse(result_.begin(), result_.end());
-		return result_;
+		reverse(result.begin(), result.end());
+		return result;
 	}
 
 private:
-	vector<vector<int>> result_;
-	
-	void traverse(TreeNode *node, int level) {
+	void traverse(vector<vector<int>> &result, TreeNode *node, int level) {
 		if (node == nullptr) {
 			return;
 		}
-		if (level >= result_.size()) {
-			result_.emplace_back();
+		if (level >= result.size()) {
+			result.emplace_back();
 		}
-		result_[level].emplace_back(node->val);
-		traverse(node->left, level + 1);
-		traverse(node->right, level + 1);
+		result[level].emplace_back(node->val);
+		traverse(result, node->left, level + 1);
+		traverse(result, node->right, level + 1);
 	}
 };
 
