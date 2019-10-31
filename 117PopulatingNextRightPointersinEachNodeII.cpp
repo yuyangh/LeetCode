@@ -79,42 +79,43 @@ public:
 */
 class Solution {
 public:
-	// The first level (root) is connected already,
-	// so connect the next level,
-	// and then walk through the linked list created and so on.
+	/* The first level (root) is connected already,
+	 * so connect the next level,
+	 * and then walk through the linked list created and so on.
+	 */
 	Node *connect(Node *root) {
-		Node *curr = root, *next_level_head, *next_level_ptr = nullptr;
+		Node *curr = root, *nextLevelHead, *nextLevelPtr = nullptr;
 		while (curr != nullptr) {
 			// find first not nullptr child as next level head
-			next_level_head = nullptr;
+			nextLevelHead = nullptr;
 			for (Node *node = curr; node != nullptr; node = node->next) {
 				if (node->left != nullptr) {
-					next_level_head = node->left;
+					nextLevelHead = node->left;
 					break;
 				}
 				if (node->right != nullptr) {
-					next_level_head = node->right;
+					nextLevelHead = node->right;
 					break;
 				}
 			}
-			next_level_ptr = next_level_head;
+			nextLevelPtr = nextLevelHead;
 			
 			// traverse current level to link next level together
 			while (curr != nullptr) {
 				// avoid self loop
-				if (curr->left != nullptr && curr->left != next_level_ptr) {
-					next_level_ptr->next = curr->left;
-					next_level_ptr = next_level_ptr->next;
+				if (curr->left != nullptr && curr->left != nextLevelPtr) {
+					nextLevelPtr->next = curr->left;
+					nextLevelPtr = nextLevelPtr->next;
 				}
-				if (curr->right != nullptr && curr->right != next_level_ptr) {
-					next_level_ptr->next = curr->right;
-					next_level_ptr = next_level_ptr->next;
+				if (curr->right != nullptr && curr->right != nextLevelPtr) {
+					nextLevelPtr->next = curr->right;
+					nextLevelPtr = nextLevelPtr->next;
 				}
 				curr = curr->next;
 			}
 			
 			// go to next level
-			curr = next_level_head;
+			curr = nextLevelHead;
 		}
 		return root;
 	}
@@ -124,16 +125,14 @@ int main() {
 	int size = 10;
 	vector<Node> nodes(size);
 	for (int i = 0; i < size; ++i) {
-		nodes[i]=Node(i);
+		nodes[i] = Node(i);
 	}
-	nodes[0].left=&nodes[1];
-	nodes[1].right=&nodes[2];
+	nodes[0].left = &nodes[1];
+	nodes[1].right = &nodes[2];
 	
 	Solution solution;
 	auto tree = solution.connect(&nodes[0]);
-	vector<vector<int>> result;
-	Node::levelOrder(result,tree);
-	PrintVectorVector(result);
+	PrintTree(tree);
 	return 0;
 }
 
