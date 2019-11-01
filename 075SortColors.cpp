@@ -1,4 +1,5 @@
 #include "LeetCodeLib.h"
+
 /*
  * @lc app=leetcode id=75 lang=cpp
  *
@@ -43,48 +44,67 @@
  */
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
-    	if(nums.empty()||nums.size()==1){
-    		return;
-    	}
-	    int color[3]={0,0,0};
-    	
-    	// utilize the number property
-    	// larger numbers must move backward
-	    for (int i = 0; i < nums.size(); ++i) {
-		    switch (nums[i]){
-			    case 0:{
-				    for (int index = 2; index >= 0; --index) {
-					    nums[color[index]]=index;
-				    }
-				    for (int index = 2; index >= 0; --index) {
-					    ++color[index];
-				    }
-			    	break;
-			    }
-			    case 1:{
-				    for (int index = 2; index >= 1; --index) {
-					    nums[color[index]]=index;
-				    }
-				    for (int index = 2; index >= 1; --index) {
-					    ++color[index];
-				    }
-				    break;
-			    }
-			    case 2:{
-				    ++color[2];
-				    break;
-			    }
-			    default:{
-			    	printf("Wrong input\n");
-			    }
-		    }
-	    }
-    }
+	/*
+     * Dutch National Flag problem solution.
+	 */
+	void sortColorsRef(vector<int> &nums) {
+		// for all idx < p0 : nums[idx < p0] = 0
+		// curr is an index of element under consideration
+		int p0 = 0, curr = 0;
+		// for all idx > p2 : nums[idx > p2] = 2
+		int p2 = nums.size() - 1;
+		
+		while (curr <= p2) {
+			if (nums[curr] == 0) {
+				swap(nums[curr++], nums[p0++]);
+			} else if (nums[curr] == 2) {
+				swap(nums[curr], nums[p2--]);
+			} else curr++;
+		}
+	}
+	
+	void sortColors(vector<int> &nums) {
+		if (nums.empty() || nums.size() == 1) {
+			return;
+		}
+		int color[3] = {0, 0, 0};
+		
+		// utilize the number property
+		// larger numbers must move backward
+		for (int i = 0; i < nums.size(); ++i) {
+			switch (nums[i]) {
+				case 0: {
+					for (int index = 2; index >= 0; --index) {
+						nums[color[index]] = index;
+					}
+					for (int index = 2; index >= 0; --index) {
+						++color[index];
+					}
+					break;
+				}
+				case 1: {
+					for (int index = 2; index >= 1; --index) {
+						nums[color[index]] = index;
+					}
+					for (int index = 2; index >= 1; --index) {
+						++color[index];
+					}
+					break;
+				}
+				case 2: {
+					++color[2];
+					break;
+				}
+				default: {
+					printf("Wrong input\n");
+				}
+			}
+		}
+	}
 };
 
-int main(){
-	vector<int> arr={1,2,0,1,2,0};
+int main() {
+	vector<int> arr = {1, 2, 0, 1, 2, 0};
 	Solution solution;
 	solution.sortColors(arr);
 	PrintVector(arr);
