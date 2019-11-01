@@ -50,7 +50,7 @@ public:
 		int max_profit = 0;
 		int min_price = INT_MAX;
 		for (int price : prices) {
-			// compare the price and profit
+			// compare the price and record the profit
 			if (price < min_price) {
 				min_price = price;
 			} else {
