@@ -59,7 +59,12 @@
  */
 class Solution {
 public:
-	// based on reference, it is a monotone increase
+	/*
+	 * time complexity: O(n), space:O(1)
+	 * based on reference, it is a monotone increase
+	 * continuous increase is: max(0,later - prior)
+	 * peak and valley is also: max(0, later - prior)
+	 */
 	int maxProfit(vector<int> &prices) {
 		int ret = 0;
 		for (size_t i = 1; i < prices.size(); ++i){
