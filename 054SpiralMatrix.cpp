@@ -70,6 +70,8 @@ private:
 			
 			// only update bound and change direction at corner
 			if (direction == RIGHT && col + 1 >= width_upper_) {
+				// since we change direction from going right to going down,
+				// the lower bound for height is increased
 				direction = DOWN;
 				++height_lower_;
 			}
