@@ -44,8 +44,8 @@ public:
 	 * initialize each pointer to nullptr
 	 */
 	Trie() :  _word_end(false) {
-		for (auto & trie_ptr : _tries) {
-			trie_ptr= nullptr;
+		for (auto & leaf : leaves) {
+			leaf= nullptr;
 		}
 	}
 	
@@ -55,16 +55,16 @@ public:
 	 */
 	void insert(string word) {
 		auto trie_ptr = this;
-		for (const auto &item : word) {
-			int index = item - 'a';
+		for (const auto &ch : word) {
+			int index = ch - 'a';
 			Trie *trie;
 			// build a connection or reuse
-			if (trie_ptr->_tries[index] != nullptr) {
-				trie = trie_ptr->_tries[index];
+			if (trie_ptr->leaves[index] != nullptr) {
+				trie = trie_ptr->leaves[index];
 			} else {
 				trie = new Trie();
 			}
-			trie_ptr->_tries[index] = trie;
+			trie_ptr->leaves[index] = trie;
 			trie_ptr = trie;
 		}
 		trie_ptr->_word_end = true;
@@ -78,7 +78,7 @@ public:
 		auto trie_ptr = this;
 		for (const auto &item : word) {
 			int index = item - 'a';
-			auto trie = trie_ptr->_tries[index];
+			auto trie = trie_ptr->leaves[index];
 			if (trie != nullptr) {
 				trie_ptr = trie;
 			} else {
@@ -96,7 +96,7 @@ public:
 		auto trie_ptr = this;
 		for (const auto &item : prefix) {
 			int index = item - 'a';
-			auto trie = trie_ptr->_tries[index];
+			auto trie = trie_ptr->leaves[index];
 			if (trie != nullptr) {
 				trie_ptr = trie;
 			} else {
@@ -107,7 +107,7 @@ public:
 	}
 
 private:
-	Trie * _tries[26]{};
+	Trie * leaves[26]{};
 	bool _word_end;
 };
 
