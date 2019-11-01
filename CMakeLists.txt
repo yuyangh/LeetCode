@@ -259,7 +259,7 @@ add_executable(LeetCode106
         LeetCodeLib.h 106ConstructBinaryTreefromInorderandPostorderTraversal.cpp)
 
 add_executable(LeetCode107
-        LeetCodeLib.h 107BinaryTreeLevelOrderTraversalII.cpp)
+        LeetCodeLib.h 107BinaryTreeLevelOrderTraversalI.cpp)
 
 add_executable(LeetCode108
         LeetCodeLib.h 108ConvertSortedArraytoBinarySearchTree.cpp)
@@ -341,6 +341,12 @@ add_executable(LeetCode138
 
 add_executable(LeetCode146
         LeetCodeLib.h 146LRUCache.cpp)
+
+add_executable(LeetCode153
+        LeetCodeLib.h 153FindMinimuminRotatedSortedArray.cpp)
+
+add_executable(LeetCode154
+        LeetCodeLib.h 154FindMinimuminRotatedSortedArrayII.cpp)
 
 add_executable(LeetCode155
         LeetCodeLib.h 155MinStack.cpp)
