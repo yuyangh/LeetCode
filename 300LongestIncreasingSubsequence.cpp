@@ -69,21 +69,23 @@ public:
 			return 0;
 		}
 		int ans = INT_MIN;
+		// Do LIS at each index
 		for (int i = 0; i < nums.size(); i++) {
 			ans = max(ans, LIS(i, i, nums) + 1);
 		}
 		return ans;
 	}
 	
-	int LIS(int n, int maxID, vector<int> &nums) {
-		if (n >= nums.size()) {
+	// there are 2 parameter in recursion, so we can use memorization with 2D array
+	int LIS(int currIdx, int maxIdx, vector<int> &nums) {
+		if (currIdx >= nums.size()) {
 			return 0;
 		} else {
-			if (nums[n] > nums[maxID]) {
-				return max(LIS(n + 1, n, nums) + 1,
-				           LIS(n + 1, maxID, nums));
+			if (nums[currIdx] > nums[maxIdx]) {
+				return max(LIS(currIdx + 1, currIdx, nums) + 1,
+				           LIS(currIdx + 1, maxIdx, nums));
 			} else {
-				return LIS(n + 1, maxID, nums);
+				return LIS(currIdx + 1, maxIdx, nums);
 			}
 		}
 	}
