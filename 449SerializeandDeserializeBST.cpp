@@ -63,13 +63,16 @@ public:
 		if (data.empty()) {
 			return nullptr;
 		}
-		stringstream ss(data);
+		
 		queue<int> nums;
-		stack<TreeNode *> parents;
 		int num;
+		
+		stringstream ss(data);
 		while (ss >> num) {
 			nums.push(num);
 		}
+		
+		stack<TreeNode *> parents;
 		TreeNode *result = preOrder(nums, parents);
 		return result;
 	}
@@ -80,14 +83,16 @@ public:
 			return nullptr;
 		}
 		TreeNode *root = new TreeNode(nums.front());
-		parents.push(root);
-		TreeNode *temp, *parent;
 		nums.pop();
+		parents.push(root);
+		
+		TreeNode *temp, *parent;
 		
 		while (!nums.empty()) {
 			parent = parents.top();
 			temp = new TreeNode(nums.front());
 			nums.pop();
+			
 			// append either left or right
 			if (temp->val < parents.top()->val) {
 				parent->left = temp;
