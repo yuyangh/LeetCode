@@ -32,8 +32,9 @@ Summary of LeetCode problems
 * 规定搜索方向的path cost思考使用DP e.g.064
 * 可以记住之前到达这个state的信息 e.g.084， 085
 
-## HashTable 使用场景
+## HashTable 
 * 如果有明确数值目标,寻找一个数值对应的内容,用hashtable e.g.015, 003
+* operator[] vs. at(): at会丢出exception 如果key does not exist    
 
 ## Recursion
 * 下一个状态由上一个状态延伸而来 e.g.129
@@ -121,6 +122,7 @@ Summary of LeetCode problems
 ## Prefix Sum
 * 到当前位置的累积sum，适合计算continuous array
 * 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
+* 多少个continuous subarray sum = k， 用hashmap + prefix sum e.g.560
 
 ## Data Structure Methods
 * string
@@ -143,7 +145,20 @@ Summary of LeetCode problems
 * set
     *
 * map
-* unordered_map
+* unordered_map 
+```
+    // 假设有unordered_map<string, vector<string>> result;
+    result[key].emplace_back(str); 
+
+    // 上面和下面这段代码是等效的
+
+    auto find = result.find(key);
+    if (find == result.end()) {
+        result.emplace(key, vector<string>(1, str));
+    } else {
+        find->second.emplace_back(str);
+    }
+```
 * unordered_set
 
 ## STD method
@@ -154,6 +169,8 @@ Summary of LeetCode problems
     * return: template <class ForwardIterator, class T> ForwardIterator
     * Transforms the range [first,last) into a range with all the elements that compare equal to val removed, and returns an iterator to the new end of that range.
     * nums.erase(remove(nums.begin(),nums.end(),val),nums.end());
+* reverse
+    * Reverses the order of the elements in the range [first,last).
 * binary_search (ForwardIterator first, ForwardIterator last, const T& val);
     * return: bool
     * Returns true if any element in the range [first,last) is equivalent to val, and false otherwise
