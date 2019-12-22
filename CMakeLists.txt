@@ -495,7 +495,3 @@ add_executable(LeetCode1057
 
 add_executable(XORSum
         LeetCodeLib.h XORSum.cpp)
-
-add_executable(BBMapping LeetCodeLib.h BBMapping.cpp)
-add_executable(BBSort LeetCodeLib.h BBSort.cpp)
-add_executable(BBBricks LeetCodeLib.h BBBricks.cpp)
