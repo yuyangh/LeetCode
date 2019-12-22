@@ -65,12 +65,13 @@ public:
 	
 	int sumNumbers(TreeNode *root) {
 		sum = 0;
-		traverse(root, 0);
+		vector<int> result;
+		traverse(result, root, 0);
 		return sum;
 	}
 
 private:
-	void traverse(TreeNode *node, int value) {
+	void traverse(vector<int> &result, TreeNode *node, int value) {
 		if (node == nullptr) {
 			return;
 		}
@@ -83,8 +84,8 @@ private:
 			return;
 		}
 		// go to next node
-		traverse(node->left, value);
-		traverse(node->right, value);
+		traverse(result, node->left, value);
+		traverse(result, node->right, value);
 	}
 };
 
