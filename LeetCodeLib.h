@@ -31,6 +31,10 @@ string GenerateSpaces(int n) {
 	return spaces;
 }
 
+void complete(){
+	printf("Program Complete\n");
+}
+
 /*
  * calculate the maximum height of the tree
  */

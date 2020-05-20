@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16)
 project(LeetCode)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -476,6 +476,9 @@ add_executable(LeetCode687
 
 add_executable(LeetCode692
         LeetCodeLib.h 692TopKFrequentWords.cpp)
+
+add_executable(LeetCode901
+        LeetCodeLib.h 901OnlineStockSpan.cpp)
 
 add_executable(LeetCode904
         LeetCodeLib.h 904FruitIntoBaskets.cpp)
