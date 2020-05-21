@@ -493,6 +493,9 @@ add_executable(LeetCode969
 add_executable(LeetCode974
         LeetCodeLib.h 974SubarraySumsDivisiblebyK.cpp)
 
+add_executable(LeetCode975
+        LeetCodeLib.h 975OddEvenJump.cpp)
+
 add_executable(LeetCode1057
         LeetCodeLib.h 1057CampusBikes.cpp)
 

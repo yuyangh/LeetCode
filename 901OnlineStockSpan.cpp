@@ -106,7 +106,7 @@ int main(){
 	assert(stockSpanner.next(60)==1);
 	assert(stockSpanner.next(75)==4);
 	assert(stockSpanner.next(85)==6);
-	complete();
+	Complete();
 }
 
 

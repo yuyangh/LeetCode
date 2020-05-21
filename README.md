@@ -145,6 +145,7 @@ Summary of LeetCode problems
 * set
     *
 * map
+    * emplace 和 [] 的区别在于如果key已经存在，emplace不会更新，而[]会
 * unordered_map 
 ```
     // 假设有unordered_map<string, vector<string>> result;

@@ -31,7 +31,7 @@ string GenerateSpaces(int n) {
 	return spaces;
 }
 
-void complete(){
+void Complete(){
 	printf("Program Complete\n");
 }
 
