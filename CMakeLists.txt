@@ -402,6 +402,9 @@ add_executable(LeetCode224
 add_executable(LeetCode225
         LeetCodeLib.h 225ImplementStackUsingQueues.cpp)
 
+add_executable(LeetCode230
+        LeetCodeLib.h 230KthSmallestElementinaBST.cpp)
+
 add_executable(LeetCode232
         LeetCodeLib.h 232ImplementQueueUsingStacks.cpp)
 
