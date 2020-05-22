@@ -53,29 +53,27 @@
 class Solution {
 public:
 	string licenseKeyFormatting(string S, int K) {
-		string result;
+		string temp;
+		unsigned int length = 0;
 		
-		// get the length of the string
-		int length = 0;
-		for (char i : S) {
-			if (i != '-') {
-				++length;
+		for (int i = S.size() - 1; i >= 0; --i) {
+			if (S[i] != '-') {
+				temp += toupper(S[i]);
+				length++;
+				
+				// add dash after every K character
+				if (length && length % K == 0) {
+					temp += '-';
+				}
 			}
 		}
-		// process each char
-		for (char i : S) {
-			if (i == '-') {
-				continue;
-			}
-			result += toupper(i);
-			// handle '-' append
-			if (!result.empty() && length - result.size() != 0 &&
-			    (length - result.size()) % K == 0) {
-				result += '-';
-				length += 1;
-			}
+		// get rid of ending "-"
+		if (!temp.empty() && temp.back() == '-') {
+			temp.pop_back();
 		}
-		return result;
+		
+		reverse(temp.begin(), temp.end());
+		return temp;
 	}
 };
 
