@@ -502,5 +502,8 @@ add_executable(LeetCode975
 add_executable(LeetCode1057
         LeetCodeLib.h 1057CampusBikes.cpp)
 
+add_executable(LeetCode1277
+        LeetCodeLib.h 1277CountSquareSubmatriceswithAllOnes.cpp)
+
 add_executable(XORSum
         LeetCodeLib.h XORSum.cpp)
