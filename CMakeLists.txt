@@ -502,6 +502,9 @@ add_executable(LeetCode974
 add_executable(LeetCode975
         LeetCodeLib.h 975OddEvenJump.cpp)
 
+add_executable(LeetCode986
+        LeetCodeLib.h 986IntervalListIntersections.cpp)
+
 add_executable(LeetCode1057
         LeetCodeLib.h 1057CampusBikes.cpp)
 
