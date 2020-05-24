@@ -1,9 +1,52 @@
 #include "LeetCodeLib.h"
 
+/*
+ * @lc app=leetcode id=55 lang=cpp
+ *
+ * [55] Jump Game
+ *
+ * https://leetcode.com/problems/jump-game/description/
+ *
+ * algorithms
+ * Medium (32.73%)
+ * Likes:    3861
+ * Dislikes: 316
+ * Total Accepted:    449.7K
+ * Total Submissions: 1.3M
+ * Testcase Example:  '[2,3,1,1,4]'
+ *
+ * Given an array of non-negative integers, you are initially positioned at the
+ * first index of the array.
+ *
+ * Each element in the array represents your maximum jump length at that
+ * position.
+ *
+ * Determine if you are able to reach the last index.
+ *
+ * Example 1:
+ * Input: nums = [2,3,1,1,4]
+ * Output: true
+ * Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last
+ * index.
+ *
+ * Example 2:
+ * Input: nums = [3,2,1,0,4]
+ * Output: false
+ * Explanation: You will always arrive at index 3 no matter what. Its maximum
+ * jump length is 0, which makes it impossible to reach the last index.
+ *
+ *
+ *
+ * Constraints:
+ * 1 <= nums.length <= 3 * 10^4
+ * 0 <= nums[i][j] <= 10^5
+ */
+/*
+ * Time complexity: O(n)
+ * start from the beginning to the end
+ */
 class Solution {
-
 public:
-	// O(n) implementation
 	bool canJump(vector<int> &nums) {
 		int maxJump = 0;
 		if (nums.empty()) {
@@ -25,36 +68,6 @@ public:
 		}
 		return false;
 	}
-	
-	// O(2^n) implementation, depends on the value of the num
-	/*
-	bool canJump(vector<int> &nums) {
-	   int maxJump=0;
-	   if (nums.empty()) {
-		  return false;
-	   }
-	   
-	   // vector constructor (size, value)
-	   vector<bool> arr(nums.size(), false);
-	   arr[0] = true;
-	   
-	   for (int i = 0; i < nums.size(); i++) {
-		  if (!arr[i]) {
-			 continue;
-		  }
-		  for (int j = 1; j <= nums[i]; j++) {
-			 if (i + j < nums.size()) {
-				arr[i + j] = true;
-			 }
-			 // check last element accessibility
-			 if (arr[nums.size() - 1]) {
-				return true;
-			 }
-		  }
-	   }
-	   return arr[nums.size() - 1];
-	}
-	*/
 };
 
 void trimLeftTrailingSpaces(string &input) {
