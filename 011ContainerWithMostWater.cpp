@@ -35,7 +35,7 @@
  */
 class Solution {
 public:
-	// Two pointers apprach
+	// Two pointers approach
 	// the area formed between the lines will always be
 	// limited by the height of the shorter line.
 	// Further, the farther the lines, the more will be the area obtained
@@ -48,9 +48,7 @@ public:
 		int area;
 		while (left <= right) {
 			area = getArea(height, left, right);
-			if (area > maxArea) {
-				maxArea = area;
-			}
+			maxArea = max(maxArea, area);
 			// moving lower one to the higher one would get larger area
 			if (height[left] > height[right]) {
 				--right;
@@ -63,7 +61,8 @@ public:
 		}
 		return maxArea;
 	}
-	
+
+private:
 	int getArea(vector<int> &height, int left, int right) {
 		return (right - left) * (min(height[left], height[right]));
 	}
