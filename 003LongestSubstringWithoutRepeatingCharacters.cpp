@@ -24,52 +24,37 @@
  * Explanation: The answer is "abc", with the length of 3.
  *
  * Example 2:
- *
  * Input: "bbbbb"
  * Output: 1
  * Explanation: The answer is "b", with the length of 1.
  *
  * Example 3:
- *
  * Input: "pwwkew"
  * Output: 3
  * Explanation: The answer is "wke", with the length of 3.
  * ⁠            Note that the answer must be a substring, "pwke" is a
  * subsequence and not a substring.
  */
+/*
+ * Time complexity: O(n)
+ */
 class Solution {
 public:
 	int lengthOfLongestSubstring(string s) {
-		int start = 0, len = 0, longest = 0, pos = 0;
-		if (s.empty()) {
-			return 0;
-		}
-		unordered_map<char, int> record;
-		for (pos = 0; pos < s.size(); pos++) {
-			// check the existence of the character
-			auto it = record.find(s[pos]);
-			if (it == record.end()) {
-				// if not exist, add it
-				record.emplace(s[pos], pos);
+		unsigned int maxLength = 0;
+		unordered_map<char, unsigned int> charCountMap;
+		for (unsigned int start = 0, cur = 0; cur < s.size(); cur++) {
+			if (charCountMap.find(s[cur]) == charCountMap.end()) {
+				charCountMap[s[cur]] = cur;
 			} else {
-				// if the existence is after the start,
-				// start is existence pos+1
-				if (it->second >= start) {
-					len = pos - start;
-					if (len > longest) {
-						longest = len;
-					}
-					start = it->second + 1;
-				}
-				it->second = pos;
+				// update the start as an increasing variable
+				start = max(start, charCountMap[s[cur]] + 1);
 			}
+			
+			charCountMap[s[cur]] = cur;
+			maxLength = max(cur - start + 1, maxLength);
 		}
-		// case for no duplicate from start to end
-		len = pos - start;
-		if (len > longest) {
-			longest = len;
-		}
-		return longest;
+		return maxLength;
 	}
 };
 

@@ -492,7 +492,6 @@ add_executable(LeetCode904
 add_executable(LeetCode929
         LeetCodeLib.h 929UniqueEmailAddresses.cpp)
 
-
 add_executable(LeetCode969
         LeetCodeLib.h 969PancakeSorting.cpp)
 
