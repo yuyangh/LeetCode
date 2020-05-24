@@ -33,7 +33,7 @@
 class Solution {
 public:
 	/**
-	 * O(n)
+	 * Time complexity: O(n)
 	 * @param nums
 	 */
 	void nextPermutation(vector<int> &nums) {
