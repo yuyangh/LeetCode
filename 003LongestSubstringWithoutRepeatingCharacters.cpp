@@ -42,16 +42,16 @@ class Solution {
 public:
 	int lengthOfLongestSubstring(string s) {
 		unsigned int maxLength = 0;
-		unordered_map<char, unsigned int> charCountMap;
+		unordered_map<char, unsigned int> charPosMap;
 		for (unsigned int start = 0, cur = 0; cur < s.size(); cur++) {
-			if (charCountMap.find(s[cur]) == charCountMap.end()) {
-				charCountMap[s[cur]] = cur;
+			if (charPosMap.find(s[cur]) == charPosMap.end()) {
+				charPosMap[s[cur]] = cur;
 			} else {
 				// update the start as an increasing variable
-				start = max(start, charCountMap[s[cur]] + 1);
+				start = max(start, charPosMap[s[cur]] + 1);
 			}
 			
-			charCountMap[s[cur]] = cur;
+			charPosMap[s[cur]] = cur;
 			maxLength = max(cur - start + 1, maxLength);
 		}
 		return maxLength;
