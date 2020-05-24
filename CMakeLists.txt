@@ -505,6 +505,9 @@ add_executable(LeetCode975
 add_executable(LeetCode986
         LeetCodeLib.h 986IntervalListIntersections.cpp)
 
+add_executable(LeetCod1008
+        LeetCodeLib.h 1008ConstructBinarySearchTreefromPreorderTraversal.cpp)
+
 add_executable(LeetCode1057
         LeetCodeLib.h 1057CampusBikes.cpp)
 
