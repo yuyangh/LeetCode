@@ -510,6 +510,9 @@ add_executable(LeetCode986
 add_executable(LeetCod1008
         LeetCodeLib.h 1008ConstructBinarySearchTreefromPreorderTraversal.cpp)
 
+add_executable(LeetCod1035
+        LeetCodeLib.h 1035UncrossedLines.cpp)
+
 add_executable(LeetCode1057
         LeetCodeLib.h 1057CampusBikes.cpp)
 
