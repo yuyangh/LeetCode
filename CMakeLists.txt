@@ -174,6 +174,9 @@ add_executable(LeetCode074
 add_executable(LeetCode075
         LeetCodeLib.h 075SortColors.cpp)
 
+add_executable(LeetCode076
+        LeetCodeLib.h 076MinimumWindowSubstring.cpp)
+
 add_executable(LeetCode077
         LeetCodeLib.h 077Combinations.cpp)
 
