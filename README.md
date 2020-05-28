@@ -187,4 +187,4 @@ Summary of LeetCode problems
 
 ## Git
 * change most recent commit date
-    *  git commit --amend --date="June 7 17:20:19 2019  +0800"
+    *  git commit --amend --date="May 26 17:20:19 2020  -0800"
