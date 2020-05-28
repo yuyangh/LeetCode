@@ -112,7 +112,7 @@ void PrintSingleResult<bool>(bool result) {
 }
 
 template<class T>
-void PrintVector(vector<T> &arr) {
+void PrintVector(vector<T> arr) {
 	for (const auto &item : arr) {
 		cout << item << " ";
 	}

@@ -4,6 +4,7 @@ project(LeetCode)
 set(CMAKE_CXX_STANDARD 11)
 
 aux_source_directory(. APP_SOURCES)
+
 #add_library( YourLib ${LIB_SOURCES} ${LIB_HEADERS} )
 foreach (source_file ${APP_SOURCES})
     # cut off .cpp.
