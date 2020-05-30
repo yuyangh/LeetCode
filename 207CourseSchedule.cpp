@@ -1,53 +1,120 @@
 #include "LeetCodeLib.h"
 
+/*
+ * @lc app=leetcode id=207 lang=cpp
+ *
+ * [207] Course Schedule
+ *
+ * https://leetcode.com/problems/course-schedule/description/
+ *
+ * algorithms
+ * Medium (39.71%)
+ * Likes:    3472
+ * Dislikes: 168
+ * Total Accepted:    380.7K
+ * Total Submissions: 906.4K
+ * Testcase Example:  '2\n[[1,0]]'
+ *
+ * There are a total of numCourses courses you have to take, labeled from 0 to
+ * numCourses-1.
+ *
+ * Some courses may have prerequisites, for example to take course 0 you have
+ * to first take course 1, which is expressed as a pair: [0,1]
+ *
+ * Given the total number of courses and a list of prerequisite pairs, is it
+ * possible for you to finish all courses?
+ *
+ *
+ * Example 1:
+ *
+ *
+ * Input: numCourses = 2, prerequisites = [[1,0]]
+ * Output: true
+ * Explanation:Â There are a total of 2 courses to take.
+ * To take course 1 you should have finished course 0. So it is possible.
+ *
+ *
+ * Example 2:
+ *
+ *
+ * Input: numCourses = 2, prerequisites = [[1,0],[0,1]]
+ * Output: false
+ * Explanation:Â There are a total of 2 courses to take.
+ * To take course 1 you should have finished course 0, and to take course 0 you
+ * should
+ * also have finished course 1. So it is impossible.
+ *
+ *
+ *
+ * Constraints:
+ *
+ *
+ * The input prerequisites is a graph represented by a list of edges, not
+ * adjacency matrices. Read more about how a graph is represented.
+ * You may assume that there are no duplicate edges in the input
+ * prerequisites.
+ * 1 <=Â numCourses <= 10^5
+ *
+ *
+ */
+
+/*
+ * Time complexity: O(V+E)
+ * Topological sort
+ */
 class Solution {
 public:
-	map<int, set<int>> relation; // courseID, prerequisites courses
-	bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-		// create the graph
-		for(int i=0;i<prerequisites.size();i++){
-			auto to=relation.find(prerequisites[i][0]);
-			if(to==relation.end()){
-				relation.insert(make_pair(prerequisites[i][0],
-				                          set<int>({prerequisites[i][1]})));
-			}else{
-				to->second.insert(prerequisites[i][1]);
+	bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
+		vector<int> numPrerequisite(numCourses, 0);
+		vector<vector<bool>> adjMatrix(numCourses, vector<bool>(numCourses, false));
+		
+		// construct dependency graph
+		for (const auto &prerequisite : prerequisites) {
+			int from = prerequisite[0], to = prerequisite[1];
+			// avoid duplicate case
+			if (!adjMatrix[from][to]) {
+				numPrerequisite[to]++;
 			}
-			
-			auto from=relation.find(prerequisites[i][1]);
-			if(from==relation.end()){
-				relation.insert(make_pair(prerequisites[i][1],set<int>()));
+			adjMatrix[from][to] = true;
+		}
+		
+		queue<int> bag;
+		for (int courseId = 0; courseId < numCourses; ++courseId) {
+			if (numPrerequisite[courseId] == 0) {
+				bag.push(courseId);
 			}
 		}
 		
 		// topological sort
-		int courseNum;
-		while(!relation.empty()){
-			courseNum=findNoDepend();
-			if(courseNum==~INT_MAX+1){
-				return false;
-			}else{
-				for(auto begin=relation.begin();begin!=relation.end();++begin){
-					begin->second.erase(courseNum);
+		while (!bag.empty()) {
+			int fromCourseId = bag.front();
+			bag.pop();
+			for (int toCourseId = 0; toCourseId < numCourses; ++toCourseId) {
+				if (adjMatrix[fromCourseId][toCourseId]) {
+					numPrerequisite[toCourseId]--;
+					if (numPrerequisite[toCourseId] == 0) {
+						bag.push(toCourseId);
+					}
 				}
 			}
-		};
-		return true;
-	}
-	
-	// find courses without dependencies
-	int findNoDepend(){
-		for(auto begin=relation.begin();begin!=relation.end();++begin){
-			if(begin->second.empty()){
-				int result=begin->first;
-				relation.erase(begin);
-				return result;
+		}
+		
+		// check any course remain
+		for (const auto &num : numPrerequisite) {
+			if (num != 0) {
+				return false;
 			}
 		}
-		return ~INT_MAX+1;
+		return true;
 	}
 };
-/*
-* 2
-* [[1,0],[0,1]]
-*/
+
+int main() {
+	vector<vector<int>> prerequisites = {{0, 1}};
+	Solution solution;
+	assert(solution.canFinish(2, prerequisites));
+	prerequisites = {{0, 1},
+	                 {1, 0}};
+	assert(!solution.canFinish(2, prerequisites));
+	Complete();
+}

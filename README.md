@@ -74,6 +74,7 @@ Summary of LeetCode problems
 * 用array[][]来记住状态机 e.g.017
 
 ## Greedy algorithm
+* 思考结果是由哪些因子影响的 e.g. 857
 * 思考schedule的时候列出各种样式来尝试 e.g.452, 056
     * 先开始的放前面（是否需要同时考虑长度）
     * 先结束的放前面
@@ -120,7 +121,7 @@ Summary of LeetCode problems
 * 有没有可能用array[][]来表示 e.g.621
 
 ## Prefix Sum
-* 到当前位置的累积sum，适合计算continuous array
+* 到当前位置的累积sum，适合计算continuous array e.g. 525
 * 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
 * 多少个continuous subarray sum = k， 用hashmap + prefix sum e.g.560
 
