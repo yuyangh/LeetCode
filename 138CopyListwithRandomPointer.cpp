@@ -95,9 +95,9 @@ public:
 		if(head==nullptr){
 			return head;
 		}
-		
 		Node* node=head;
-		// copy the current list without random pointer
+		
+		// for each node in the list, copy the node and append to the current one without random pointer
 		while(node!= nullptr){
 			Node* copy=new Node(node->val,node->next, nullptr);
 			node->next=copy;
