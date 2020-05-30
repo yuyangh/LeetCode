@@ -120,7 +120,7 @@ void PrintVector(vector<T> arr) {
 }
 
 template<class T>
-void PrintVectorVector(vector<vector<T>> &arr) {
+void PrintVectorVector(vector<vector<T>> arr) {
 	for (const auto &row : arr) {
 		for (const auto &item : row) {
 			cout << item << " ";

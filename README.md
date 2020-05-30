@@ -167,6 +167,19 @@ Summary of LeetCode problems
 * sort
     * sort's comp is different from priority_queue's comp
     * smaller content would be at the front with std::less<int>
+* partial_sort (RandomAccessIterator first, RandomAccessIterator middle, RandomAccessIterator last, Compare comp)
+    * return : void
+    * Time complexity: O(N*log(M))
+    * Rearranges the elements in the range [first,last), 
+    * in such a way that the elements before middle are the smallest elements in the entire range,
+    * and are sorted in ascending order, while the remaining elements are left without any specific order.
+* nth_element
+    * Rearranges the elements in the range [first,last), 
+    * in such a way that the element at the nth position is the element that would be in that position in a sorted sequence.
+    * The other elements are left without any specific order, 
+    * except that none of the elements preceding nth are greater than it, and none of the elements following it are less.
+    * The elements are compared using operator< for the first version, 
+    * and comp for the second.
 * remove(ForwardIterator first, ForwardIterator last, const T& val)
     * return: template <class ForwardIterator, class T> ForwardIterator
     * Transforms the range [first,last) into a range with all the elements that compare equal to val removed, and returns an iterator to the new end of that range.
