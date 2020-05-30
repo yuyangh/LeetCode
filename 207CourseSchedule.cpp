@@ -60,22 +60,21 @@
 
 /*
  * Time complexity: O(V+E)
- * Topological sort
+ * Topological sort works on multi-edge
+ * Adjacent list vs. Adjacent matrix
  */
 class Solution {
 public:
 	bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
 		vector<int> numPrerequisite(numCourses, 0);
-		vector<vector<bool>> adjMatrix(numCourses, vector<bool>(numCourses, false));
+		vector<vector<int>> adjList(numCourses);
 		
 		// construct dependency graph
 		for (const auto &prerequisite : prerequisites) {
 			int from = prerequisite[0], to = prerequisite[1];
-			// avoid duplicate case
-			if (!adjMatrix[from][to]) {
-				numPrerequisite[to]++;
-			}
-			adjMatrix[from][to] = true;
+			// topological sort works on duplicate case
+			numPrerequisite[to]++;
+			adjList[from].emplace_back(to);
 		}
 		
 		queue<int> bag;
@@ -89,12 +88,10 @@ public:
 		while (!bag.empty()) {
 			int fromCourseId = bag.front();
 			bag.pop();
-			for (int toCourseId = 0; toCourseId < numCourses; ++toCourseId) {
-				if (adjMatrix[fromCourseId][toCourseId]) {
-					numPrerequisite[toCourseId]--;
-					if (numPrerequisite[toCourseId] == 0) {
-						bag.push(toCourseId);
-					}
+			for (const auto &toCourseId : adjList[fromCourseId]) {
+				numPrerequisite[toCourseId]--;
+				if (numPrerequisite[toCourseId] == 0) {
+					bag.push(toCourseId);
 				}
 			}
 		}
