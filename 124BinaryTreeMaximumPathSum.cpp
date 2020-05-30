@@ -56,6 +56,8 @@
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
+ *
+ * recursively to find max with single child + current + parent, or current with two children
  */
 class Solution {
 public:
@@ -91,10 +93,10 @@ private:
 		int max_children_increase = max(max_single_increase, both_increase);
 		
 		// update path_max_ for a path
-		path_max_ = max(path_max_, max(node->val,node->val + max_children_increase));
+		path_max_ = max({path_max_, node->val, node->val + max_children_increase});
 		
 		// update max path either choosing only this node or with one child
-		max_single_increase=max(max_single_increase+node->val,node->val);
+		max_single_increase = max(max_single_increase + node->val, node->val);
 		
 		return max_single_increase;
 	}
