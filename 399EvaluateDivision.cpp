@@ -53,7 +53,8 @@
 // @lc code=start
 
 /*
- * Time complexity: O(n), deem UnionFind as constant
+ * Time complexity: O(n), with UnionFind with path compression
+ * union nodes with common root
  */
 class Solution {
 public:
@@ -64,15 +65,16 @@ public:
 		for (int i = 0; i < equations.size(); ++i) {
 			auto s1 = equations[i][0], s2 = equations[i][1];
 			int node1Exist = nodes.count(s1), node2Exist = nodes.count(s2);
+			// if two nodes neither exist
 			if (node1Exist == 0 && node2Exist == 0) {
 				nodes[s1] = new UnionFindNode(values[i]);
 				nodes[s2] = new UnionFindNode(1.0);
 				nodes[s1]->parent = nodes[s2];
 			} else if (node1Exist == 0) {
-				nodes[s1] = new UnionFindNode(nodes[s2]->value * values[i]);
+				nodes[s1] = new UnionFindNode(values[i]);
 				nodes[s1]->parent = nodes[s2];
 			} else if (node2Exist == 0) {
-				nodes[s2] = new UnionFindNode(nodes[s1]->value / values[i]);
+				nodes[s2] = new UnionFindNode(1.0 / values[i]);
 				nodes[s2]->parent = nodes[s1];
 			} else {
 				nodes[s1]->Union(nodes[s2], values[i], nodes);
@@ -100,24 +102,27 @@ private:
 		
 		explicit UnionFindNode() : value(1.0), parent(this) {};
 		
-		void Union(UnionFindNode *node, double num, unordered_map<string, UnionFindNode *> &nodes) {
+		void Union(UnionFindNode *node, double ratio, unordered_map<string, UnionFindNode *> &nodes) {
 			UnionFindNode *selfParent = this->findParent();
-			auto nodeParent = node->findParent();
-			// keep associated nodes with same value
-			double ratio = node->value * num / this->value;
-			for (auto &item : nodes) {
-				if (item.second->findParent() == selfParent) {
-					item.second->value *= ratio;
-				}
-			}
-			selfParent->parent = nodeParent;
+			// keep value consistent to another subset
+			// since s1/s2=ratio, then s2 as s1's root, so s1's value will contain s2's part,
+			// only need to multiply s1 with ratio
+			selfParent->value *= ratio;
+			// append entire subset to that subset
+			selfParent->parent = node;
 		}
 		
+		/*
+		 * update node's value with path compression
+		 */
 		UnionFindNode *findParent() {
 			if (this->parent == this) {
 				return this;
 			}
-			this->parent = this->parent->findParent();
+			// update nodes' parent and value first
+			auto nodeParent = this->parent->findParent();
+			this->value *= this->parent->value;
+			this->parent = nodeParent;
 			return this->parent;
 		}
 	};
@@ -125,6 +130,9 @@ private:
 // @lc code=end
 
 int main() {
+	Solution solution;
+	vector<double> result;
+	
 	vector<vector<string>> equations = {{"a", "b"},
 	                                    {"b", "c"}};
 	vector<double> values = {2.0, 3.0};
@@ -133,7 +141,47 @@ int main() {
 	                                  {"a", "e"},
 	                                  {"a", "a"},
 	                                  {"x", "x"}};
-	Solution solution;
-	auto result = solution.calcEquation(equations, values, queries);
+	result = solution.calcEquation(equations, values, queries);
+	PrintVector(result);
+	
+	equations = {{"a", "e"},
+	             {"b", "e"}};
+	values = {4.0,
+	          3.0};
+	queries = {{"a", "b"},
+	           {"e", "e"},
+	           {"x", "x"}};
+	result = solution.calcEquation(equations, values, queries);
+	PrintVector(result);
+	
+	equations = {{"x1", "x2"},
+	             {"x2", "x3"},
+	             {"x3", "x4"},
+	             {"x4", "x5"}};
+	values = {3.0,
+	          4.0,
+	          5.0,
+	          6.0};
+	queries = {{"x1", "x5"},
+	           {"x5", "x2"},
+	           {"x2", "x4"},
+	           {"x2", "x2"},
+	           {"x2", "x9"},
+	           {"x9", "x9"}};
+	result = solution.calcEquation(equations, values, queries);
+	PrintVector(result);
+	
+	equations = {{"a", "b"},
+	             {"e", "f"},
+	             {"b", "e"}};
+	values = {3.4, 1.4, 2.3};
+	queries = {{"b", "a"},
+	           {"a", "f"},
+	           {"f", "f"},
+	           {"e", "e"},
+	           {"c", "c"},
+	           {"a", "c"},
+	           {"f", "e"}};
+	result = solution.calcEquation(equations, values, queries);
 	PrintVector(result);
 }
