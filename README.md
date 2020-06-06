@@ -75,6 +75,7 @@ Summary of LeetCode problems
 
 ## Greedy algorithm
 * 思考结果是由哪些因子影响的 e.g. 857
+* 思考如何放置第一个，第一个放完之后怎么放置第二个，以此类推 e.g. 406
 * 思考schedule的时候列出各种样式来尝试 e.g.452, 056
     * 先开始的放前面（是否需要同时考虑长度）
     * 先结束的放前面
