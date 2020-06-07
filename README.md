@@ -121,6 +121,34 @@ Summary of LeetCode problems
 * 安排时考虑：间隔gap，很多同种类型的task，很多不同类型的task
 * 有没有可能用array[][]来表示 e.g.621
 
+## Union Find
+* 把不同的group合并
+```c++
+    unordered_map<int, int> parent;
+    
+    void unionSons(int son1, int son2) {
+        if (findParent(son1) == findParent(son2)) {
+            return;
+        } else {
+            parent[findParent(son1)] = findParent(son2);
+        }
+    }
+    
+    /*
+     * Time complexity: O(reverse arkeman)
+     * find with path compression
+     */
+    int findParent(int son) {
+        if (parent[son] == son) {
+            return son;
+        }
+        
+        // let parent be the root
+        parent[son] = findParent(parent[son]);
+        return parent[son];
+    }
+```
+
 ## Prefix Sum
 * 到当前位置的累积sum，适合计算continuous array e.g. 525
 * 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
