@@ -65,7 +65,9 @@ class Solution {
 public:
 	vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
 		Trie *trie = new Trie();
-		for (const auto &word : words) {
+		for (auto &word : words) {
+			// reverse trie to avoid tricky case
+			reverse(word.begin(), word.end());
 			trie->insert(word);
 		}
 		
@@ -82,7 +84,8 @@ public:
 		}
 		
 		vector<string> result;
-		for (const auto &foundWord : foundWords) {
+		for (auto foundWord : foundWords) {
+			reverse(foundWord.begin(), foundWord.end());
 			result.emplace_back(foundWord);
 		}
 		
@@ -117,7 +120,7 @@ private:
 			for (const auto &letter : word) {
 				auto child = node->children[letter - 'a'];
 				if (child == nullptr) {
-					PrintSingleResult("null end");
+					printf("null end \n");
 					return;
 				}
 				child->pathCount--;
@@ -132,7 +135,7 @@ private:
 	};
 	
 	void
-	findWord(Trie *root, vector<vector<char>> &board, vector<vector<bool>> visited, string &buffer, int row, int col,
+	findWord(Trie *root, vector<vector<char>> &board, vector<vector<bool>> &visited, string &buffer, int row, int col,
 	         Trie *trie,
 	         unordered_set<string> &foundWords, unsigned int wordsSize) {
 		// base case
