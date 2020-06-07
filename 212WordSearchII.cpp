@@ -56,6 +56,11 @@
  */
 
 // @lc code=start
+
+/*
+ * Time complexity:
+ * backtracking with trie and pruning
+ */
 class Solution {
 public:
 	vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
@@ -66,12 +71,13 @@ public:
 		
 		vector<vector<bool>> visited(board.size(), vector<bool>(board[0].size(), false));
 		unordered_set<string> foundWords;
-		unsigned int wordsSize=words.size();
+		unsigned int wordsSize = words.size();
 		
+		// do backtracking
 		string buffer;
 		for (int row = 0; row < board.size(); ++row) {
 			for (int col = 0; col < board[0].size(); ++col) {
-				findWord(board, visited, buffer, row, col, trie, foundWords,wordsSize);
+				findWord(trie, board, visited, buffer, row, col, trie, foundWords, wordsSize);
 			}
 		}
 		
@@ -80,7 +86,6 @@ public:
 			result.emplace_back(foundWord);
 		}
 		
-		delete trie;
 		return result;
 	}
 
@@ -89,6 +94,7 @@ private:
 	struct Trie {
 		vector<Trie *> children;
 		bool end = false;
+		int pathCount = 0;
 		
 		Trie() : children(26, nullptr) {};
 		
@@ -98,24 +104,37 @@ private:
 				if (node->children[letter - 'a'] == nullptr) {
 					node->children[letter - 'a'] = new Trie();
 				}
+				node->pathCount++;
 				node = node->children[letter - 'a'];
 			}
+			node->pathCount++;
 			node->end = true;
 		}
 		
-		virtual ~Trie() {
-			for (auto &child : children) {
-				if (child != nullptr) {
-					delete child;
-					
+		void deleteWord(string word) {
+			auto node = this;
+			node->pathCount--;
+			for (const auto &letter : word) {
+				auto child = node->children[letter - 'a'];
+				if (child == nullptr) {
+					PrintSingleResult("null end");
+					return;
 				}
+				child->pathCount--;
+				if (child->pathCount == 0) {
+					node->children[letter - 'a'] = nullptr;
+				}
+				node = child;
 			}
+			node->end = false;
 		}
+		
 	};
 	
 	void
-	findWord(vector<vector<char>> &board, vector<vector<bool>> visited, string &buffer, int row, int col, Trie *trie,
-	         unordered_set<string> &foundWords,unsigned int wordsSize) {
+	findWord(Trie *root, vector<vector<char>> &board, vector<vector<bool>> visited, string &buffer, int row, int col,
+	         Trie *trie,
+	         unordered_set<string> &foundWords, unsigned int wordsSize) {
 		// base case
 		if (row < 0 || col < 0 || row >= board.size() || col >= board[0].size()) {
 			return;
@@ -123,27 +142,34 @@ private:
 		if (visited[row][col]) {
 			return;
 		}
-		// already found all words
-		if(wordsSize==foundWords.size()){
+		
+		// if already found all words
+		if (wordsSize == foundWords.size()) {
 			return;
 		}
 		
-		
+		// check child existence
 		char currChar = board[row][col];
 		auto currTrieNode = trie->children[currChar - 'a'];
 		if (currTrieNode == nullptr) {
 			return;
 		}
+		
+		// check word existence
 		buffer += currChar;
+		visited[row][col] = true;
 		if (currTrieNode->end) {
 			foundWords.emplace(buffer);
+			// pruning
+			root->deleteWord(buffer);
 		}
 		
-		visited[row][col] = true;
-		findWord(board, visited, buffer, row, col + 1, currTrieNode, foundWords,wordsSize);
-		findWord(board, visited, buffer, row, col - 1, currTrieNode, foundWords,wordsSize);
-		findWord(board, visited, buffer, row + 1, col, currTrieNode, foundWords,wordsSize);
-		findWord(board, visited, buffer, row - 1, col, currTrieNode, foundWords,wordsSize);
+		// continue searching in trie
+		findWord(root, board, visited, buffer, row, col + 1, currTrieNode, foundWords, wordsSize);
+		findWord(root, board, visited, buffer, row, col - 1, currTrieNode, foundWords, wordsSize);
+		findWord(root, board, visited, buffer, row + 1, col, currTrieNode, foundWords, wordsSize);
+		findWord(root, board, visited, buffer, row - 1, col, currTrieNode, foundWords, wordsSize);
+		
 		visited[row][col] = false;
 		buffer.pop_back();
 	}
@@ -162,6 +188,19 @@ int main() {
 			{'i', 'f', 'l', 'v'}
 	};
 	words = {"oath", "pea", "eat", "rain"};
+	// PrintVector(solution.findWords(board, words));
+	
+	words = {"oath", "o", "oa", "oathfl"};
+	// PrintVector(solution.findWords(board, words));
+	
+	board = {{'b', 'a', 'a', 'b', 'a', 'b'},
+	         {'a', 'b', 'a', 'a', 'a', 'a'},
+	         {'a', 'b', 'a', 'a', 'a', 'b'},
+	         {'a', 'b', 'a', 'b', 'b', 'a'},
+	         {'a', 'a', 'b', 'b', 'a', 'b'},
+	         {'a', 'a', 'b', 'b', 'b', 'a'},
+	         {'a', 'a', 'b', 'a', 'a', 'b'}};
+	words = {"aab", "aabbbbabbaababaaaabababbaaba"};
 	PrintVector(solution.findWords(board, words));
 	
 	Complete();
