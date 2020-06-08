@@ -35,9 +35,66 @@
  * Output: [-1,-1]
  *
  */
+
+
+/*
+ * Time complexity: O(logn)
+ * left binary search and right binary search
+ */
 class Solution {
 public:
-	// reference from online, reach O(logn)
+	vector<int> searchRange(vector<int> &nums, int target) {
+		bool targetExist = binary_search(nums.begin(), nums.end(), target);
+		if (!targetExist) {
+			return {-1, -1};
+		}
+		
+		int leftBound = binaryLeftSearch(nums, target);
+		int rightBound = binaryRightSearch(nums, target);
+		
+		return {leftBound, rightBound};
+	}
+	
+	int binaryRightSearch(vector<int> &nums, int target) {
+		int left = 0, right = nums.size();
+		int mid;
+		while (left < right) {
+			mid = (left + right) / 2;
+			// must increase left, because int division always rounds to smaller
+			if (nums[mid] <= target) {
+				left = mid + 1;
+			} else {
+				right = mid;
+			}
+		}
+		// while loop only breaks when left == right,
+		// and right is always not reachable
+		// so must return left -1
+		return left - 1;
+	}
+	
+	int binaryLeftSearch(vector<int> &nums, int target) {
+		int left = 0, right = nums.size();
+		int mid;
+		while (left < right) {
+			mid = (left + right) / 2;
+			if (nums[mid] == target) {
+				right = mid;
+			} else if (nums[mid] < target) {
+				left = mid + 1;
+			} else {
+				right = mid - 1;
+			}
+		}
+		return right;
+	}
+};
+
+/*
+ * reference from online, reach O(logn)
+ */
+class RefSolution {
+public:
 	vector<int> searchRange(vector<int> &nums, int target) {
 		if (nums.empty()) {
 			return {-1, -1};
@@ -108,98 +165,21 @@ public:
 		}
 		return -1;
 	}
-	
-	// previous implementation is O(log(n)log(n))
-	// vector<int> searchRange(vector<int> &nums, int target) {
-	// 	if (nums.empty()) {
-	// 		return {-1, -1};
-	// 	}
-	//
-	// 	// find the element
-	// 	int mid = search(nums,0,nums.size()-1,target);
-	// 	if (mid == -1) {
-	// 		return {-1, -1};
-	// 	}
-	//
-	// 	// look for the leftist element
-	// 	int low, newLow = mid;
-	// 	do {
-	// 		low = newLow;
-	// 		newLow = search(nums, 0, low - 1, target);
-	// 	} while (newLow != -1);
-	//
-	// 	// look for the rightist element
-	// 	int high, newHigh = mid;
-	// 	do {
-	// 		high = newHigh;
-	// 		newHigh = search(nums, newHigh + 1, nums.size() - 1, target);
-	// 	} while (newHigh != -1);
-	//
-	// 	return {low, high};
-	// }
-	
-	
 };
 
-void trimLeftTrailingSpaces(string &input) {
-	input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
-		return !isspace(ch);
-	}));
-}
-
-void trimRightTrailingSpaces(string &input) {
-	input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
-		return !isspace(ch);
-	}).base(), input.end());
-}
-
-vector<int> stringToIntegerVector(string input) {
-	vector<int> output;
-	trimLeftTrailingSpaces(input);
-	trimRightTrailingSpaces(input);
-	input = input.substr(1, input.length() - 2);
-	stringstream ss;
-	ss.str(input);
-	string item;
-	char delim = ',';
-	while (getline(ss, item, delim)) {
-		output.push_back(stoi(item));
-	}
-	return output;
-}
-
-int stringToInteger(string input) {
-	return stoi(input);
-}
-
-string integerVectorToString(vector<int> list, int length = -1) {
-	if (length == -1) {
-		length = list.size();
-	}
-	
-	if (length == 0) {
-		return "[]";
-	}
-	
-	string result;
-	for (int index = 0; index < length; index++) {
-		int number = list[index];
-		result += to_string(number) + ", ";
-	}
-	return "[" + result.substr(0, result.length() - 2) + "]";
-}
 
 int main() {
-	string line;
-	while (getline(cin, line)) {
-		vector<int> nums = stringToIntegerVector(line);
-		getline(cin, line);
-		int target = stringToInteger(line);
-		
-		vector<int> ret = Solution().searchRange(nums, target);
-		
-		string out = integerVectorToString(ret);
-		cout << out << endl;
-	}
-	return 0;
+	MySolution mySolution;
+	vector<int> nums;
+	int target;
+	target = 2;
+	nums = {1, 2, 2, 2};
+	PrintSingleResult(mySolution.binaryLeftSearch(nums, 2));
+	PrintSingleResult(mySolution.binaryRightSearch(nums, 2));
+	
+	nums = {1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2};
+	PrintSingleResult(mySolution.binaryLeftSearch(nums, 2) ==
+	                  find(nums.begin(), nums.end(), 2) - nums.begin());
+	
+	Complete();
 }
