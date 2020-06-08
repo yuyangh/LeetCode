@@ -23,7 +23,8 @@ Summary of LeetCode problems
 * 把list断开，重新续接，可以考虑改造成环形列表来处理 e.g.061
 
 ## Dynamic Programming
-* 如果一下子没有idea,先写出recursion的方法,再思考这个recursion是从哪里开始计算的,DP就是按照这个顺序 e.g.300, 091
+* 如果一下子没有idea,先写出recursion的方法
+* 再思考这个recursion是从哪里开始recurse back的, DP iteration就是按照这个顺序 e.g.300, 091, 518
 * dp 最后完成的一个stage是整个的过程结果 e.g.062,063
 * 要思考所有能够到达最后一个stage的路径都考虑到 e.g.091
 * 如果问一开始的时候需要多少数值才能完成任务,思考bottom up的DP e.g.174
