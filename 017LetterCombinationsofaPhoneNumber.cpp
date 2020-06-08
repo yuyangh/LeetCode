@@ -31,6 +31,11 @@
  * in any order you want.
  *
  */
+
+/*
+ * Time complexity: (4^n)
+ * backtracking
+ */
 class Solution {
 public:
 	vector<string> letterCombinations(string digits) {
