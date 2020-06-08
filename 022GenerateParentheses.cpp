@@ -29,24 +29,29 @@
  * ]
  *
  */
+
+/*
+ * Time complexity: O(2^(n/2))
+ * recursion with condition
+ */
 class Solution {
 public:
 	vector<string> generateParenthesis(int n) {
 		vector<string> res;
-		addingpar(res, "", n, 0);
+		addPar(res, "", n, 0);
 		return res;
 	}
 	
-	void addingpar(vector<string> &v, string str, int left, int right) {
+	void addPar(vector<string> &v, string str, int left, int right) {
 		if (left == 0 && right == 0) {
 			v.push_back(str);
 			return;
 		}
 		
-		if (right > 0) { addingpar(v, str + ")", left, right - 1); }
+		if (right > 0) { addPar(v, str + ")", left, right - 1); }
 		
 		// if we add a left parenthesis, we need to add a right one as well
-		if (left > 0) { addingpar(v, str + "(", left - 1, right + 1); }
+		if (left > 0) { addPar(v, str + "(", left - 1, right + 1); }
 	}
 };
 
