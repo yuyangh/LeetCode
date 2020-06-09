@@ -32,44 +32,66 @@
  * To the right of 1 there is 0 smaller element.
  *
  */
+
+/*
+ * Time complexity: O(nlogn)
+ * Ref solution
+ * use merge sort to get inverse numbers, which calculates the relative difference in location
+ */
 class Solution {
-protected:
-	void merge_countSmaller(vector<int>& indices, int first, int last,
-	                        vector<int>& results, vector<int>& nums) {
-		int count = last - first;
-		if (count > 1) {
-			int step = count / 2;
-			int mid = first + step;
-			merge_countSmaller(indices, first, mid, results, nums);
-			merge_countSmaller(indices, mid, last, results, nums);
-			vector<int> tmp;
-			tmp.reserve(count);
-			int idx1 = first;
-			int idx2 = mid;
-			int semicount = 0;
-			while ((idx1 < mid) || (idx2 < last)) {
-				if ((idx2 == last) || ((idx1 < mid) &&
-				                       (nums[indices[idx1]] <= nums[indices[idx2]]))) {
-					tmp.push_back(indices[idx1]);
-					results[indices[idx1]] += semicount;
-					++idx1;
+public:
+	vector<int> countSmaller(vector<int> &nums) {
+		vector<int> smallerCount(nums.size());
+		
+		// number to its index
+		vector<int> numIndex(nums.size());
+		iota(numIndex.begin(), numIndex.end(), 0);
+		
+		mergeSort(nums, numIndex, 0, nums.size(), smallerCount);
+		return smallerCount;
+	}
+
+private:
+	void mergeSort(vector<int> &nums, vector<int> &numIndex, int begin, int end, vector<int> &smallerCount) {
+		int length = end - begin;
+		if (length > 1) {
+			int mid = (begin + end) / 2;
+			mergeSort(nums, numIndex, begin, mid, smallerCount);
+			mergeSort(nums, numIndex, mid, end, smallerCount);
+			
+			vector<int> buffer;
+			buffer.reserve(length);
+			
+			int leftIdx = begin, rightIdx = mid, semiArrCount = 0;
+			while (leftIdx < mid || rightIdx < end) {
+				if ((rightIdx == end) ||
+				    (leftIdx < mid && nums[numIndex[leftIdx]] <= nums[numIndex[rightIdx]])) {
+					buffer.push_back(numIndex[leftIdx]);
+					// plus the relative count for the other array
+					// the relative position difference is calculated with recursion
+					smallerCount[numIndex[leftIdx]] += semiArrCount;
+					leftIdx++;
+					
 				} else {
-					tmp.push_back(indices[idx2]);
-					++semicount;
-					++idx2;
+					buffer.push_back(numIndex[rightIdx]);
+					rightIdx++;
+					semiArrCount++;
+					
 				}
 			}
-			move(tmp.begin(), tmp.end(), indices.begin()+first);
+			
+			// write new Index to the old place
+			move(buffer.begin(), buffer.end(), numIndex.begin() + begin);
 		}
-	}
-public:
-	vector<int> countSmaller(vector<int>& nums) {
-		int n = nums.size();
-		vector<int> results(n, 0);
-		vector<int> indices(n, 0);
-		iota(indices.begin(), indices.end(), 0);
-		merge_countSmaller(indices, 0, n, results, nums);
-		return results;
 	}
 };
 
+
+int main() {
+	Solution solution;
+	vector<int> nums = {5, 2, 6, 1};
+	
+	PrintVector(solution.countSmaller(nums));
+	
+	Complete();
+}
