@@ -33,6 +33,11 @@
  * default code definition to get new method signature.
  *
  */
+
+/*
+ * Time complexity: O(nlogn)
+ * greedy approach with priority queue
+ */
 class Solution {
 public:
 	vector<vector<int>> merge(vector<vector<int>> &intervals) {
@@ -44,13 +49,18 @@ public:
 		sort(intervals.begin(), intervals.end(), [](vector<int> &lhs, vector<int> &rhs) {
 			return lhs[0] < rhs[0];
 		});
+		
+		// first interval
 		vector<vector<int>> result;
 		result.emplace_back(intervals[0]);
+		
 		int pos = 0;
 		for (int i = 1; i < intervals.size(); i++) {
+			// merge overlapping intervals
 			if (result[pos][1] >= intervals[i][0]) {
 				result[pos][1] = max(result[pos][1], intervals[i][1]);
 			} else {
+				// append intervals into result
 				result.emplace_back(intervals[i]);
 				pos++;
 			}
