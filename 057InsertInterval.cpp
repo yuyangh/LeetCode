@@ -1,4 +1,5 @@
 #include "LeetCodeLib.h"
+
 /*
  * @lc app=leetcode id=57 lang=cpp
  *
@@ -35,17 +36,22 @@
  * default code definition to get new method signature.
  *
  */
+
+/*
+ * Time complexity: O(n)
+ * Greedy approach
+ */
 class Solution {
 public:
-	vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-		if(intervals.empty()){
+	vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval) {
+		if (intervals.empty()) {
 			return {newInterval};
 		}
-		if(newInterval.empty()){
+		if (newInterval.empty()) {
 			return intervals;
 		}
-		int pos=binarySearch(intervals,newInterval);
-		intervals.emplace(intervals.begin()+pos,newInterval);
+		int pos = binarySearch(intervals, newInterval);
+		intervals.emplace(intervals.begin() + pos, newInterval);
 		
 		// merge the intervals
 		vector<vector<int>> result;
@@ -68,17 +74,17 @@ public:
 	 * @param newInterval
 	 * @return
 	 */
-	int binarySearch(vector<vector<int>>& intervals, vector<int>& newInterval){
-		int low=0,high=intervals.size()-1,mid;
-		while(low<=high){
-			mid=(low+high)/2;
-			if(intervals[mid][0]==newInterval[0]){
+	int binarySearch(vector<vector<int>> &intervals, vector<int> &newInterval) {
+		int low = 0, high = intervals.size() - 1, mid;
+		while (low <= high) {
+			mid = (low + high) / 2;
+			if (intervals[mid][0] == newInterval[0]) {
 				return mid;
-			}else{
-				if(intervals[mid][0]<newInterval[0]){
-					low=mid+1;
-				}else{
-					high=mid-1;
+			} else {
+				if (intervals[mid][0] < newInterval[0]) {
+					low = mid + 1;
+				} else {
+					high = mid - 1;
 				}
 			}
 		}
