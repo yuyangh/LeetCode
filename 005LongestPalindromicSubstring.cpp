@@ -40,28 +40,41 @@
  */
 
 // @lc code=start
+
+/*
+ * time complexity O(n*n)
+ * check palindrome expand from center with odd and even length
+ */
 class Solution {
 public:
-	/*
-	 * time complexity O(n*n)
-	 */
 	string longestPalindrome(string s) {
 		string result;
+		int length;
 		for (size_t i = 0; i < s.size(); i++) {
 			// Expand Around Center with odd and even expansion
-			auto even = checkPalindrome(s, i, i + 1);
-			auto odd = checkPalindrome(s, i, i);
-			if (even.first != -1 && even.second - even.first + 1 > result.size()) {
-				result = s.substr(even.first, even.second - even.first + 1);
-			}
-			if (odd.first != -1 && odd.second - odd.first + 1 > result.size()) {
-				result = s.substr(odd.first, odd.second - odd.first + 1);
+			auto evenResult = checkPalindrome(s, i, i + 1);
+			auto oddResult = checkPalindrome(s, i, i);
+			
+			length = evenResult.second - evenResult.first + 1;
+			if (evenResult.first != -1 && length > result.size()) {
+				result = s.substr(evenResult.first, length);
 			}
 			
+			length = oddResult.second - oddResult.first + 1;
+			if (oddResult.first != -1 && length > result.size()) {
+				result = s.substr(oddResult.first, length);
+			}
 		}
 		return result;
 	}
 	
+	/**
+	 * check palindrome starts from left to left, from right to right
+	 * @param s string
+	 * @param left left starting index to check palindrome
+	 * @param right right starting index
+	 * @return the start position and end position of the palindrome
+	 */
 	pair<int, int> checkPalindrome(string &s, int left, int right) {
 		// memorize previous left and right
 		int prevLeft = -1, prevRight = -1;
@@ -127,9 +140,9 @@ int main() {
 	string line;
 	while (getline(cin, line)) {
 		string s = stringToString(line);
-
+		
 		string ret = Solution().longestPalindrome(s);
-
+		
 		string out = (ret);
 		cout << out << endl;
 	}
