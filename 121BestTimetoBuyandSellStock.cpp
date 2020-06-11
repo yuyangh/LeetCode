@@ -43,9 +43,15 @@
  *
  *
  */
+
+
 class Solution {
 public:
-	// O(n) runtime, O(1) space
+	/*
+	 * Time complexity: O(n)
+	 * Space complexity: O(1)
+	 * memorize both min_price and max_profit
+	 */
 	int maxProfit(vector<int> &prices) {
 		int max_profit = 0;
 		int min_price = INT_MAX;
