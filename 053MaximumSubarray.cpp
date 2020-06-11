@@ -34,6 +34,11 @@
  * the divide and conquer approach, which is more subtle.
  *
  */
+
+/*
+ * Time complexity: O(n)
+ * use dp to choose nums[i] or nums[i]+ previous sum
+ */
 class Solution {
 public:
 	int maxSubArray(vector<int> &nums) {
@@ -49,11 +54,8 @@ public:
 		
 		// memorize the max value up until here
 		for (int i = 1; i < nums.size(); i++) {
-			int sum = buffer[i - 1] + nums[i];
-			buffer.emplace_back(max(nums[i], sum));
-			if (maxSum < buffer.back()) {
-				maxSum = buffer.back();
-			}
+			buffer.emplace_back(max(nums[i], nums[i] + buffer[i - 1]));
+			maxSum = max(maxSum, buffer.back());
 		}
 		return maxSum;
 	}
