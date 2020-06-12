@@ -45,9 +45,11 @@
 class Solution {
 public:
 	/*
+	 * Time complexity: O(n)
+	 * Space Complexity: O(1)
      * Dutch National Flag problem solution.
 	 */
-	void sortColorsRef(vector<int> &nums) {
+	void sortColors(vector<int> &nums) {
 		// for all idx < p0 : nums[idx < p0] = 0
 		// curr is an index of element under consideration
 		int p0 = 0, curr = 0;
@@ -56,14 +58,18 @@ public:
 		
 		while (curr <= p2) {
 			if (nums[curr] == 0) {
+				// swap current with next 0th place
 				swap(nums[curr++], nums[p0++]);
 			} else if (nums[curr] == 2) {
+				// swap current with next 2th place
 				swap(nums[curr], nums[p2--]);
-			} else curr++;
+			} else {
+				curr++;
+			}
 		}
 	}
 	
-	void sortColors(vector<int> &nums) {
+	void sortColorsRef(vector<int> &nums) {
 		if (nums.empty() || nums.size() == 1) {
 			return;
 		}
