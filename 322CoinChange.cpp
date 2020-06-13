@@ -32,6 +32,11 @@
  * You may assume that you have an infinite number of each kind of coin.
  *
  */
+
+/*
+ * Time compelxity: O(mn)
+ * dp to calculate from begin to end
+ */
 class Solution {
 public:
 	int coinChange(vector<int> &coins, int amount) {
