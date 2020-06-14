@@ -54,13 +54,11 @@
  */
 // @lc code=end
 
-
+/*
+ * Use two stacks, one for nums, one for mins
+ */
 class MinStack {
 public:
-	vector<int> nums;
-	// keep min nums
-	vector<int> minNums;
-	
 	/** initialize your data structure here. */
 	MinStack() {
 	
@@ -94,43 +92,9 @@ public:
 	int getMin() {
 		return minNums.back();
 	}
-};
 
-class MinStackRef {
-public:
-	int minVal;
+private:
 	vector<int> nums;
-	
-	/** initialize your data structure here. */
-	MinStackRef() {
-		minVal = INT_MAX;
-	}
-	
-	void push(int x) {
-		// <= sign helps to handle two identical number case
-		if (x <= minVal) {
-			// saves a copy of 2nd smallest value
-			nums.push_back(minVal);
-			minVal = x;
-		}
-		nums.push_back(x);
-	}
-	
-	void pop() {
-		int num = nums.back();
-		nums.pop_back();
-		if (num == minVal) {
-			// get the 2nd smallest value
-			minVal = nums.back();
-			nums.pop_back();
-		}
-	}
-	
-	int top() {
-		return nums.back();
-	}
-	
-	int getMin() {
-		return minVal;
-	}
+	// keep min nums
+	vector<int> minNums;
 };
