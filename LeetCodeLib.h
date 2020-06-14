@@ -82,8 +82,15 @@ struct TreeNode {
 	TreeNode *left = nullptr;
 	TreeNode *right = nullptr;
 	
+	/**
+	 * leetcode provided constructor
+	 * @param x  val
+	 */
 	explicit TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 	
+	/*
+	 * self created constructor
+	 */
 	TreeNode() : val(-1), left(nullptr), right(nullptr) {}
 
 private:
@@ -130,7 +137,6 @@ void PrintVectorVector(vector<vector<T>> arr) {
 }
 
 std::vector<std::string> Split(const std::string &str, std::string delim = ",") {
-	// const char delim = ',';
 	std::vector<std::string> retVal;
 	
 	size_t start = 0;
@@ -142,6 +148,7 @@ std::vector<std::string> Split(const std::string &str, std::string delim = ",") 
 		delimLoc = str.find_first_of(delim, start);
 	}
 	
+	// add the last one
 	retVal.emplace_back(str.substr(start));
 	return retVal;
 }
