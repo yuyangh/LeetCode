@@ -22,23 +22,15 @@
  * to val.
  *
  * Example:
- *
- *
  * Given nums = [1, 3, 5]
- *
  * sumRange(0, 2) -> 9
  * update(1, 2)
  * sumRange(0, 2) -> 8
  *
- *
  * Note:
- *
- *
  * The array is only modifiable by the update function.
  * You may assume the number of calls to update and sumRange function is
  * distributed evenly.
- *
- *
  */
 
 class SegmentTreeNode {
@@ -131,6 +123,38 @@ private:
 };
 
 
+#define lowbit(x) ((x) & (-(x)))
+
+class NumArray2 {
+public:
+	NumArray2(vector<int> &nums) {
+		binaryIndexTree.resize(nums.size() + 1);
+		for (int i = 0; i < nums.size(); i++)
+			update(i, nums[i]);
+	}
+	
+	void update(int i, int val) {
+		int delta = val - sumRange(i, i);
+		for (i++; i < binaryIndexTree.size(); i += lowbit(i))
+			binaryIndexTree[i] += delta;
+	}
+	
+	int sumRange(int i, int j) {
+		return sum(j) - sum(i - 1);
+	}
+
+private:
+	vector<int> binaryIndexTree;
+	
+	int sum(int i) {
+		int ret = 0;
+		for (i++; i; i -= lowbit(i))
+			ret += binaryIndexTree[i];
+		return ret;
+	}
+};
+
+
 /**
  * Your NumArray object will be instantiated and called as such:
  * NumArray* obj = new NumArray(nums);
@@ -149,7 +173,7 @@ int main() {
 	result = numArray.sumRange(0, 2);
 	PrintSingleResult(result);
 	
-	cout<<endl;
+	cout << endl;
 	arr = {9, -8};
 	NumArray numArray1(arr);
 	numArray1.update(0, 3);

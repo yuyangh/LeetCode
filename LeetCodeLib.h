@@ -130,7 +130,8 @@ template<class T>
 void PrintVectorVector(vector<vector<T>> arr) {
 	for (const auto &row : arr) {
 		for (const auto &item : row) {
-			cout << item << " ";
+			cout.width(4);
+			cout << item;
 		}
 		cout << endl;
 	}
