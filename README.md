@@ -98,6 +98,9 @@ Summary of LeetCode problems
 * 用binary search来查找如何满足一个数字的要求 e.g.069
 * 要计算log(num,base)时，用log(num)/log(base),数学上的换底大发
 
+## Counting or Matching
+* 用vector of counter 来+，- ，看有没有match e.g.299
+
 ## Bit Manipulation
 * 检查重复的时候可以考虑 XOR, a XOR b XOR a = b e.g.136
 * 每一次 num XOR i, num 会记或忘i，可以用多个variable来检查num是否出现过 e.g.137
