@@ -43,6 +43,12 @@
  * horizontally or vertically.
  *
  */
+
+/*
+ * Time complexity: O(n*n)
+ * first find edge points that can be selected
+ * then discover connected regions
+ */
 class Solution {
 public:
 	void solve(vector<vector<char>> &board) {
@@ -137,7 +143,6 @@ private:
 		int second = key & (~0);
 		return make_pair(first, second);
 	}
-	
 };
 
 int main() {
