@@ -91,38 +91,17 @@ public:
 				swap_need -= factorials_[factorials_index];
 				++choose_pos;
 			}
+			
 			// add the selected number and remove it from the pool
 			result += (nums[choose_pos]) + '0';
 			remove(nums.begin(), nums.end(), nums[choose_pos]);
 		}
 		return result;
 	}
-	
-	vector<vector<int>> GeneratePermutation(int n) {
-		vector<int> nums;
-		nums.reserve(n);
-		vector<vector<int>> result;
-		for (int i = 0; i < n; ++i) {
-			nums.emplace_back(i + 1);
-		}
-		permute(result, nums, 0);
-		return result;
-	}
 
 private:
 	// pre-calculated factorials
 	const vector<int> factorials_ = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800};
-	
-	void permute(vector<vector<int>> &result, vector<int> nums, int index) {
-		if (index == nums.size()) {
-			result.emplace_back(nums);
-			return;
-		}
-		for (int i = index; i < nums.size(); ++i) {
-			swap(nums[i], nums[index]);
-			permute(result, nums, index + 1);
-		}
-	}
 };
 
 int main() {
