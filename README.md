@@ -153,6 +153,41 @@ Summary of LeetCode problems
     }
 ```
 
+## Sum Range
+* 通用做法：segment tree，如果数字数值不大，可以用binary index tree
+```c++
+#define lowbit(x) ((x) & (-(x)))
+
+class NumArray2 {
+public:
+	NumArray2(vector<int> &nums) {
+		binaryIndexTree.resize(nums.size() + 1);
+		for (int i = 0; i < nums.size(); i++)
+			update(i, nums[i]);
+	}
+	
+	void update(int i, int val) {
+		int delta = val - sumRange(i, i);
+		for (i++; i < binaryIndexTree.size(); i += lowbit(i))
+			binaryIndexTree[i] += delta;
+	}
+	
+	int sumRange(int i, int j) {
+		return sum(j) - sum(i - 1);
+	}
+
+private:
+	vector<int> binaryIndexTree;
+	
+	int sum(int i) {
+		int ret = 0;
+		for (i++; i; i -= lowbit(i))
+			ret += binaryIndexTree[i];
+		return ret;
+	}
+};
+```
+
 ## Prefix Sum
 * 到当前位置的累积sum，适合计算continuous array e.g. 525
 * 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
