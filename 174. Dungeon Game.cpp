@@ -56,6 +56,11 @@
  * Any room can contain threats or power-ups, even the first room the knight
  * enters and the bottom-right room where the princess is imprisoned.
  */
+
+/*
+ * Time complexity: O(n*n)
+ * dynamic programming bottom up
+ */
 class Solution {
 public:
 	int calculateMinimumHP(vector<vector<int>> &dungeon) {
@@ -83,7 +88,6 @@ public:
 			}
 		}
 		return hp[0][0];
-		
 	}
 };
 
