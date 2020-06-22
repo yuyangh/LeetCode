@@ -35,7 +35,12 @@ Summary of LeetCode problems
 
 ## HashTable 
 * 如果有明确数值目标,寻找一个数值对应的内容,用hashtable e.g.015, 003
-* operator[] vs. at(): at会丢出exception 如果key does not exist    
+* operator[] vs. at(): at会丢出exception 如果key does not exist 
+* override hash function
+```c++
+auto hash = [](const pair<int, int> &p) { return p.first * 31 + p.second; };
+unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
+```   
 
 ## Recursion
 * 下一个状态由上一个状态延伸而来 e.g.129
