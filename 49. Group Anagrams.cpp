@@ -2,9 +2,7 @@
 
 /*
  * @lc app=leetcode id=49 lang=cpp
- *
  * [49] Group Anagrams
- *
  * https://leetcode.com/problems/group-anagrams/description/
  *
  * algorithms
@@ -16,7 +14,6 @@
  * Testcase Example:  '["eat","tea","tan","ate","nat","bat"]'
  *
  * Given an array of strings, group anagrams together.
- *
  * Example:
  * Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
  * Output:
@@ -30,19 +27,23 @@
  * All inputs will be in lowercase.
  * The order of your output does not matter.
  */
+
+
 class Solution {
 public:
-	// use count of char in each word as the key
-	// use hashtable to group words
+	/*
+	 * Time complexity: O(n*k)
+	 * use count of char in the word to construct a string as the key
+	 * use hashtable to group words
+	 */
 	vector<vector<string>> groupAnagrams(vector<string> &strs) {
 		if (strs.empty()) {
 			return vector<vector<string>>();
 		}
 		
-		// produce the initialKey for the map
+		// construct the initialKey for the map, the initial key is 26 consecutive "0":
 		string initialKey;
 		for (size_t i = 0; i < 26; i++) {
-			// initialize the count for each char as 0
 			initialKey += '0';
 		}
 		
@@ -55,8 +56,6 @@ public:
 				key[ch - 'a']++;
 			}
 			result[key].emplace_back(str);
-			
-			
 		}
 		
 		vector<vector<string>> groups;
