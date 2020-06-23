@@ -36,6 +36,7 @@
 class Solution {
 public:
 	/*
+	 * Time Complexity: O(n)
 	 * every time there is an XOR,
 	 * the number will be either remembered or forgotten
 	 */
