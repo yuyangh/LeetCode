@@ -44,14 +44,15 @@ public:
 		unsigned int maxLength = 0;
 		unordered_map<char, unsigned int> charPosMap;
 		for (unsigned int start = 0, cur = 0; cur < s.size(); cur++) {
-			if (charPosMap.find(s[cur]) == charPosMap.end()) {
-				charPosMap[s[cur]] = cur;
+			char currChar = s[cur];
+			if (charPosMap.find(currChar) == charPosMap.end()) {
+				charPosMap[currChar] = cur;
 			} else {
 				// update the start as an increasing variable
-				start = max(start, charPosMap[s[cur]] + 1);
+				start = max(start, charPosMap[currChar] + 1);
 			}
 			
-			charPosMap[s[cur]] = cur;
+			charPosMap[currChar] = cur;
 			maxLength = max(cur - start + 1, maxLength);
 		}
 		return maxLength;

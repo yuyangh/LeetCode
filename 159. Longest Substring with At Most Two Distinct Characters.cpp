@@ -5,6 +5,8 @@
 #include "LeetCodeLib.h"
 
 /*
+ * 159. Longest Substring with At Most Two Distinct Characters
+ *
  * Given a string s , find the length of the longest substring t  that contains at most 2 distinct characters.
  * Example 1:
  * Input: "eceba"
@@ -19,6 +21,7 @@
 
 /*
  * Time complexity: O(n)
+ * sliding window
  */
 class Solution {
 public:
