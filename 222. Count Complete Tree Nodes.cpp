@@ -47,6 +47,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+ 
 class Solution {
 public:
 	/*
@@ -62,8 +63,8 @@ private:
 			return 0;
 		}
 		int num_nodes = 0;
-		int left_height = CalculateTreeHeight(node->left);
-		int right_height = CalculateTreeHeight(node->right);
+		int left_height = CalculateTreeLeftHeight(node->left);
+		int right_height = CalculateTreeLeftHeight(node->right);
 		
 		if (left_height == right_height) {
 			// right side may not all have equal height
@@ -81,12 +82,14 @@ private:
 	int CalculateNumNodes(int height) {
 		return static_cast<int>(pow(2, height) - 1);
 	}
-	
-	int CalculateTreeHeight(TreeNode *node) {
+	/*
+	 * Calculate the maximum height of the tree
+	 */
+	int CalculateTreeLeftHeight(TreeNode *node) {
 		if (node == nullptr) {
 			return 0;
 		}
-		return 1 + CalculateTreeHeight(node->left);
+		return 1 + CalculateTreeLeftHeight(node->left);
 	}
 };
 
