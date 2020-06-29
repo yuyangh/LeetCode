@@ -44,27 +44,32 @@
  * Input: m = 7, n = 3
  * Output: 28
  */
+
 class Solution {
 public:
-	vector<vector<int>> path;
+	/*
+	 * Time complexity: O(n*n)
+	 * dynamic programming
+	 */
 	int uniquePaths(int m, int n) {
-		if(m==0||n==0){
+		if (m == 0 || n == 0) {
 			return 0;
 		}
+		vector<vector<int>> path;
 		
 		path.reserve(n);
 		// because top row and left col both only have 1 path
-		for(int row=0;row<n;row++){
-			path.emplace_back(m,1);
+		for (int row = 0; row < n; row++) {
+			path.emplace_back(m, 1);
 		}
 		
 		// dynamic programming
-		for(int row=1;row<n;row++){
-			for(int col=1;col<m;col++){
-				path[row][col]=path[row-1][col]+path[row][col-1];
+		for (int row = 1; row < n; row++) {
+			for (int col = 1; col < m; col++) {
+				path[row][col] = path[row - 1][col] + path[row][col - 1];
 			}
 		}
-		return path[n-1][m-1];
+		return path[n - 1][m - 1];
 	}
 };
 
