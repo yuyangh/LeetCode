@@ -193,6 +193,39 @@ private:
 };
 ```
 
+## Eulerian path
+* traverse all edge, e.g. 332
+```c++
+/*
+ * Eulerian path algorithm
+ * Time complexity: ( E log E)
+ */
+vector<string> findItinerary(vector<vector<string>> &tickets) {
+    unordered_map<string, multiset<string>> flightMap;
+    vector<string> routes;
+    
+    for (const auto &ticket : tickets) {
+        flightMap[ticket[0]].emplace(ticket[1]);
+    }
+    string depart = "JFK";
+    visit(flightMap, routes, depart);
+    
+    reverse(routes.begin(), routes.end());
+    return routes;
+}
+
+
+void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &routes, string &airport) {
+    while (!flightMap[airport].empty()) {
+        string nextAirport = *flightMap[airport].begin();
+        flightMap[airport].erase(flightMap[airport].begin());
+        visit(flightMap, routes, nextAirport);
+    }
+    routes.emplace_back(airport);
+}
+
+```
+
 ## Prefix Sum
 * 到当前位置的累积sum，适合计算continuous array e.g. 525
 * 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
