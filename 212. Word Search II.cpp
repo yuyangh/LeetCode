@@ -57,12 +57,13 @@
 
 // @lc code=start
 
-/*
- * Time complexity:
- * backtracking with trie and pruning
- */
+
 class Solution {
 public:
+	/*
+	 * Time complexity:
+	 * backtracking with trie and pruning
+	 */
 	vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
 		Trie *trie = new Trie();
 		for (auto &word : words) {
@@ -93,7 +94,6 @@ public:
 	}
 
 private:
-	
 	struct Trie {
 		vector<Trie *> children;
 		bool end = false;
@@ -101,7 +101,7 @@ private:
 		
 		Trie() : children(26, nullptr) {};
 		
-		void insert(string word) {
+		void insert(string &word) {
 			auto node = this;
 			for (const auto &letter : word) {
 				if (node->children[letter - 'a'] == nullptr) {
@@ -114,7 +114,10 @@ private:
 			node->end = true;
 		}
 		
-		void deleteWord(string word) {
+		/*
+		 * delete a word from the root
+		 */
+		void deleteWord(string &word) {
 			auto node = this;
 			node->pathCount--;
 			for (const auto &letter : word) {
@@ -124,6 +127,7 @@ private:
 					return;
 				}
 				child->pathCount--;
+				// do pruning
 				if (child->pathCount == 0) {
 					node->children[letter - 'a'] = nullptr;
 				}
@@ -131,13 +135,10 @@ private:
 			}
 			node->end = false;
 		}
-		
 	};
 	
-	void
-	findWord(Trie *root, vector<vector<char>> &board, vector<vector<bool>> &visited, string &buffer, int row, int col,
-	         Trie *trie,
-	         unordered_set<string> &foundWords, unsigned int wordsSize) {
+	void findWord(Trie *root, vector<vector<char>> &board, vector<vector<bool>> &visited, string &buffer,
+	              int row, int col, Trie *trie, unordered_set<string> &foundWords, unsigned int wordsSize) {
 		// base case
 		if (row < 0 || col < 0 || row >= board.size() || col >= board[0].size()) {
 			return;
