@@ -31,7 +31,7 @@ string GenerateSpaces(int n) {
 	return spaces;
 }
 
-void Complete(){
+void Complete() {
 	printf("Program Complete\n");
 }
 
@@ -75,6 +75,37 @@ struct ListNode {
 	ListNode *next;
 	
 	explicit ListNode(int x) : val(x), next(nullptr) {}
+	
+	static ListNode *CreateList(int low, int high) {
+		auto node = ListNode(0);
+		auto ptr = &node;
+		for (int i = low; i <= high; ++i) {
+			ptr->next = new ListNode(i);
+			ptr = ptr->next;
+		}
+		return node.next;
+	}
+	
+	static ListNode *CreateList(vector<int>& nums) {
+		auto node = ListNode(0);
+		auto ptr = &node;
+		for (int num : nums) {
+			ptr->next = new ListNode(num);
+			ptr = ptr->next;
+		}
+		return node.next;
+	}
+	
+	string toString() {
+		auto node = this;
+		string result;
+		while (node != nullptr) {
+			result += to_string(node->val) + ",";
+			node = node->next;
+		}
+		result.pop_back();
+		return result;
+	}
 };
 
 struct TreeNode {
