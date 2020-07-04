@@ -18,7 +18,6 @@
  * values. (ie, from left to right, then right to left for the next level and
  * alternate between).
  *
- *
  * For example:
  * Given binary tree [3,9,20,null,null,15,7],
  *
@@ -29,14 +28,11 @@
  * ⁠  15   7
  *
  * return its zigzag level order traversal as:
- *
  * [
  * ⁠ [3],
  * ⁠ [20,9],
  * ⁠ [15,7]
  * ]
- *
- *
  */
 
 /**
@@ -50,14 +46,15 @@
  */
 class Solution {
 public:
-	
 	/*
+	 * Time complexity: O(n)
 	 * use reverse method to get the result
 	 */
 	vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
 		vector<vector<int>> result;
 		traverse(result, root, 0);
 		
+		// reverse even levels
 		for (int level = 1; level < result.size(); level += 2) {
 			reverse(result[level].begin(), result[level].end());
 		}
@@ -127,6 +124,5 @@ public:
 		}
 		return result;
 	}
-	
 };
 
