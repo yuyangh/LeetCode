@@ -86,7 +86,7 @@ struct ListNode {
 		return node.next;
 	}
 	
-	static ListNode *CreateList(vector<int>& nums) {
+	static ListNode *CreateList(vector<int> nums) {
 		auto node = ListNode(0);
 		auto ptr = &node;
 		for (int num : nums) {
