@@ -42,7 +42,10 @@
  */
 class Solution {
 public:
-	// suitable for self increase
+	/*
+	 * Time complexity: O(n)
+	 * suitable for self increase
+	 */
 	vector<int> plusOne(vector<int> &digits) {
 		if (digits.empty()) {
 			return {1};
@@ -50,15 +53,15 @@ public:
 		// add 1 to the last element
 		++digits.back();
 		
-		bool carry=false;
-		for (int i = digits.size()-1; i >=0; --i) {
-			int num=digits[i]+carry;
-			digits[i]=num%10;
-			carry=num>=10;
+		bool carry = false;
+		for (int i = digits.size() - 1; i >= 0; --i) {
+			int num = digits[i] + carry;
+			digits[i] = num % 10;
+			carry = num >= 10;
 		}
 		// if there is a carry, it must be at the front
-		if(carry){
-			digits.insert(digits.begin(),1);
+		if (carry) {
+			digits.insert(digits.begin(), 1);
 		}
 		return digits;
 	}
