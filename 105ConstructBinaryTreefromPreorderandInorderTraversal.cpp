@@ -41,8 +41,9 @@
  */
 class Solution {
 public:
-	unordered_map<int, int> valueIndexMap;
-	
+	/*
+	 * Time complexity: O(n)
+	 */
 	TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
 		if (preorder.empty()) {
 			return nullptr;
@@ -57,13 +58,15 @@ public:
 		return root;
 	}
 	
-	// The basic idea is here:
-	// Say we have 2 arrays, PRE and IN.
-	// Preorder traversing implies that PRE[0] is the root node.
-	// Then we can find this PRE[0] in IN, say it's IN[5].
-	// Now we know that IN[5] is root, so we know that IN[0] - IN[4] is on the left side,
-	// IN[6] to the end is on the right side.
-	// Recursively doing this on subarrays, we can build a tree out of it :)
+	/*
+	 * The basic idea is here:
+	 * Say we have 2 arrays, PRE and IN.
+	 * Preorder traversing implies that PRE[0] is the root node.
+	 * Then we can find this PRE[0] in IN, say it's IN[5].
+	 * Now we know that IN[5] is root, so we know that IN[0] - IN[4] is on the left side,
+	 * IN[6] to the end is on the right side.
+	 * Recursively doing this on subarrays, we can build a tree out of it :)
+	 */
 	TreeNode *build(vector<int> &preorder, int start, int end, vector<int> &inorder, int &index) {
 		if (index >= preorder.size()) {
 			return nullptr;
@@ -77,7 +80,7 @@ public:
 		}
 		
 		// at the leaf
-		TreeNode *node = new TreeNode(value);
+		auto *node = new TreeNode(value);
 		++index;
 		if (start == end) {
 			return node;
@@ -90,8 +93,9 @@ public:
 		node->right = right;
 		return node;
 	}
-	
-	
+
+private:
+	unordered_map<int, int> valueIndexMap;
 };
 
 int main() {
