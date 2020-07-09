@@ -68,6 +68,11 @@ public:
 */
 class Solution {
 public:
+	/*
+	 * Time complexity: O(n)
+	 * recursively connect left and right child
+	 * and children in between
+	 */
 	Node *connect(Node *root) {
 		connectNodes(root);
 		return root;
@@ -80,6 +85,7 @@ private:
 		}
 		Node *left = node->left;
 		Node *right = node->right;
+		
 		// connect all nodes between the left and right gap
 		while (left != nullptr) {
 			left->next = right;
