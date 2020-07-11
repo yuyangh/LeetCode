@@ -58,10 +58,12 @@ public:
 	Node *left = nullptr;
 	Node *right = nullptr;
 	Node *next = nullptr;
+	Node *child = nullptr;
+	Node *prev = nullptr;
 	
-	Node() : val(-1), right(nullptr), left(nullptr), next(nullptr) {}
+	Node() : val(-1), right(nullptr), left(nullptr), next(nullptr), child(nullptr) {}
 	
-	explicit Node(int val) : val(val), right(nullptr), left(nullptr), next(nullptr) {}
+	explicit Node(int val) : val(val), right(nullptr), left(nullptr), next(nullptr), child(nullptr) {}
 	
 	Node(int _val, Node *_left, Node *_right, Node *_next) :
 			val(_val), left(_left), right(_right), next(_next) {}
