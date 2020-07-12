@@ -61,11 +61,18 @@
  */
 class Solution {
 public:
+	/*
+	 * Time complexity: O(1)
+	 * Space complexity: O(1)
+	 * 1). First, we break the original 32-bit into 2 blocks of 16 bits, and switch them.
+	 * 2). We then break the 16-bits block into 2 blocks of 8 bits. Similarly, we switch the position of the 8-bits blocks
+	 * 3). We then continue to break the blocks into smaller blocks, until we reach the level with the block of 1 bit.
+	 * 4). At each of the above steps, we merge the intermediate results into a single integer which serves as the input for the next step.
+	 *
+	 * for 8 bit binary number abcdefgh, the process is as follow:
+	 * abcdefgh -> efghabcd -> ghefcdab -> hgfedcba
+	 */
 	uint32_t reverseBits(uint32_t n) {
-		/*
-		 * for 8 bit binary number abcdefgh, the process is as follow:
-		 * abcdefgh -> efghabcd -> ghefcdab -> hgfedcba
-		 */
 		n = (n >> 16) | (n << 16);
 		n = ((n & 0xff00ff00) >> 8) | ((n & 0x00ff00ff) << 8);
 		n = ((n & 0xf0f0f0f0) >> 4) | ((n & 0x0f0f0f0f) << 4);
