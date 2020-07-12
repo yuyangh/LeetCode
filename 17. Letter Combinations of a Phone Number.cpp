@@ -32,17 +32,18 @@
  *
  */
 
-/*
- * Time complexity: (4^n)
- * backtracking
- */
 class Solution {
 public:
+	/*
+	 * Time complexity: O(4^n)
+	 * backtracking
+	 */
 	vector<string> letterCombinations(string digits) {
 		if (digits.empty()) {
 			return result;
 		}
 		result.reserve(static_cast<unsigned int>(pow(digits.size(), 3)));
+		
 		string buffer;
 		combine(0, buffer, digits);
 		return result;
@@ -50,10 +51,12 @@ public:
 
 private:
 	void combine(int pos, string &possibleStr, string &digits) {
+		// base case: consume all digits
 		if (pos == digits.size()) {
 			result.emplace_back(possibleStr);
 			return;
 		}
+		
 		// get corresponding index of the list
 		int num = digits[pos] - '0';
 		
