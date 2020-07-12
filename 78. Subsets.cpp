@@ -37,13 +37,15 @@
  */
 class Solution {
 public:
-	vector<vector<int>> result;
-	
+	/*
+	 * Time complexity: O(2^n)
+	 */
 	vector<vector<int>> subsets(vector<int> &nums) {
 		if (nums.empty()) {
 			result.emplace_back(vector<int>());
 			return result;
 		}
+		
 		// find combination for various length
 		for (int i = 0; i <= nums.size(); i++) {
 			vector<int> comb;
@@ -64,5 +66,8 @@ public:
 			comb.pop_back();
 		}
 	}
+
+private:
+	vector<vector<int>> result;
 };
 
