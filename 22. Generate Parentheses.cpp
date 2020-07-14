@@ -57,17 +57,17 @@ public:
 
 class OwnSolution {
 public:
-	vector<string> result;
-	
 	vector<string> generateParenthesis(int n) {
 		result.reserve(n * n);
 		generate("", n, n);
 		return result;
 	}
 	
-	// base on the left and right remaining,
-	// add "(" or ")" accordingly
+	/*
+	 * base on the left and right remaining, add "(" or ")" accordingly
+	 */
 	void generate(string str, int leftRemain, int rightRemain) {
+		// base case
 		if (rightRemain + leftRemain == 0) {
 			while (rightRemain > 0) {
 				str += ')';
@@ -76,6 +76,7 @@ public:
 			result.emplace_back(str);
 			return;
 		}
+		
 		if (leftRemain < rightRemain) {
 			generate(str + '(', leftRemain - 1, rightRemain);
 			generate(str + ')', leftRemain, rightRemain - 1);
@@ -84,7 +85,9 @@ public:
 				generate(str + '(', leftRemain - 1, rightRemain);
 			}
 		}
-		
 	}
+
+private:
+	vector<string> result;
 };
 
