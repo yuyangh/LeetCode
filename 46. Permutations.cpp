@@ -18,8 +18,6 @@
  * Given a collection of distinct integers, return all possible permutations.
  *
  * Example:
- *
- *
  * Input: [1,2,3]
  * Output:
  * [
@@ -30,11 +28,12 @@
  * ⁠ [3,1,2],
  * ⁠ [3,2,1]
  * ]
- *
- *
  */
 class Solution {
 public:
+	/*
+	 * Time complexity :O(n!)
+	 */
 	vector<vector<int>> permute(vector<int> &nums) {
 		if (nums.empty()) {
 			return result;
@@ -52,6 +51,7 @@ private:
 			result.emplace_back(nums);
 			return;
 		}
+		
 		// backtracking
 		for (int i = pos; i < nums.size(); i++) {
 			swap(nums[pos], nums[i]);
