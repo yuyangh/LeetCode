@@ -1,4 +1,5 @@
 #include "LeetCodeLib.h"
+
 /*
  * @lc app=leetcode id=50 lang=cpp
  *
@@ -38,29 +39,32 @@
  */
 class Solution {
 public:
+	/*
+	 * Time complexity: O(n)
+	 */
 	double myPow(double x, int n) {
-		return power(x,n);
+		return power(x, n);
 	}
 	
 	// use recursion, and long long to handle overflow
-	double power(double x, long long n){
-		if(x==0){
+	double power(double x, long long n) {
+		if (x == 0) {
 			return 0;
 		}
-		if(n==0){
+		if (n == 0) {
 			return 1;
 		}
-		if(n<0){
-			x=1/x;
-			n=-n;
+		if (n < 0) {
+			x = 1 / x;
+			n = -n;
 		}
-		if(n==1){
+		if (n == 1) {
 			return x;
 		}
-		if(n&1){
-			return x*power(x*x,n/2);
-		}else{
-			return power(x*x,n/2);
+		if (n & 1) {
+			return x * power(x * x, n / 2);
+		} else {
+			return power(x * x, n / 2);
 		}
 	}
 };
