@@ -35,8 +35,6 @@
  */
 class Solution {
 public:
-	vector<vector<bool>> visited;
-	
 	/* DFS can do search for exist or not
 	 * this is a backtracking problem
 	 */
@@ -61,6 +59,9 @@ public:
 		}
 		return false;
 	}
+
+private:
+	vector<vector<bool>> visited;
 	
 	bool exist(vector<vector<char>> &board, int row, int col, int wordIndex, string &word) {
 		// check for bounds
