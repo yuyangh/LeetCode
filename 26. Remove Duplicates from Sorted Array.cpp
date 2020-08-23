@@ -37,7 +37,6 @@
  *
  * It doesn't matter what values are set beyond the returned length.
  *
- *
  * Clarification:
  * Confused why the returned value is an integer but your answer is an array?
  *
@@ -57,7 +56,11 @@
  */
 class Solution {
 public:
-	// use erase+remove, much faster
+	/*
+	 * Time complexity: O(n)
+	 * Space complexity: O(1)
+	 * use erase+remove, much faster
+	 */
 	int removeDuplicates(vector<int> &nums) {
 		int magic = INT_MIN / 2;
 		// replace item with magic value
@@ -66,6 +69,7 @@ public:
 				nums[i + 1] = magic;
 			}
 		}
+		
 		// std::remove
 		// Transforms the range [first,last) into a range with all the elements that compare equal to val removed,
 		// and returns an iterator to the new end of that range.
