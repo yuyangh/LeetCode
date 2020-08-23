@@ -39,6 +39,7 @@
 
 /*
  * Time complexity: O(n)
+ * update the location of each char and the max length
  */
 class Solution {
 public:
@@ -47,9 +48,7 @@ public:
 		unordered_map<char, unsigned int> charPosMap;
 		for (unsigned int start = 0, cur = 0; cur < s.size(); cur++) {
 			char currChar = s[cur];
-			if (charPosMap.find(currChar) == charPosMap.end()) {
-				charPosMap[currChar] = cur;
-			} else {
+			if (charPosMap.find(currChar) != charPosMap.end()) {
 				// update the start as an increasing variable
 				start = max(start, charPosMap[currChar] + 1);
 			}

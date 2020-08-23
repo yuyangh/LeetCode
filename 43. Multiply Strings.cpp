@@ -35,11 +35,12 @@
  * You must not use any built-in BigInteger library or convert the inputs to
  * integer directly.
  */
+
+/*
+ * Time complexity： O(n*n)
+ */
 class Solution {
 public:
-	/*
-	 * Time complexity： O(n*n)
-	 */
 	string multiply(string num1, string num2) {
 		// allocate the size
 		string sum(num1.size() + num2.size(), '0');
