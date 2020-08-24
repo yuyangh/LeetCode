@@ -32,9 +32,11 @@
  */
 class Solution {
 public:
-	/**
+	/*
 	 * Time complexity: O(n)
-	 * @param nums
+	 * find 1st decreasing digit from the end
+	 * swap that digit with a digit larger than that from the end
+	 * reverse the part
 	 */
 	void nextPermutation(vector<int> &nums) {
 		int smallerIndex = -1;
@@ -89,77 +91,4 @@ public:
 		// to get the next smallest lexicographic permutation.
 		reverse(nums.begin() + smallerIndex + 1, nums.end());
 	}
-	
-	// O(n*n) find a reversed index
-	void nextPermutationSlow(vector<int> &nums) {
-		for (int i = nums.size() - 2; i >= 0; --i) {
-			// find element larger than nums[i]
-			for (int index = nums.size() - 1; index > i; --index) {
-				if (nums[i] < nums[index]) {
-					swap(nums[i], nums[index]);
-					// sort from the element right after swapped element
-					sort(nums.begin() + i + 1, nums.end());
-					return;
-				}
-			}
-		}
-		reverse(nums.begin(), nums.end());
-	}
 };
-
-void trimLeftTrailingSpaces(string &input) {
-	input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
-		return !isspace(ch);
-	}));
-}
-
-void trimRightTrailingSpaces(string &input) {
-	input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
-		return !isspace(ch);
-	}).base(), input.end());
-}
-
-vector<int> stringToIntegerVector(string input) {
-	vector<int> output;
-	trimLeftTrailingSpaces(input);
-	trimRightTrailingSpaces(input);
-	input = input.substr(1, input.length() - 2);
-	stringstream ss;
-	ss.str(input);
-	string item;
-	char delim = ',';
-	while (getline(ss, item, delim)) {
-		output.push_back(stoi(item));
-	}
-	return output;
-}
-
-string integerVectorToString(vector<int> list, int length = -1) {
-	if (length == -1) {
-		length = list.size();
-	}
-	
-	if (length == 0) {
-		return "[]";
-	}
-	
-	string result;
-	for (int index = 0; index < length; index++) {
-		int number = list[index];
-		result += to_string(number) + ", ";
-	}
-	return "[" + result.substr(0, result.length() - 2) + "]";
-}
-
-int main() {
-	string line;
-	while (getline(cin, line)) {
-		vector<int> nums = stringToIntegerVector(line);
-		
-		Solution().nextPermutation(nums);
-		
-		string out = integerVectorToString(nums);
-		cout << out << endl;
-	}
-	return 0;
-}
