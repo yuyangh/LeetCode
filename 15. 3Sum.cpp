@@ -54,6 +54,10 @@ public:
 	}
 
 private:
+	/*
+	 * Time complexity: O(n)
+	 * find remaining 2 integers that can sum to zero
+	 */
 	void twoSum(vector<int> &nums, int firstIdx, vector<vector<int>> &result) {
 		int secondIdx = firstIdx + 1, thirdIdx = nums.size() - 1;
 		
