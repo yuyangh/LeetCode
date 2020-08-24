@@ -83,6 +83,7 @@ public:
 						find = true;
 					}
 					
+					// update statistics with removing char at start index
 					if (requiredChars[s[start]]) {
 						charCountMap[s[start]]--;
 						if (charCountMap[s[start]] < requiredChars[s[start]]) {
