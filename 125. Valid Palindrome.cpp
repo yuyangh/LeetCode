@@ -30,12 +30,17 @@
  * Input: "race a car"
  * Output: false
  */
+
+/*
+ * Time complexity: O(n)
+ */
 class Solution {
 public:
 	bool isPalindrome(string s) {
 		if (s.empty()) {
 			return true;
 		}
+		
 		int begin = 0, end = s.size() - 1;
 		while (begin <= end) {
 			// if not alpha numeric, ignore
@@ -46,12 +51,15 @@ public:
 					return true;
 				}
 			}
+			
 			while (!isalnum(s[end])) {
 				end--;
 				if (end < 0) {
 					return true;
 				}
 			}
+			
+			// check character match or not
 			if (tolower(s[begin]) == tolower(s[end])) {
 				begin++;
 				end--;
