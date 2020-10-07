@@ -1,7 +1,7 @@
 #ifndef LEETCODE_LEETCODELIB_H
 #define LEETCODE_LEETCODELIB_H
 
-#include <assert.h>
+#include <cassert>
 #include <iostream>
 #include <sstream>
 
