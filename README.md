@@ -16,6 +16,9 @@ Summary of LeetCode problems
     * board 用bool[][]
     * 或者unsigned long long来保存两个int index
 
+## Class
+* member variable 要初始化
+
 ## LinkedList
 * 相较于stack和queue，可以从头和尾读取，双向
 * 如果更改结构,考虑用多个temp pointer来记住之前的 e.g.206,024
