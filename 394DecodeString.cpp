@@ -38,10 +38,6 @@
  * s = "3[a]2[bc]", return "aaabcbc".
  * s = "3[a2[c]]", return "accaccacc".
  * s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
- *
- *
- *
- *
  */
 
 class Solution {
@@ -52,9 +48,8 @@ public:
 			return "";
 		}
 		
-		stack<string> strstack;
-		stack<int> countstack;
-		
+		stack<string> strStack;
+		stack<int> countStack;
 		string result;
 		
 		// go through the contents in the string
@@ -67,7 +62,7 @@ public:
 					i++;
 				}
 				if (num != 0) {
-					countstack.push((num));
+					countStack.push((num));
 				}
 				// handle for loop's auto increase
 				i--;
@@ -75,17 +70,17 @@ public:
 				if (s[i] == '[') {
 					// push prev result into stack
 					// we are working on stuff in the []
-					strstack.push(result);
+					strStack.push(result);
 					result = "";
 					
 				} else {
 					// end bracket
 					if (s[i] == ']') {
-						string prev = strstack.top();
-						strstack.pop();
+						string prev = strStack.top();
+						strStack.pop();
 						
-						int times = countstack.top();
-						countstack.pop();
+						int times = countStack.top();
+						countStack.pop();
 						
 						// construct the string that will be repeated for times
 						string repeatedStr;
@@ -102,7 +97,6 @@ public:
 					}
 				}
 			}
-			
 		}
 		return result;
 	}
