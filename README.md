@@ -50,6 +50,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 * 为了记住parent，可以把 current node和next node 都放在parameter里面 e.g.019
 
 ## BFS
+* 保存探索过的区域，避免重复探索e.g. 723
 * internal node也是可以优化的,例如用hashtable保存所有可能的中间节点,把对应的状态挂在key的value里面 e.g.127
 * 还有A*, bi-directional e.g.127
 
