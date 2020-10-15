@@ -66,36 +66,30 @@ public:
 				}
 				// handle for loop's auto increase
 				i--;
-			} else {
-				if (s[i] == '[') {
-					// push prev result into stack
-					// we are working on stuff in the []
-					strStack.push(result);
-					result = "";
-					
-				} else {
-					// end bracket
-					if (s[i] == ']') {
-						string prev = strStack.top();
-						strStack.pop();
-						
-						int times = countStack.top();
-						countStack.pop();
-						
-						// construct the string that will be repeated for times
-						string repeatedStr;
-						for (int j = 0; j < times; j++) {
-							repeatedStr += result;
-						}
-						
-						// add the current part to the previous part
-						result = prev + repeatedStr;
-						
-					} else {
-						// handle alpha situation
-						result += s[i];
-					}
+			} else if (s[i] == '[') {
+				// push prev result into stack, now working on stuff in the []
+				strStack.push(result);
+				result = "";
+				
+			} else if (s[i] == ']') {
+				string prev = strStack.top();
+				strStack.pop();
+				
+				int times = countStack.top();
+				countStack.pop();
+				
+				// construct the string that will be repeated for times
+				string repeatedStr;
+				for (int j = 0; j < times; j++) {
+					repeatedStr += result;
 				}
+				
+				// add the current part to the previous part
+				result = prev + repeatedStr;
+				
+			} else {
+				// handle alpha situation
+				result += s[i];
 			}
 		}
 		return result;

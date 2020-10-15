@@ -26,11 +26,7 @@
  * Return the minimum cost to fly every person to a city such that exactly N
  * people arrive in each city.
  *
- *
- *
  * Example 1:
- *
- *
  * Input: [[10,20],[30,200],[400,50],[30,20]]
  * Output: 110
  * Explanation:
@@ -43,22 +39,18 @@
  * interviewing in each city.
  *
  *
- *
- *
  * Note:
- *
- *
  * 1 <= costs.length <= 100
  * It is guaranteed that costs.length is even.
  * 1 <= costs[i][0], costs[i][1] <= 1000
- *
  */
 
 // @lc code=start
 
 /*
  * Time complexity: O(nlogn)
- * greedy approach
+ * greedy approach, sort the cost difference in decreasing order
+ * choose the lowest cost one untill fill up n
  */
 class Solution {
 public:
