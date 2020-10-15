@@ -31,8 +31,6 @@
  * Could you do both operations in O(1) time complexity?
  *
  * Example:
- *
- *
  * LRUCache cache = new LRUCache( 2 // capacity // );
  *
  * cache.put(1, 1);
@@ -44,7 +42,6 @@
  * cache.get(1);       // returns -1 (not found)
  * cache.get(3);       // returns 3
  * cache.get(4);       // returns 4
- *
  */
 class LRUCache {
 public:
@@ -85,8 +82,8 @@ public:
 		} else {
 			// remove the oldest element
 			if (_record.size() >= _capacity) {
-				int earlist_key = _order.back();
-				_record.erase(earlist_key);
+				int earliest_key = _order.back();
+				_record.erase(earliest_key);
 				_order.pop_back();
 			}
 			// add the element
