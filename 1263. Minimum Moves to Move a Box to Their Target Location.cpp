@@ -3,6 +3,10 @@
 //
 
 /*
+ * TODO: not completed
+ */
+
+/*
  * 1263. Minimum Moves to Move a Box to Their Target Location
  * Hard
  *
@@ -54,7 +58,8 @@
  * Explanation:  push the box down, left, left, up and up.
  *
  * Example 4:
- * Input: grid = [["#","#","#","#","#","#","#"],
+ * Input: grid =
+ * [["#","#","#","#","#","#","#"],
  * ["#","S","#",".","B","T","#"],
  * ["#","#","#","#","#","#","#"]]
  * Output: -1
@@ -70,7 +75,153 @@
 
 class Solution {
 public:
-	int minPushBox(vector<vector<char>>& grid) {
+	int minPushBox(vector<vector<char>> &grid) {
+		vector<vector<int>> dist(grid.size(), vector<int>(grid[0].size(), 100));
+		
+		auto targetLoc = findTarget(grid, 'T');
+		dist[targetLoc.first][targetLoc.second] = 0;
+		
+		queue<pair<int, int>> points;
+		points.emplace(targetLoc);
+		queue<pair<int, int>> pushPoints;
+		pushPoints.emplace(targetLoc);
+		
+		while (!points.empty()) {
+			int x, y;
+			auto point = points.front();
+			points.pop();
+			auto pushPoint = pushPoints.front();
+			pushPoints.pop();
+			
+			x = point.first;
+			y = point.second;
+			
+			if (grid[x][y] == 'B') {
+				if (playerToBrick(grid, pushPoint)) { return dist[x][y]; }
+				continue;
+			}
+			
+			for (auto &move: moves) {
+				int boxLocX, boxLocY, playerLocX, playerLocY;
+				boxLocX = x + move[0];
+				boxLocY = y + move[1];
+				playerLocX = x + 2 * move[0];
+				playerLocY = y + 2 * move[1];
+				
+				if (validPoint(boxLocX, boxLocY, grid.size(), grid.front().size())
+				    && validLocation(boxLocX, boxLocY, grid)
+				    && validPoint(playerLocX, playerLocY, grid.size(), grid.front().size())
+				    && validLocation(playerLocX, playerLocY, grid)) {
+					
+					if (dist[x][y] + 1 < dist[boxLocX][boxLocY]) {
+						dist[boxLocX][boxLocY] = min(dist[x][y] + 1, dist[boxLocX][boxLocY]);
+						
+						points.emplace(make_pair(boxLocX, boxLocY));
+						pushPoints.emplace(make_pair(playerLocX, playerLocY));
+					}
+				}
+			}
+			// PrintVectorVector(dist);
+			// cout << endl;
+		}
+		return -1;
+	}
+
+private:
+	vector<vector<int>> moves = {{1,  0},
+	                             {0,  1},
+	                             {-1, 0},
+	                             {0,  -1}};
 	
+	bool validPoint(int x, int y, int xLimit, int yLimit) {
+		return 0 <= x && x < xLimit
+		       && 0 <= y && y < yLimit;
+	}
+	
+	bool validLocation(int x, int y, vector<vector<char>> &grid) {
+		return grid[x][y] != '#';
+	}
+	
+	pair<int, int> findTarget(vector<vector<char>> &grid, char target) {
+		for (int row = 0; row < grid.size(); ++row) {
+			for (int col = 0; col < grid[0].size(); ++col) {
+				if (grid[row][col] == target) {
+					return make_pair(row, col);
+				}
+			}
+		}
+		return make_pair(-1, -1);
+	}
+	
+	bool playerToBrick(vector<vector<char>> &grid, pair<int, int> pushPos) {
+		auto playerLoc = findTarget(grid, 'S');
+		queue<pair<int, int>> points;
+		points.push(make_pair(playerLoc.first, playerLoc.second));
+		
+		while (!points.empty()) {
+			int x, y;
+			auto point = points.front();
+			points.pop();
+			x = point.first;
+			y = point.second;
+			if (x == pushPos.first && y == pushPos.second) {
+				return true;
+			}
+			
+			
+			for (auto &move: moves) {
+				int nextX = x + move[0];
+				int nextY = y + move[1];
+				if (validPoint(nextX, nextY, grid.size(), grid.front().size())
+				    && validLocation(nextX, nextY, grid)) {
+					points.emplace(make_pair(nextX, nextY));
+					
+				}
+			}
+		}
+		return false;
 	}
 };
+
+int main() {
+	Solution solution;
+	vector<vector<char>> grid;
+	
+	grid = {{'#', '#', '#', '#', '#', '#'},
+	        {'#', 'T', '#', '#', '#', '#'},
+	        {'#', '.', '.', 'B', '.', '#'},
+	        {'#', '.', '#', '#', '.', '#'},
+	        {'#', '.', '.', '.', 'S', '#'},
+	        {'#', '#', '#', '#', '#', '#'}};
+	
+	PrintSingleResult(solution.minPushBox(grid));
+	
+	grid = {{'#', '#', '#', '#', '#', '#'},
+	        {'#', 'T', '#', '#', '#', '#'},
+	        {'#', '.', '.', 'B', '.', '#'},
+	        {'#', '#', '#', '#', '.', '#'},
+	        {'#', '.', '.', '.', 'S', '#'},
+	        {'#', '#', '#', '#', '#', '#'}};
+	PrintSingleResult(solution.minPushBox(grid));
+	
+	grid = {{'#', '#', '#', '#', '#', '#'},
+	        {'#', 'T', '.', '.', '#', '#'},
+	        {'#', '.', '#', 'B', '.', '#'},
+	        {'#', '.', '.', '.', '.', '#'},
+	        {'#', '.', '.', '.', 'S', '#'},
+	        {'#', '#', '#', '#', '#', '#'}};
+	PrintSingleResult(solution.minPushBox(grid));
+	
+	grid = {{'#', '#', '#', '#', '#', '#', '#'},
+	        {'#', 'S', '#', '.', 'B', 'T', '#'},
+	        {'#', '#', '#', '#', '#', '#', '#'}};
+	PrintSingleResult(solution.minPushBox(grid));
+	
+	grid = {{'#', '.', '.', '#', '#', '#', '#', '#'},
+	        {'#', '.', '.', 'T', '#', '.', '.', '#'},
+	        {'#', '.', '.', '.', '#', 'B', '.', '#'},
+	        {'#', '.', '.', '.', '.', '.', '.', '#'},
+	        {'#', '.', '.', '.', '#', '.', 'S', '#'},
+	        {'#', '.', '.', '#', '#', '#', '#', '#'}};
+	
+}
