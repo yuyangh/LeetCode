@@ -52,6 +52,7 @@
 
 /*
  * Time complexity: O(m*n*max(m,n))
+ * better approach is to use breadth first search
  * use depth first search to search for all valid points
  * then check destination point whether valid or not
  */
