@@ -15,6 +15,8 @@ Summary of LeetCode problems
 - 记住是否访问过
     - board 用bool[][]
     - 或者unsigned long long来保存两个int index
+- edge case
+    - 把数值分界区和特殊值都列举出来，一一测试
 
 ## Class
 - member variable 要初始化
@@ -50,6 +52,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 为了记住parent，可以把 current node和next node 都放在parameter里面 e.g.019
 
 ## BFS
+- 适合寻找最短路线，同时考虑dijkstra e.g.505
 - 保存探索过的区域，避免重复探索e.g. 723
 - internal node也是可以优化的,例如用hashtable保存所有可能的中间节点,把对应的状态挂在key的value里面 e.g.127
 - 还有A*, bi-directional e.g.127
