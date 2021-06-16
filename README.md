@@ -61,7 +61,8 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 只要有一个valid的出现就行 e.g.079
 
 ## Backtracking
-- 是加上一个item,recursion,再去掉加上的item e.g.22
+- 适用于要尝试所有的可能，哪些能够达成目标 e.g. 698
+- 是加上一个item,recursion,再去掉加上的item e.g.22, 698
 - permutation是把内部所有element都互相交换了一遍位置，每交换一次，一个recursion e.g.46
 - combination是将要囊括这个元素及之后的元素 e.g.77, 39
 - subset是size从0到n的所有combination e.g.78
