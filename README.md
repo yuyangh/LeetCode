@@ -70,6 +70,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 ## Binary Search
 - 基础的binary search是当left超过right退出,所以如果数值不存在,要插入的位置是left的结果 e.g.035
 - binary search 延伸,rightMostSearch,leftMostSearch 不return mid,return left 和right e.g.34
+  - 可以用lower_bound
 - 并非完全sorted，但是通过排除条件，确定数值在either left or right,也可以用binary search e.g. 033,081
 
 ## Binary Search Tree
@@ -316,6 +317,7 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
     - nums.erase(remove(nums.begin(),nums.end(),val),nums.end());
 - reverse
     - Reverses the order of the elements in the range [first,last).
+- lower_bound, upper_bound
 - binary_search (ForwardIterator first, ForwardIterator last, const T& val);
     - return: bool
     - Returns true if any element in the range [first,last) is equivalent to val, and false otherwise
