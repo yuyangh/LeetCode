@@ -157,6 +157,10 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
      * find with path compression
      */
     int findParent(int son) {
+        if (parent.find(son) == parent.end()) {
+        	parent[son] = son;
+            return son;
+        }
         if (parent[son] == son) {
             return son;
         }
