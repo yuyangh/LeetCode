@@ -33,10 +33,49 @@
  *
  */
 
+class BinaryIndexTree {
+public:
+	BinaryIndexTree(int size) {
+		// it can contain numbers from 0 to size
+		binaryIndexTree.resize(size + 1);
+	}
+	
+	void update(int i, int val) {
+		int delta = val - sumRange(i, i);
+		for (i++; i < binaryIndexTree.size(); i += lowbit(i)) {
+			binaryIndexTree[i] += delta;
+		}
+	}
+	
+	int sumRange(int start, int end) {
+		return sum(end) - sum(start - 1);
+	}
+
+private:
+	vector<int> binaryIndexTree;
+	
+	int lowbit(int num) {
+		return num & (-num);
+	}
+	
+	int sum(int num) {
+		int result = 0;
+		for (num++; num != 0; num -= lowbit(num)) {
+			result += binaryIndexTree[num];
+		}
+		return result;
+	}
+};
+
 /*
  * Time complexity: O(nlogn)
+ * 1st idea: during merge, counted inverted item
  * Ref solution
  * use merge sort to get inverse numbers, which calculates the relative difference in location
+ *
+ * 2nd idea:
+ * use segment tree or binary index tree to accumulate the count of items on the right
+ * then do a range sum to get number of items on the right smaller than self
  */
 class Solution {
 public:
@@ -48,6 +87,26 @@ public:
 		iota(numIndex.begin(), numIndex.end(), 0);
 		
 		mergeSort(nums, numIndex, 0, nums.size(), smallerCount);
+		return smallerCount;
+	}
+	
+	/*
+	 * Use binary index tree
+	 */
+	vector<int> countSmaller2(vector<int> &nums) {
+		int offset = 10000;
+		vector<int> smallerCount(nums.size());
+		
+		BinaryIndexTree binaryIndexTree(25000);
+		for (int i = nums.size() - 1; i >= 0; --i) {
+			// count items smaller than self
+			smallerCount[i] = binaryIndexTree.sumRange(0, -1+nums[i] + offset);
+			// update the count
+			binaryIndexTree.update(nums[i] + offset,
+			                       1 + binaryIndexTree.sumRange(nums[i] + offset, nums[i] + offset));
+		}
+		
+		
 		return smallerCount;
 	}
 
@@ -92,6 +151,12 @@ int main() {
 	vector<int> nums = {5, 2, 6, 1};
 	
 	PrintVector(solution.countSmaller(nums));
+	
+	
+	PrintVector(solution.countSmaller2(nums));
+	
+	nums = {-1,-1};
+	PrintVector(solution.countSmaller2(nums));
 	
 	Complete();
 }
