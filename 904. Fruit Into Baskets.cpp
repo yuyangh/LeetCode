@@ -9,25 +9,19 @@
  *
  * algorithms
  * Medium (41.70%)
- * Likes:    492
- * Dislikes: 748
- * Total Accepted:    59.7K
- * Total Submissions: 143K
- * Testcase Example:  '[1,2,1]'
  *
- * In a row of trees, the i-th tree produces fruit with type tree[i].
+ * In a row of trees, the i-th tree produces fruit with type tree[i].
  *
- * You start at any tree of your choice, then repeatedly perform the following
- * steps:
+ * You start at any tree of your choice, then repeatedly perform the following steps:
  *
  *
- * Add one piece of fruit from this tree to your baskets.  If you cannot,
+ * Add one piece of fruit from this tree to your baskets.  If you cannot,
  * stop.
- * Move to the next tree to the right of the current tree.  If there is no tree
+ * Move to the next tree to the right of the current tree.  If there is no tree
  * to the right, stop.
  *
  * Note that you do not have any choice after the initial choice of starting
- * tree: you must perform step 1, then step 2, then back to step 1, then step
+ * tree: you must perform step 1, then step 2, then back to step 1, then step
  * 2, and so on until you stop.
  *
  * You have two baskets, and each basket can carry any quantity of fruit, but
@@ -75,15 +69,15 @@ public:
 	 * increase the length of the window iff the new window is longer
 	 */
 	int totalFruit(vector<int> &tree) {
-		unordered_map<unsigned int, int> count;
-		unsigned int slide_start = 0, slide_end = 0;
+		unordered_map<unsigned int, int> fruitIndexCountMap;
+		int slide_start = 0, slide_end = 0;
 		for (; slide_end < tree.size(); ++slide_end) {
 			// increase the window length
-			count[tree[slide_end]]++;
-			if (count.size() > 2) {
-				count[tree[slide_start]]--;
-				if (count[tree[slide_start]] == 0) {
-					count.erase(tree[slide_start]);
+			fruitIndexCountMap[tree[slide_end]]++;
+			if (fruitIndexCountMap.size() > 2) {
+				fruitIndexCountMap[tree[slide_start]]--;
+				if (fruitIndexCountMap[tree[slide_start]] == 0) {
+					fruitIndexCountMap.erase(tree[slide_start]);
 				}
 				// decrease the windows length
 				slide_start++;

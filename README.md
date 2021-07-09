@@ -184,18 +184,32 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
     - 904 Fruit Into Baskets
     - 862 Shortest Subarray with Sum at Least K
     - 209 Minimum Size Subarray Sum
+```c++
+// return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+int longestOnes(vector<int> &nums, int k) {
+    int start = 0, end = 0, buffer = k;
+    for (; end < nums.size(); ++end) {
+        if (nums[end] == 0) { buffer--; }
+        if (buffer < 0) {
+            if (nums[start] == 0) { buffer++; }
+            start++;
+        }
+    }
+    return end - start;
+}
+```    
 
 ## Sum Range
+- 计算一个区间里面的sum e.g. 315
 - 通用做法：segment tree，如果数字数值不大，可以用binary index tree
 ```c++
 #define lowbit(x) ((x) & (-(x)))
 
-class NumArray2 {
+class BinaryIndexTree {
 public:
-	NumArray2(vector<int> &nums) {
-		binaryIndexTree.resize(nums.size() + 1);
-		for (int i = 0; i < nums.size(); i++)
-			update(i, nums[i]);
+    BinaryIndexTree(int size) {
+        // it can contain numbers from 0 to size
+		binaryIndexTree.resize(size + 1);
 	}
 	
 	void update(int i, int val) {
@@ -204,8 +218,8 @@ public:
 			binaryIndexTree[i] += delta;
 	}
 	
-	int sumRange(int i, int j) {
-		return sum(j) - sum(i - 1);
+	int sumRange(int start, int end) {
+		return sum(end) - sum(start - 1);
 	}
 
 private:
