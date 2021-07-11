@@ -8,10 +8,6 @@
  *
  * algorithms
  * Medium (25.70%)
- * Likes:    1947
- * Dislikes: 295
- * Total Accepted:    409.3K
- * Total Submissions: 1.6M
  * Testcase Example:  '[2,1,3]'
  *
  * Given a binary tree, determine if it is a valid binary search tree (BST).
@@ -29,9 +25,9 @@
  * Example 1:
  *
  *
- * ⁠   2
- * ⁠  / \
- * ⁠ 1   3
+ *    2
+ *   / \
+ *  1   3
  *
  * Input: [2,1,3]
  * Output: true
@@ -40,9 +36,9 @@
  * Example 2:
  *
  *
- * ⁠   5
- * ⁠  / \
- * ⁠ 1   4
+ *    5
+ *   / \
+ *  1   4
  * / \
  * 3   6
  *
