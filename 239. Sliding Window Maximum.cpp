@@ -13,11 +13,7 @@
  *
  * algorithms
  * Hard (39.75%)
- * Likes:    3939
- * Dislikes: 178
- * Total Accepted:    294.8K
- * Total Submissions: 678.4K
- * Testcase Example:  '[1,3,-1,-3,5,3,6,7]\n3'
+  * Testcase Example:  '[1,3,-1,-3,5,3,6,7]\n3'
  *
  * Given an array nums, there is a sliding window of size k which is moving
  * from the very left of the array to the very right. You can only see the k

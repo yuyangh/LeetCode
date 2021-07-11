@@ -9,10 +9,6 @@
  *
  * algorithms
  * Medium (29.27%)
- * Likes:    739
- * Dislikes: 60
- * Total Accepted:    75K
- * Total Submissions: 256K
  * Testcase Example:  '["NumArray","sumRange","update","sumRange"]\n[[[1,3,5]],[0,2],[1,2],[0,2]]'
  *
  * Given an integer array nums, find the sum of the elements between indices i
@@ -148,7 +144,7 @@ private:
 	
 	int sum(int i) {
 		int ret = 0;
-		for (i++; i; i -= lowbit(i))
+		for (i++; i!=0; i -= lowbit(i))
 			ret += binaryIndexTree[i];
 		return ret;
 	}

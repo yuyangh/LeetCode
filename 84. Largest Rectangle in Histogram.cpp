@@ -9,10 +9,6 @@
  *
  * algorithms
  * Hard (31.25%)
- * Likes:    1982
- * Dislikes: 54
- * Total Accepted:    180.8K
- * Total Submissions: 573.9K
  * Testcase Example:  '[2,1,5,6,2,3]'
  *
  * Given n non-negative integers representing the histogram's bar height where

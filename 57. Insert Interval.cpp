@@ -9,10 +9,6 @@
  *
  * algorithms
  * Hard (31.20%)
- * Likes:    820
- * Dislikes: 101
- * Total Accepted:    178.1K
- * Total Submissions: 570K
  * Testcase Example:  '[[1,3],[6,9]]\n[2,5]'
  *
  * Given a set of non-overlapping intervals, insert a new interval into the
@@ -32,7 +28,7 @@
  * Explanation: Because the new interval [4,8] overlaps with
  * [3,5],[6,7],[8,10].
  *
- * NOTE: input types have been changed on April 15, 2019. Please reset to
+ * NOTE:input types have been changed on April 15, 2019. Please reset to
  * default code definition to get new method signature.
  *
  */
