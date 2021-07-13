@@ -12,12 +12,7 @@
  * https://leetcode.com/problems/isomorphic-strings/description/
  *
  * algorithms
- * Easy (38.47%)
- * Likes:    1334
- * Dislikes: 348
- * Total Accepted:    288K
- * Total Submissions: 728.7K
- * Testcase Example:  '"egg"\n"add"'
+ * Easy
  *
  * Given two strings s and t, determine if they are isomorphic.
  *
@@ -28,27 +23,19 @@
  * character but a character may map to itself.
  *
  * Example 1:
- *
- *
  * Input: s = "egg", t = "add"
  * Output: true
  *
- *
  * Example 2:
- *
- *
  * Input: s = "foo", t = "bar"
  * Output: false
  *
  * Example 3:
- *
- *
  * Input: s = "paper", t = "title"
  * Output: true
  *
  * Note:
- * You may assume both sÂ and tÂ have the same length.
- *
+ * You may assume both sÂ and tÂ have the same length.
  */
 
 // @lc code=start
