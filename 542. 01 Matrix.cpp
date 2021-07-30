@@ -38,12 +38,12 @@ public:
 	vector<vector<int>> updateMatrix(vector<vector<int>> &mat) {
 		vector<vector<int>> distance(mat.size(), vector<int>(mat.front().size(), INT_MAX));
 		
-		queue<vector<int>> points;
+		queue<pair<int, int>> points;
 		for (int row = 0; row < mat.size(); ++row) {
 			for (int col = 0; col < mat.front().size(); ++col) {
 				if (mat[row][col] == 0) {
-					distance[row][col]=0;
-					points.push({row, col, 0});
+					distance[row][col] = 0;
+					points.emplace(row, col);
 				}
 			}
 		}
@@ -51,20 +51,24 @@ public:
 		while (!points.empty()) {
 			auto point = points.front();
 			points.pop();
-			int x = point[0], y = point[1], dist = point[2];
-			distance[x][y] = min(dist, distance[x][y]);
+			int x = point.first, y = point.second, dist = distance[x][y];
 			
-			if (isValid(x - 1, y, mat.size(), mat.front().size()) && distance[x - 1][y] ==INT_MAX) {
-				points.push({x - 1, y, dist + 1});
+			if (isValid(x - 1, y, mat.size(), mat.front().size()) && distance[x - 1][y] == INT_MAX) {
+				points.emplace(x - 1, y);
+				// update distance inside avoid duplicate points discovery
+				distance[x - 1][y] = dist + 1;
 			}
-			if (isValid(x + 1, y, mat.size(), mat.front().size()) && distance[x + 1][y] ==INT_MAX) {
-				points.push({x + 1, y, dist + 1});
+			if (isValid(x + 1, y, mat.size(), mat.front().size()) && distance[x + 1][y] == INT_MAX) {
+				points.emplace(x + 1, y);
+				distance[x + 1][y] = dist + 1;
 			}
-			if (isValid(x, y - 1, mat.size(), mat.front().size()) && distance[x][y - 1] ==INT_MAX) {
-				points.push({x, y - 1, dist + 1});
+			if (isValid(x, y - 1, mat.size(), mat.front().size()) && distance[x][y - 1] == INT_MAX) {
+				points.emplace(x, y - 1);
+				distance[x][y - 1] = dist + 1;
 			}
-			if (isValid(x, y + 1, mat.size(), mat.front().size()) && distance[x][y + 1] ==INT_MAX) {
-				points.push({x, y + 1, dist + 1});
+			if (isValid(x, y + 1, mat.size(), mat.front().size()) && distance[x][y + 1] == INT_MAX) {
+				points.emplace(x, y + 1);
+				distance[x][y + 1] = dist + 1;
 			}
 		}
 		return distance;
