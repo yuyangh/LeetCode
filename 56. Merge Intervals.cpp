@@ -3,16 +3,12 @@
 /*
  * @lc app=leetcode id=56 lang=cpp
  *
- * [56] Merge Intervals
+ * 56. Merge Intervals
  *
  * https://leetcode.com/problems/merge-intervals/description/
  *
  * algorithms
- * Medium (35.58%)
- * Likes:    2086
- * Dislikes: 160
- * Total Accepted:    352K
- * Total Submissions: 986.2K
+ * Medium 
  * Testcase Example:  '[[1,3],[2,6],[8,10],[15,18]]'
  *
  * Given a collection of intervals, merge all overlapping intervals.
@@ -29,7 +25,7 @@
  * Output: [[1,5]]
  * Explanation: Intervals [1,4] and [4,5] are considered overlapping.
  *
- * NOTE: input types have been changed on April 15, 2019. Please reset to
+ * NOTE: input types have been changed on April 15, 2019. Please reset to
  * default code definition to get new method signature.
  *
  */
@@ -50,19 +46,15 @@ public:
 			return lhs[0] < rhs[0];
 		});
 		
-		// first interval
+		// use an additional vector to keep the result
 		vector<vector<int>> result;
-		result.emplace_back(intervals[0]);
+		result.push_back(intervals.front());
 		
-		int pos = 0;
-		for (int i = 1; i < intervals.size(); i++) {
-			// merge overlapping intervals
-			if (result[pos][1] >= intervals[i][0]) {
-				result[pos][1] = max(result[pos][1], intervals[i][1]);
+		for (int idx = 1; idx < intervals.size(); idx++) {
+			if (result.back()[1] >= intervals[idx][0]) {
+				result.back()[1] = max(result.back()[1], intervals[idx][1]);
 			} else {
-				// append intervals into result
-				result.emplace_back(intervals[i]);
-				pos++;
+				result.push_back(intervals[idx]);
 			}
 		}
 		return result;
