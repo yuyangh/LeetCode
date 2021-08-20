@@ -10,11 +10,7 @@
  * https://leetcode.com/problems/subarray-sum-equals-k/description/
  *
  * algorithms
- * Medium (43.03%)
- * Likes:    2641
- * Dislikes: 72
- * Total Accepted:    152.3K
- * Total Submissions: 353.9K
+ * Medium
  * Testcase Example:  '[1,1,1]\n2'
  *
  * Given an array of integers and an integer k, you need to find the total
@@ -25,16 +21,10 @@
  * Input:nums = [1,1,1], k = 2
  * Output: 2
  *
- *
- *
  * Note:
- *
  * The length of the array is in range [1, 20,000].
  * The range of numbers in the array is [-1000, 1000] and the range of the
  * integer k is [-1e7, 1e7].
- *
- *
- *
  */
 
 // @lc code=start
@@ -48,22 +38,20 @@ public:
 	 * prefix sum technique, use hashmap to find target value
 	 */
 	int subarraySum(vector<int> &nums, int k) {
-		// initialize
-		unordered_map<int, long long> record;
-		record[0] = 1;
-		
-		int result = 0;
 		long long sum = 0;
+		int count = 0;
 		
-		// do prefix sum
-		for (auto &num : nums) {
+		unordered_map<long long, int> preSum;
+		// initial point
+		preSum[0] = 1;
+		
+		for (int num:nums) {
 			sum += num;
-			// handle 1 0 0 case, which has many sub-arrays
-			result += record[sum - k];
-			// add a new entry, which record how many times that sum exist
-			record[sum]++;
+			// if the key is not found, its value will initialize to the default value
+			count += preSum[num - k];
+			preSum[sum] += 1;
 		}
-		return result;
+		return count;
 	}
 };
 // @lc code=end
