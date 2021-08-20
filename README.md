@@ -6,6 +6,7 @@ Summary of LeetCode problems
 - 题目没有思路的时候考虑极端情况，或许会有启发
 - 避免int 和 .size()-1 比较（可能会有unsigned overflow），最好改成左侧+1
 - 注意观察题目条件，例如所有都是正数,出现次数超过一半，帮助算法思考 e.g.040
+- 把要删除item的放到额外的set里面，然后创建结果的时候遇到set里面的item就忽略 e.g. 1249  
 - 注意边界条件
     - two pointers 互相不能够越界 e.g.125
 - 多使用temp variable来记住一些condition,帮助解题 e.g.008, 049
@@ -45,7 +46,7 @@ Summary of LeetCode problems
 ```c++
 auto hash = [](const pair<int, int> &p) { return p.first * 31 + p.second; };
 unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
-```   
+```
 
 ## Recursion
 - 下一个状态由上一个状态延伸而来 e.g.129
@@ -291,9 +292,12 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
 - priority_queue
     - top, push, emplace, pop
 - set
-    -
 - map
     - emplace 和 [] 的区别在于如果key已经存在，emplace不会更新，而[]会
+    - [] 
+        - If k matches the key of an element in the container, the function returns a reference to its mapped value.
+        - If k does not match the key of any element in the container, the function inserts a new element with that key and returns a reference to its mapped value. Notice that this always increases the container size by one, even if no mapped value is assigned to the element (the element is constructed using its default constructor).
+        - A similar member function, map::at, has the same behavior when an element with the key exists, but throws an exception when it does not.
 - unordered_map 
 ```
     // 假设有unordered_map<string, vector<string>> result;
