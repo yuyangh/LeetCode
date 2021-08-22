@@ -2,16 +2,12 @@
 /*
  * @lc app=leetcode id=124 lang=cpp
  *
- * [124] Binary Tree Maximum Path Sum
+ * 124. Binary Tree Maximum Path Sum
  *
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
  *
  * algorithms
  * Hard (30.11%)
- * Likes:    1707
- * Dislikes: 127
- * Total Accepted:    201.6K
- * Total Submissions: 665.4K
  * Testcase Example:  '[1,2,3]'
  *
  * Given a non-empty binary tree, find the maximum path sum.
@@ -26,9 +22,9 @@
  *
  * Input: [1,2,3]
  *
- * ⁠      1
- * ⁠     / \
- * ⁠    2   3
+ *       1
+ *      / \
+ *     2   3
  *
  * Output: 6
  *
@@ -40,9 +36,9 @@
  *
  * -10
  * / \
- * 9  20
- * /  \
- * 15   7
+ * 9  20
+ * /  \
+ * 15   7
  *
  * Output: 42
  *
