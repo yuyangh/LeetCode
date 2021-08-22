@@ -350,6 +350,7 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
     - return int ;
     - c is a Character to be checked, casted to an int, or EOF.
 - isalpha
+- is_sorted
 - max_element (iterator begin, iterator end)
     - return: iterator
 - accumulate (iterator begin, iterator end, T initValue)
