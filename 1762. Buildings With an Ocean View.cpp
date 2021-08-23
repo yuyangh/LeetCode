@@ -43,6 +43,10 @@
 
 class Solution {
 public:
+	/*
+	 * Time Complexity: O(n)
+	 * go from right to left
+	 */
 	vector<int> findBuildings(vector<int> &heights) {
 		vector<int> result;
 		int obstacle = -1;
