@@ -105,13 +105,21 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 保存一个个parent e.g.449
 
 ## Math Problem
-- 考虑overflow,是否可以用long来handle e.g.050
+- 考虑overflow,是否可以用long来handle e.g.50
 - 考虑奇偶性 e.g.050
     - odd:  x*power(x*x,n/2);
     - even: power(x*x,n/2);
 - num string的加法是要把string reverse，尾部对齐，并且考虑carry e.g.067
 - 用binary search来查找如何满足一个数字的要求 e.g.069
-- 要计算log(num,base)时，用log(num)/log(base),数学上的换底大发
+- 要计算log(num,base)时，用log(num)/log(base),数学上的换底大法
+
+## Prefix Sum
+- 到当前位置的累积sum，适合计算continuous array e.g. 525
+- 多个数字相差特定数值的时候考虑用prefix sum
+- 多个数字相差k的倍数的时候考虑用mod相同
+- 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974, 523
+- 多少个continuous subarray 的sum = k， 用hashmap + prefix sum e.g.560
+
 
 ## Counting or Matching
 - 用vector of counter 来+，- ，看有没有match e.g.299
@@ -235,11 +243,6 @@ private:
 };
 ```
 
-## Prefix Sum
-- 到当前位置的累积sum，适合计算continuous array e.g. 525
-- 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974
-- 多少个continuous subarray 的sum = k， 用hashmap + prefix sum e.g.560
-
 ## Eulerian path
 - traverse all edge, e.g. 332
 ```c++
@@ -350,6 +353,7 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
     - return int ;
     - c is a Character to be checked, casted to an int, or EOF.
 - isalpha
+- iswspace (char c)
 - is_sorted
 - max_element (iterator begin, iterator end)
     - return: iterator
