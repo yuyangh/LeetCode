@@ -61,6 +61,7 @@ public:
 	Node *next = nullptr;
 	Node *child = nullptr;
 	Node *prev = nullptr;
+	Node *parent=nullptr;
 	
 	Node() : val(-1), right(nullptr), left(nullptr), next(nullptr), child(nullptr) {}
 	
