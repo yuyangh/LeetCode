@@ -2,18 +2,12 @@
 /*
  * @lc app=leetcode id=173 lang=cpp
  *
- * [173] Binary Search Tree Iterator
+ * 173. Binary Search Tree Iterator
  *
  * https://leetcode.com/problems/binary-search-tree-iterator/description/
  *
  * algorithms
- * Medium (49.31%)
- * Likes:    1452
- * Dislikes: 247
- * Total Accepted:    213.4K
- * Total Submissions: 432.4K
- * Testcase Example:  '["BSTIterator","next","next","hasNext","next","hasNext","next","hasNext","next","hasNext"]\n' +
-  '[[[7,3,15,null,null,9,20]],[null],[null],[null],[null],[null],[null],[null],[null],[null]]'
+ * Medium
  *
  * Implement an iterator over a binary search tree (BST). Your iterator will be
  * initialized with the root node of a BST.
@@ -61,7 +55,7 @@ public:
 	}
 	
 	/**
-	 * this is ammortized to O(1)
+	 * this is amortized to O(1)
 	 * because we at most add n total nodes
 	 * with n times calling this function
 	 * @return the next smallest number
@@ -77,7 +71,8 @@ public:
 	bool hasNext() {
 		return !nodes.empty();
 	}
-	
+
+private:
 	/*
 	 * add nodes on the straight left
 	 */
@@ -88,7 +83,6 @@ public:
 		}
 	}
 
-private:
 	// the nodes stack at most take O(h) memory
 	stack<TreeNode *> nodes;
 };
