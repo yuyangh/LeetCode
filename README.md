@@ -34,13 +34,13 @@ Summary of LeetCode problems
 - dp 最后完成的一个stage是整个的过程结果 e.g.62,63
 - 要思考所有能够到达最后一个stage的路径都考虑到 e.g.91
 - 如果问一开始的时候需要多少数值才能完成任务,思考bottom up的DP e.g.174
-- 计算到终点有多少种方法,是+=累积能够抵达当前state的走法 e.g.091
+- 计算到终点有多少种方法,是+=累积能够抵达当前state的走法 e.g.91
 - 如果要取走或者不取走,最后数值最大,思考DP e.g.53
 - 规定搜索方向的path cost思考使用DP e.g.64
 - 可以记住之前到达这个state的信息 e.g.84,85
 
 ## HashTable 
-- 如果有明确数值目标,寻找一个数值对应的内容,用hashtable e.g.015, 003
+- 如果有明确数值目标,寻找一个数值对应的内容,用hashtable e.g.15, 3
 - operator[] vs. at(): at会丢出exception 如果key does not exist 
 - override hash function
 ```c++
@@ -342,7 +342,9 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
     - nums.erase(remove(nums.begin(),nums.end(),val),nums.end());
 - reverse
     - Reverses the order of the elements in the range [first,last).
-- lower_bound, upper_bound
+- lower_bound
+    - Returns an iterator pointing to the first element in the range [first,last) which does not compare less than val.
+- upper_bound
 - binary_search (ForwardIterator first, ForwardIterator last, const T& val);
     - return: bool
     - Returns true if any element in the range [first,last) is equivalent to val, and false otherwise
