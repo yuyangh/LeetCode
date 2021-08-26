@@ -1,38 +1,35 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=123 lang=cpp
+ * @lc app=leetcode id=122 lang=cpp
  *
- * [123] Best Time to Buy and Sell Stock III
+ * 122. Best Time to Buy and Sell Stock II
  *
- * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/
  *
  * algorithms
- * Hard (33.77%)
- * Likes:    1181
- * Dislikes: 56
- * Total Accepted:    155.9K
- * Total Submissions: 456.7K
- * Testcase Example:  '[3,3,5,0,0,3,1,4]'
+ * Easy
  *
  * Say you have an array for which the i^th element is the price of a given
  * stock on day i.
  *
- * Design an algorithm to find the maximum profit. You may complete at most two
- * transactions.
+ * Design an algorithm to find the maximum profit. You may complete as many
+ * transactions as you like (i.e., buy one and sell one share of the stock
+ * multiple times).
  *
- * Note: You may not engage in multiple transactions at the same time (i.e.,
+ * Note: You may not engage in multiple transactions at the same time (i.e.,
  * you must sell the stock before you buy again).
  *
  * Example 1:
  *
  *
- * Input: [3,3,5,0,0,3,1,4]
- * Output: 6
- * Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit
- * = 3-0 = 3.
- * Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 =
+ * Input: [7,1,5,3,6,4]
+ * Output: 7
+ * Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit
+ * = 5-1 = 4.
+ * Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 =
  * 3.
+ *
  *
  * Example 2:
  *
@@ -48,6 +45,8 @@
  *
  *
  * Example 3:
+ *
+ *
  * Input: [7,6,4,3,1]
  * Output: 0
  * Explanation: In this case, no transaction is done, i.e. max profit = 0.
@@ -55,17 +54,32 @@
  */
 class Solution {
 public:
+	/*
+	 * time complexity: O(n), space:O(1)
+	 * based on reference, it is a monotone increase
+	 * continuous increase is: max(0,later - prior)
+	 * peak and valley is also: max(0, later - prior)
+	 */
 	int maxProfit(vector<int> &prices) {
+		int ret = 0;
+		for (size_t i = 1; i < prices.size(); ++i){
+			// either sell or purchase
+			ret += max(prices[i] - prices[i - 1], 0);
+		}
+		return ret;
+	}
+	
+	// compare with the min_price and do the update,
+	// same runtime, but a little bit complex
+	int maxProfitOrginal(vector<int> &prices) {
 		int total_profit = 0;
 		int max_profit = 0;
 		int min_price = INT_MAX;
-		vector<int> profits;
-		profits.reserve(prices.size());
 		
 		for (int price : prices) {
 			// update min_price and update profit
 			if (price < min_price) {
-				profits.emplace_back(max_profit);
+				total_profit += max_profit;
 				max_profit = 0;
 				min_price = price;
 			} else {
@@ -74,26 +88,14 @@ public:
 				if (profit > max_profit) {
 					max_profit = profit;
 				} else {
-					profits.emplace_back(max_profit);
+					total_profit += max_profit;
 					max_profit = 0;
 					min_price = price;
 				}
 			}
 		}
-		profits.emplace_back(max_profit);
-		
-		int largest=0,larger=0;
-		for (const auto &profit : profits) {
-			if(profit>=largest){
-				larger=largest;
-				largest=profit;
-			}else{
-				if(profit>larger){
-					larger=profit;
-				}
-			}
-		}
-		return larger+largest;
+		total_profit += max_profit;
+		return total_profit;
 	}
 };
 

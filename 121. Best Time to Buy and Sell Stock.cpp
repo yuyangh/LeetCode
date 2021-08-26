@@ -3,17 +3,12 @@
 /*
  * @lc app=leetcode id=121 lang=cpp
  *
- * [121] Best Time to Buy and Sell Stock
+ * 121. Best Time to Buy and Sell Stock
  *
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
  *
  * algorithms
- * Easy (47.34%)
- * Likes:    2794
- * Dislikes: 132
- * Total Accepted:    531.7K
- * Total Submissions: 1.1M
- * Testcase Example:  '[7,1,5,3,6,4]'
+ * Easy
  *
  * Say you have an array for which the i^th element is the price of a given
  * stock on day i.
@@ -25,8 +20,6 @@
  * Note that you cannot sell a stock before you buy one.
  *
  * Example 1:
- *
- *
  * Input: [7,1,5,3,6,4]
  * Output: 5
  * Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit
@@ -35,13 +28,9 @@
  *
  *
  * Example 2:
- *
- *
  * Input: [7,6,4,3,1]
  * Output: 0
  * Explanation: In this case, no transaction is done, i.e. max profit = 0.
- *
- *
  */
 
 
