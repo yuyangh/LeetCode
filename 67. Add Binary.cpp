@@ -3,17 +3,12 @@
 /*
  * @lc app=leetcode id=67 lang=cpp
  *
- * [67] Add Binary
+ * 67. Add Binary
  *
  * https://leetcode.com/problems/add-binary/description/
  *
  * algorithms
- * Easy (39.27%)
- * Likes:    976
- * Dislikes: 191
- * Total Accepted:    306.7K
- * Total Submissions: 780.7K
- * Testcase Example:  '"11"\n"1"'
+ * Easy
  *
  * Given two binary strings, return their sum (also a binary string).
  *
@@ -43,16 +38,12 @@ public:
 		unsigned int length = max(a.size(), b.size());
 		for (int i = 0; i < length; i++) {
 			int numA, numB;
-			if (i < a.size()) {
-				numA = a[i] - '0';
-			} else {
-				numA = 0;
-			}
-			if (i < b.size()) {
-				numB = b[i] - '0';
-			} else {
-				numB = 0;
-			}
+			if (i < a.size()) { numA = a[i] - '0'; }
+			else { numA = 0; }
+			
+			if (i < b.size()) { numB = b[i] - '0'; }
+			else { numB = 0; }
+			
 			int sum = (numA + numB + carry) % 2;
 			carry = (numA + numB + carry) / 2;
 			result += '0' + sum;

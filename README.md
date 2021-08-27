@@ -320,7 +320,7 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
 ## STD method
 - sort
     - sort's comp is different from priority_queue's comp
-    - smaller content would be at the front with std::less<int>
+    - smaller content would be at the front with std::less<int>, larger will be std::greater<int>
 - partial_sort (RandomAccessIterator first, RandomAccessIterator middle, RandomAccessIterator last, Compare comp)
     - return : void
     - Time complexity: O(N*log(M))
