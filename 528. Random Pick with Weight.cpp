@@ -35,7 +35,7 @@ public:
 	 * use prefix sum
 	 */
 	Solution(vector<int> &w) {
-		sum = 0;
+		int sum = 0;
 		for (int i: w) {
 			sum += i;
 			prefixWeight.push_back(sum);
