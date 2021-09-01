@@ -50,9 +50,85 @@
  */
 #include "LeetCodeLib.h"
 
-class Solution {
+class UnionFind {
 public:
-	vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+	unordered_map<string, string> itemParent;
 	
+	void unionItem(string &item1, string &item2) {
+		if (findParent(item1) == findParent(item2)) {
+			return;
+		} else {
+			itemParent[findParent(item1)] = findParent(item2);
+		}
+	}
+	
+	string findParent(string &item) {
+		if (itemParent.count(item) == 0) {
+			itemParent[item] = item;
+			return item;
+		}
+		if (itemParent[item] == item) {
+			return item;
+		}
+		
+		itemParent[item] = findParent(itemParent[item]);
+		return itemParent[item];
 	}
 };
+
+class Solution {
+public:
+	/*
+	 * Time complexity: O(n)
+	 * use union find to group accounts
+	 */
+	vector<vector<string>> accountsMerge(vector<vector<string>> &accounts) {
+		UnionFind unionFind;
+		unordered_map<string, string> emailNameMap;
+		
+		for (auto &entry:accounts) {
+			string userName = entry.front();
+			string firstAccount = entry[1];
+			unionFind.findParent(firstAccount);
+			emailNameMap[firstAccount] = userName;
+			
+			// group emails
+			for (int i = 2; i < entry.size(); ++i) {
+				string currAccount = entry[i];
+				emailNameMap[currAccount] = userName;
+				unionFind.unionItem(firstAccount, currAccount);
+			}
+		}
+		
+		// find groups
+		unordered_map<string, set<string>> emailGroups;
+		for (auto &item:unionFind.itemParent) {
+			emailGroups[unionFind.findParent(const_cast<string &>(item.first))].insert(item.first);
+		}
+		
+		vector<vector<string>> result;
+		for (auto &emailGroup:emailGroups) {
+			result.push_back({emailNameMap[emailGroup.first]});
+			for (auto &email:emailGroup.second) {
+				result.back().emplace_back(email);
+			}
+		}
+		return result;
+	}
+};
+
+int main(){
+	Solution solution;
+	vector<vector<string>> accounts;
+	
+	// accounts = {{"John","johnsmith@mail.com","john_newyork@mail.com"},
+	// {"John","johnsmith@mail.com","john00@mail.com"},{"Mary","mary@mail.com"},
+	// {"John","johnnybravo@mail.com"}};
+	// PrintVectorVector(solution.accountsMerge(accounts),20," ");
+	// EmptyLine();
+	
+	accounts = {{"Gabe","Gabe0@m.co","Gabe3@m.co","Gabe1@m.co"},
+	 {"Kevin","Kevin3@m.co","Kevin5@m.co","Kevin0@m.co"},{"Ethan","Ethan5@m.co","Ethan4@m.co","Ethan0@m.co"},
+	 {"Hanzo","Hanzo3@m.co","Hanzo1@m.co","Hanzo0@m.co"},{"Fern","Fern5@m.co","Fern1@m.co","Fern0@m.co"}};
+	PrintVectorVector(solution.accountsMerge(accounts),20," ");
+}

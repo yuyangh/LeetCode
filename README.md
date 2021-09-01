@@ -5,7 +5,7 @@ Summary of LeetCode problems
 - average runtime 就是amortized runtime,注意这个和runtime的差异
 - 题目没有思路的时候考虑极端情况，或许会有启发
 - 避免int 和 .size()-1 比较（可能会有unsigned overflow），最好改成左侧+1
-- 注意观察题目条件，例如所有都是正数,出现次数超过一半，帮助算法思考 e.g.040
+- 注意观察题目条件，例如所有都是正数,出现次数超过一半，帮助算法思考 e.g.40
 - 把要删除item的放到额外的set里面，然后创建结果的时候遇到set里面的item就忽略 e.g. 1249  
 - 注意边界条件
     - two pointers 互相不能够越界 e.g.125
@@ -59,7 +59,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 还有A*, bi-directional e.g.127
 
 ## DFS
-- 只要有一个valid的出现就行 e.g.079
+- 只要有一个valid的出现就行 e.g.79
 
 ## Backtracking
 - 适用于要尝试所有的可能，哪些能够达成目标 e.g. 698
@@ -72,7 +72,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 基础的binary search是当left超过right退出,所以如果数值不存在,要插入的位置是left的结果 e.g.035
 - binary search 延伸,rightMostSearch,leftMostSearch 不return mid,return left 和right e.g.34
   - 可以用lower_bound
-- 并非完全sorted，但是通过排除条件，确定数值在either left or right,也可以用binary search e.g. 033,081
+- 并非完全sorted，但是通过排除条件，确定数值在either left or right,也可以用binary search e.g. 33,081
 
 ## Binary Search Tree
 - 寻找数值的时候,可以用recursion来找,把是否存在的信息保存在return里面 e.g.236
@@ -87,12 +87,12 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 计算tree里面最长的list时，是either取2个children or 取parent+ 1 child 
 
 ## State Machine
-- 用array[][]来记住状态机 e.g.017
+- 用array[][]来记住状态机 e.g. 17
 
 ## Greedy algorithm
 - 思考结果是由哪些因子影响的 e.g. 857
 - 思考如何放置第一个，第一个放完之后怎么放置第二个，以此类推 e.g. 406
-- 思考schedule的时候列出各种样式来尝试 e.g.452, 056
+- 思考schedule的时候列出各种样式来尝试 e.g.452, 56
     - 先开始的放前面（是否需要同时考虑长度）
     - 先结束的放前面
 - 创建extra variable来记住当前状态 e.g.376
@@ -101,16 +101,16 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 如果用int来保存string里面的字符的时候,要注意special character也会被保存为数字,和数字信息相冲突！ e.g.224
 
 ## stack 使用场景
-- 两两match e.g.020
+- 两两match e.g.20
 - 保存一个个parent e.g.449
 
 ## Math Problem
-- 考虑overflow,是否可以用long来handle e.g.50
-- 考虑奇偶性 e.g.050
-    - odd:  x*power(x*x,n/2);
+- 考虑overflow,是否可以用long来handle e.g. 50
+- 考虑奇偶性 e.g.50
+    - odd:  x * power(x * x,n/2);
     - even: power(x*x,n/2);
-- num string的加法是要把string reverse，尾部对齐，并且考虑carry e.g.067
-- 用binary search来查找如何满足一个数字的要求 e.g.069
+- num string的加法是要把string reverse，尾部对齐，并且考虑carry e.g.67
+- 用binary search来查找如何满足一个数字的要求 e.g.69
 - 要计算log(num,base)时，用log(num)/log(base),数学上的换底大法
 
 ## Prefix Sum
@@ -118,7 +118,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 多个数字相差特定数值的时候考虑用prefix sum
 - 多个数字相差k的倍数的时候考虑用mod相同
 - 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974, 523
-- 多少个continuous subarray 的sum = k， 用hashmap + prefix sum e.g.560
+- 多少个continuous subarray 的sum = k， 用hashmap + prefix sum e.g. 560
 
 
 ## Counting or Matching
@@ -151,13 +151,16 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 ## Union Find
 - 把不同的group合并
 ```c++
-    unordered_map<int, int> parent;
+    unordered_map<int, int> itemParent;
     
-    void unionSons(int son1, int son2) {
-        if (findParent(son1) == findParent(son2)) {
+    /*
+     * when union a new item, the item will be created 
+     */
+    void unionItems(int item1, int item2) {
+        if (findParent(item1) == findParent(item2)) {
             return;
         } else {
-            parent[findParent(son1)] = findParent(son2);
+            itemParent[findParent(item1)] = findParent(item2);
         }
     }
     
@@ -165,18 +168,20 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
      * Time complexity: O(reverse arkeman)
      * find with path compression
      */
-    int findParent(int son) {
-        if (parent.find(son) == parent.end()) {
-        	parent[son] = son;
-            return son;
+    int findParent(int item) {
+    	// case for adding new element
+        if (itemParent.count(item) == 0) {
+            itemParent[item] = item;
+            return item;
         }
-        if (parent[son] == son) {
-            return son;
+        
+        if (itemParent[item] == item) {
+            return item;
         }
         
         // let parent be the root
-        parent[son] = findParent(parent[son]);
-        return parent[son];
+        itemParent[item] = findParent(itemParent[item]);
+        return itemParent[item];
     }
 ```
 

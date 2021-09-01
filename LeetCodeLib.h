@@ -36,6 +36,10 @@ void Complete() {
 	printf("Program Complete\n");
 }
 
+void EmptyLine() {
+	printf("\n");
+}
+
 /*
  * calculate the maximum height of the tree
  */
@@ -162,11 +166,11 @@ void PrintVector(vector<T> arr) {
 }
 
 template<class T>
-void PrintVectorVector(vector<vector<T>> arr) {
+void PrintVectorVector(vector<vector<T>> arr, int width=4, string del="") {
 	for (const auto &row : arr) {
 		for (const auto &item : row) {
-			cout.width(4);
-			cout << item;
+			cout.width(width);
+			cout << item << del;
 		}
 		cout << endl;
 	}
