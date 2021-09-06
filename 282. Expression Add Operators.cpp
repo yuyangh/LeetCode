@@ -43,20 +43,28 @@ public:
 	/*
 	 * Time complexity: O(4^n)
 	 * for each digit, there are 4 operations: No operation, +, -, *
-	 * because * has different operational precedence, think about has a stack
+	 * because * has different operational precedence, think about using a stack
+	 * current solution TLE on leetcode
 	 */
 	vector<string> addOperators(string num, int target) {
 		vector<string> result;
-		helper(num, target, "", 0, result);
+		vector<string> calculation;
+		
+		helper(num, target, calculation, 0, result);
 		return result;
 	}
 
 private:
-	void helper(string &num, int target, string calculation, int index, vector<string> &result) {
+	void helper(string &num, int target, vector<string>& calculation, int index, vector<string> &result) {
 		if (index == num.size()) {
-			int value = calculate(calculation);
+			string calString;
+			for(auto& str:calculation){
+				calString+=str;
+			}
+			
+			int value = calculate(calString);
 			if (value == target) {
-				result.push_back(calculation);
+				result.push_back(calString);
 			}
 			return;
 		}
@@ -66,16 +74,33 @@ private:
 			}
 			string numStr = num.substr(index, len);
 			if (calculation.empty()) {
-				helper(num, target, numStr, index + len, result);
+				calculation.push_back(numStr);
+				helper(num, target, calculation, index + len, result);
+				calculation.pop_back();
 			} else {
-				helper(num, target, calculation + "+" + numStr, index + len, result);
-				helper(num, target, calculation + "-" + numStr, index + len, result);
-				helper(num, target, calculation + "*" + numStr, index + len, result);
+				calculation.emplace_back("+");
+				calculation.push_back(numStr);
+				helper(num, target, calculation, index + len, result);
+				calculation.pop_back();
+				calculation.pop_back();
+				
+				calculation.emplace_back("-");
+				calculation.push_back(numStr);
+				helper(num, target, calculation, index + len, result);
+				calculation.pop_back();
+				calculation.pop_back();
+				
+				calculation.emplace_back("*");
+				calculation.push_back(numStr);
+				helper(num, target, calculation , index + len, result);
+				calculation.pop_back();
+				calculation.pop_back();
+				
 			}
 		}
 	}
 	
-	int calculate(string s) {
+	int calculate(string& s) {
 		stack<long long> numbers;
 		string currNum;
 		char oper = '+';
