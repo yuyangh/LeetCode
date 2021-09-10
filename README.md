@@ -120,9 +120,9 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 当前sum和以前sum的差值mod K 为0的话，那么中间的array的sum就是K的倍数 e.g. 974, 523
 - 多少个continuous subarray 的sum = k， 用hashmap + prefix sum e.g. 560
 
-
 ## Counting or Matching
 - 用vector of counter 来+，- ，看有没有match e.g.299
+- bucket sort + counting 适合有限范围之内，例如26个字母的排序 e.g.791
 
 ## Bit Manipulation
 - 检查重复的时候可以考虑 XOR, a XOR b XOR a = b e.g.136
@@ -137,7 +137,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - 当持续不断地添加并且获取最大/最小的数值的时候,考虑priority_queue
 - priority_queue<int, vector<int>, less<int>> maxheap,less<T>是把大的数字放在前面 e.g.295
 - auto ListNodeComp=[](ListNode *lhs, ListNode *rhs){return lhs->val > rhs->val;} // 把小的放在前面
-- priority_queue<ListNode* vector<ListNode*>, decltype(ListNodeComp)> pq(ListNodeComp); // e.g.023
+- priority_queue<ListNode* ,vector<ListNode*>, decltype(ListNodeComp)> pq(ListNodeComp); // e.g.023
     - decltyple(comp) is a function, similar to greater<int>
     - yourself defined comparator is a function object, which is still an object
     - comp class we usually used has its own 括号运算符, so we do not need to pass comparator object to pq
