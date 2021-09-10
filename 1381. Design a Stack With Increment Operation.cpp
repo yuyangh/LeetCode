@@ -53,7 +53,7 @@
 class CustomStack {
 public:
 	/*
-	 * Time complexity: O(n)
+	 * Time complexity: O(1)
 	 * use a vector to memorize place that begins the increment
 	 */
 	CustomStack(int maxSize) : increments(maxSize), maxSize(maxSize) {

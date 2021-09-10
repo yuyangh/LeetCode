@@ -28,6 +28,18 @@
  */
 #include "LeetCodeLib.h"
 
+class Point {
+public:
+	int x;
+	int y;
+	int jump = 0;
+	int estJump = 0;
+	
+	explicit Point(int x, int y) : x(x), y(y) {}
+	
+	explicit Point(int x, int y, int jump, int estJump) : x(x), y(y), jump(jump), estJump(estJump) {}
+};
+
 class Solution {
 public:
 	/*
@@ -46,19 +58,29 @@ public:
 		                             {-2, -1},
 		                             {-1, -2}};
 		
-		queue<pair<pair<int, int>, int>> pointDistQueue;
-		pointDistQueue.emplace(make_pair(make_pair(0, 0), 0));
+		
+		auto pointComp = [](Point &lhs, Point &rhs) {
+			if (lhs.jump + lhs.estJump == rhs.jump + rhs.estJump) {
+				return lhs.jump > rhs.jump;
+			} else {
+				return lhs.jump + lhs.estJump > rhs.jump + rhs.estJump;
+			}
+		};
+		
+		priority_queue<Point, vector<Point>, decltype(pointComp)> pq(pointComp);
+		Point origin(0, 0, 0, estimatedJump(0, 0, x, y));
+		pq.emplace(origin);
 		
 		while (true) {
-			auto point = pointDistQueue.front();
-			pointDistQueue.pop();
+			auto point = pq.top();
+			pq.pop();
 			
-			int xPos, yPos, dist;
-			xPos = point.first.first;
-			yPos = point.first.second;
-			dist = point.second;
-			if (xPos == abs(x) && yPos == abs(y)) {
-				return dist;
+			int xPos, yPos, jump;
+			xPos = point.x;
+			yPos = point.y;
+			jump = point.jump;
+			if (xPos == x && yPos == y) {
+				return jump;
 			}
 			
 			// visit each move
@@ -66,12 +88,11 @@ public:
 				int newX = xPos + move[0], newY = yPos + move[1];
 				
 				// some point need to go through negative boarder to visit
-				if (explored.count(JoinPoint(newX, newY)) > 0
-				    || newX < -1 || newY < -1) {
+				if (explored.count(JoinPoint(newX, newY)) > 0) {
 					continue;
 				}
 				
-				pointDistQueue.emplace(make_pair(make_pair(newX, newY), dist + 1));
+				pq.emplace(Point(newX, newY, jump + 1, estimatedJump(newX, newY, x, y)));
 				explored.emplace(JoinPoint(newX, newY));
 			}
 		}
@@ -82,12 +103,28 @@ private:
 	long long JoinPoint(long long x, long long y) {
 		return (x * 1000) + y;
 	}
+	
+	int estimatedJump(int x, int y, int targetX, int targetY) {
+		int xDist = abs(targetX - x), yDist = abs(targetY - y);
+		if (xDist < 4 && yDist < 4) {
+			return jumps[xDist][yDist];
+		}
+		return max(0, min(min(xDist / 2, yDist),
+		                  min(xDist, yDist / 2)));
+	}
+	
+	vector<vector<int>> jumps = {{3, 2, 3, 2},
+	                             {2, 1, 4, 3},
+	                             {3, 2, 1, 2},
+	                             {0, 3, 2, 3},};
 };
 
 int main() {
 	Solution solution;
 	PrintSingleResult(solution.minKnightMoves(2, 1));
 	PrintSingleResult(solution.minKnightMoves(5, 5));
+	PrintSingleResult(solution.minKnightMoves(130, -86));
 	PrintSingleResult(solution.minKnightMoves(2, 112));
 	PrintSingleResult(solution.minKnightMoves(0, -300));
+	PrintSingleResult(solution.minKnightMoves(114, -179));
 }
