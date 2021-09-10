@@ -43,8 +43,8 @@ public:
 class Solution {
 public:
 	/*
-	 * Time complexity: O(?)
-	 * BFS to find the target
+	 * Time complexity: O(nlogn)
+	 * A* to find the target
 	 * Because the move is symmetric, we use set and compression to memorize explored points
 	 */
 	int minKnightMoves(int x, int y) {
@@ -98,6 +98,54 @@ public:
 		}
 		return -1;
 	}
+	
+	/*
+	 * Time complexity: O(n*n)
+	 * BFS to find the target
+	 * Because the move is symmetric, we use set and compression to memorize explored points
+	 */
+	int minKnightMovesBFS(int x, int y) {
+		unordered_set<long long> explored;
+		vector<vector<int>> moves = {{2,  1},
+		                             {1,  2},
+		                             {2,  -1},
+		                             {1,  -2},
+		                             {-2, 1},
+		                             {-1, 2},
+		                             {-2, -1},
+		                             {-1, -2}};
+		
+		queue<pair<pair<int, int>, int>> pointDistQueue;
+		pointDistQueue.emplace(make_pair(make_pair(0, 0), 0));
+		
+		while (true) {
+			auto point = pointDistQueue.front();
+			pointDistQueue.pop();
+			
+			int xPos, yPos, dist;
+			xPos = point.first.first;
+			yPos = point.first.second;
+			dist = point.second;
+			if (xPos == abs(x) && yPos == abs(y)) {
+				return dist;
+			}
+			
+			// visit each move
+			for (auto &move: moves) {
+				int newX = xPos + move[0], newY = yPos + move[1];
+				
+				// some point need to go through negative boarder to visit
+				if (explored.count(JoinPoint(newX, newY)) > 0
+				    || newX < -1 || newY < -1) {
+					continue;
+				}
+				
+				pointDistQueue.emplace(make_pair(make_pair(newX, newY), dist + 1));
+				explored.emplace(JoinPoint(newX, newY));
+			}
+		}
+		return -1;
+	}
 
 private:
 	long long JoinPoint(long long x, long long y) {
@@ -121,10 +169,17 @@ private:
 
 int main() {
 	Solution solution;
-	PrintSingleResult(solution.minKnightMoves(2, 1));
-	PrintSingleResult(solution.minKnightMoves(5, 5));
-	PrintSingleResult(solution.minKnightMoves(130, -86));
-	PrintSingleResult(solution.minKnightMoves(2, 112));
-	PrintSingleResult(solution.minKnightMoves(0, -300));
-	PrintSingleResult(solution.minKnightMoves(114, -179));
+	// PrintSingleResult(solution.minKnightMoves(2, 1));
+	// PrintSingleResult(solution.minKnightMoves(5, 5));
+	// PrintSingleResult(solution.minKnightMoves(130, -86));
+	// PrintSingleResult(solution.minKnightMoves(2, 112));
+	// PrintSingleResult(solution.minKnightMoves(0, -300));
+	// PrintSingleResult(solution.minKnightMoves(114, -179));
+	
+	int result;
+	// result = solution.moves(8, 4, 2, 2, 6, 2, 3);
+	// result = solution.moves(7,6,6,0,1,4,4);
+	// result = solution.moves(5, 0, 0, 4, 3, 3, 0);
+	result = solution.moves(10, 9, 9, 6, 3, 7, 4);
+	PrintSingleResult(result);
 }
