@@ -169,17 +169,10 @@ private:
 
 int main() {
 	Solution solution;
-	// PrintSingleResult(solution.minKnightMoves(2, 1));
-	// PrintSingleResult(solution.minKnightMoves(5, 5));
-	// PrintSingleResult(solution.minKnightMoves(130, -86));
-	// PrintSingleResult(solution.minKnightMoves(2, 112));
-	// PrintSingleResult(solution.minKnightMoves(0, -300));
-	// PrintSingleResult(solution.minKnightMoves(114, -179));
-	
-	int result;
-	// result = solution.moves(8, 4, 2, 2, 6, 2, 3);
-	// result = solution.moves(7,6,6,0,1,4,4);
-	// result = solution.moves(5, 0, 0, 4, 3, 3, 0);
-	result = solution.moves(10, 9, 9, 6, 3, 7, 4);
-	PrintSingleResult(result);
+	PrintSingleResult(solution.minKnightMoves(2, 1));
+	PrintSingleResult(solution.minKnightMoves(5, 5));
+	PrintSingleResult(solution.minKnightMoves(130, -86));
+	PrintSingleResult(solution.minKnightMoves(2, 112));
+	PrintSingleResult(solution.minKnightMoves(0, -300));
+	PrintSingleResult(solution.minKnightMoves(114, -179));
 }
