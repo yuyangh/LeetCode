@@ -44,9 +44,13 @@
 
 class Solution {
 public:
+	/*
+	 * Time complexity: O(mlogm nlogn)
+	 * because each vertical cut and horizontal cut is independent
+	 * find the largest vertical cut, then for horizontal
+	 */
 	int maxArea(int h, int w, vector<int> &horizontalCuts, vector<int> &verticalCuts) {
-		int modulo = 1E8 + 7;
-		PrintSingleResult(modulo);
+		int modulo = 1E9 + 7;
 		
 		// base case
 		horizontalCuts.emplace_back(0);
