@@ -1,20 +1,13 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=146 lang=cpp
  *
- * [146] LRU Cache
+ * 146. LRU Cache
  *
  * https://leetcode.com/problems/lru-cache/description/
  *
  * algorithms
- * Medium (26.18%)
- * Likes:    3181
- * Dislikes: 114
- * Total Accepted:    318K
- * Total Submissions: 1.2M
- * Testcase Example:  '["LRUCache","put","put","get","put","get","put","get","get","get"]\n' +
-  '[[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]'
+ * Medium
  *
  * Design and implement a data structure for Least Recently Used (LRU) cache.
  * It should support the following operations: get and put.

@@ -35,7 +35,7 @@
  * instructions[i] is 'G', 'L' or, 'R'.
  */
 
-#include "LeetCodeLib.h
+#include "LeetCodeLib.h"
 
 class Solution {
 public:
