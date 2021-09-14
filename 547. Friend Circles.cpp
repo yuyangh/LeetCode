@@ -5,20 +5,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=547 lang=cpp
- *
- * [547] Friend Circles
+ * 547. Friend Circles
  *
  * https://leetcode.com/problems/friend-circles/description/
  *
  * algorithms
- * Medium (55.61%)
- * Likes:    2115
- * Dislikes: 145
- * Total Accepted:    184.2K
- * Total Submissions: 312.7K
- * Testcase Example:  '[[1,1,0],[1,1,0],[0,0,1]]'
- *
+ * Medium
  * There are N students in a class. Some of them are friends, while some are
  * not. Their friendship is transitive in nature. For example, if A is a direct
  * friend of B, and B is a direct friend of C, then A is an indirect friend of
@@ -74,6 +66,11 @@
 // @lc code=start
 class Solution {
 public:
+	/*
+	 * Time complexity: O(n*n)
+	 * BFS from starting point to all other points
+	 * Union find takes O(n*n* reverse arkman)
+	 */
 	int findCircleNum(vector<vector<int>> &M) {
 		if (M.empty()) {
 			return 0;
@@ -83,8 +80,9 @@ public:
 		
 		int numGroups = 0;
 		
-		// BFS on each person
+		// BFS on each person to deal with isolated group
 		for (int i = 0; i < friendGroupIdx.size(); i++) {
+			// have been explored
 			if (friendGroupIdx[i] != -1) { continue; }
 			
 			queue<int> friends;
