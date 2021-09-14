@@ -1,20 +1,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=127 lang=cpp
- *
- * [127] Word Ladder
+ * 127. Word Ladder
  *
  * https://leetcode.com/problems/word-ladder/description/
  *
  * algorithms
- * Medium (23.96%)
- * Likes:    1442
- * Dislikes: 801
- * Total Accepted:    260.7K
- * Total Submissions: 1.1M
- * Testcase Example:  '"hit"\n"cog"\n["hot","dot","dog","lot","log","cog"]'
- *
+ * Hard
  * Given two words (beginWord and endWord), and a dictionary's word list, find
  * the length of shortest transformation sequence from beginWord to endWord,
  * such that:
@@ -52,9 +44,9 @@
  * endWord = "cog"
  * wordList = ["hot","dot","dog","lot","log"]
  *
- * Output: 0
+ * Output: 0
  *
- * Explanation: The endWord "cog" is not in wordList, therefore no possible
+ * Explanation: The endWord "cog" is not in wordList, therefore no possible
  * transformation.
  */
 class Solution {
