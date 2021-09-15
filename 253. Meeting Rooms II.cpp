@@ -1,6 +1,9 @@
 #include "LeetCodeLib.h"
 
 /*
+ * 253. Meeting Rooms II
+ * medium
+ *
  * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei),
  * find the minimum number of conference rooms required.
  *
@@ -16,6 +19,11 @@
 
 class Solution {
 public:
+	/*
+	 * time complexity: O(nlogn)
+	 * greedy approach to sort meetings by beginning time
+	 * has a pq storing rooms with the earliest ending time
+	 */
 	int minMeetingRooms(vector<vector<int>> &intervals) {
 		// quesitons: if 2 reservation end and start at the same time, can we put them in the same room?
 		// yes
@@ -34,10 +42,9 @@ public:
 			return lhs[0] < rhs[0];
 		});
 		
-		// a priority queue for storing rooms earliest ending time
-		// the pq is a min heap (earliest end time room) is at the top of the pq
+		// a priority queue for storing rooms the earliest ending time
+		// the pq is a min heap (the earliest end time room) is at the top of the pq
 		priority_queue<int, vector<int>, std::greater<int>> pq;
-		
 		
 		for (const auto &reserve:intervals) {
 			if (pq.empty()) {
