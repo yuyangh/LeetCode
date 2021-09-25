@@ -2,11 +2,13 @@
 Summary of LeetCode problems 
 
 ## Overall
+- 把要删除item的放到额外的set里面，然后创建结果的时候遇到set里面的item就忽略 e.g. 1249
+- undefined behavior 要么是segmentation fault，要么是需要初始化
 - average runtime 就是amortized runtime,注意这个和runtime的差异
 - 题目没有思路的时候考虑极端情况，或许会有启发
 - 避免int 和 .size()-1 比较（可能会有unsigned overflow），最好改成左侧+1
 - 注意观察题目条件，例如所有都是正数,出现次数超过一半，帮助算法思考 e.g.40
-- 把要删除item的放到额外的set里面，然后创建结果的时候遇到set里面的item就忽略 e.g. 1249  
+- 类似于"2，3次改变"，可以先拆分成单独一次如何处理，然后多次是由哪些单次组成 e.g.1509
 - 注意边界条件
     - two pointers 互相不能够越界 e.g.125
 - 多使用temp variable来记住一些condition,帮助解题 e.g.008, 049
@@ -248,6 +250,46 @@ private:
 };
 ```
 
+## sort
+- quick sort
+```c++
+/* This function takes last element as pivot, places 
+the pivot element at its correct position in sorted 
+array, and places all smaller (smaller than pivot) 
+to left of pivot and all greater elements to right 
+of pivot */
+int partition (int arr[], int low, int high){ 
+    int pivot = arr[high]; // pivot 
+    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+  
+    for (int j = low; j <= high - 1; j++){ 
+        // If current element is smaller than the pivot 
+        if (arr[j] < pivot){ 
+            i++; // increment index of smaller element 
+            swap(&arr[i], &arr[j]); 
+        } 
+    } 
+    swap(&arr[i + 1], &arr[high]); 
+    return (i + 1); 
+} 
+  
+/* The main function that implements QuickSort 
+arr[] --> Array to be sorted, 
+low --> Starting index, 
+high --> Ending index */
+void quickSort(int arr[], int low, int high){ 
+    if (low < high){ 
+        /* pi is partitioning index, arr[p] is now 
+        at right place */
+        int pi = partition(arr, low, high); 
+  
+        // Separately sort elements before, partition and after partition 
+        quickSort(arr, low, pi - 1); 
+        quickSort(arr, pi + 1, high); 
+    } 
+} 
+```
+
 ## Eulerian path
 - traverse all edge, e.g. 332
 ```c++
@@ -295,7 +337,7 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
     - nums.erase(remove(nums.begin(),nums.end(),val),nums.end()); // 移出所有和val相等的element，并且删除
 - stack
     - top, push, emplace, pop
-- queue
+- data
     - front, push, emplace, pop, back,
 - priority_queue
     - top, push, emplace, pop
