@@ -3,6 +3,8 @@
 //
 
 /*
+ * 1277. Count Square Submatrices with All Ones
+ * Medium
  * Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.
  * Example 1:
  * Input: matrix =
@@ -35,8 +37,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * 1. dp[i][j] means the size of biggest square with A[i][j] as bottom-right corner.
+ * Time O(MN), Space O(1)
+ * 1. dp[i][j] means the size of the biggest square with A[i][j] as bottom-right corner.
  * 2. dp[i][j] also means the number of squares with A[i][j] as bottom-right corner.
+ * If A[i][j] == 0, no possible square.
+ * If A[i][j] == 1, we compare the size of square dp[i-1][j-1], dp[i-1][j] and dp[i][j-1].
+ * min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1 is the maximum size of square that we can find.
  */
 class Solution {
 public:
