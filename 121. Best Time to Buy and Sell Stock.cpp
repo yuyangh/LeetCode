@@ -40,96 +40,19 @@ public:
 	 * Time complexity: O(n)
 	 * Space complexity: O(1)
 	 * memorize both min_price and max_profit
+	 * 解法就是贪心的思想，就是寻找价格差最大的两天之间的收益。
 	 */
 	int maxProfit(vector<int> &prices) {
-		int max_profit = 0;
-		int min_price = INT_MAX;
-		for (int price : prices) {
-			// compare the price and record the profit
-			if (price < min_price) {
-				min_price = price;
-			} else {
-				int profit = price - min_price;
-				if (profit > max_profit) {
-					max_profit = profit;
-				}
-			}
-		}
-		return max_profit;
-	}
-	
-	// O(n) runtime, O(n) space
-	int maxProfitSlow(vector<int> &prices) {
 		if (prices.empty()) {
 			return 0;
 		}
-		
-		vector<int> min_price(prices.size(), prices[0]);
-		for (int i = 1; i < prices.size(); ++i) {
-			if (prices[i] < min_price[i - 1]) {
-				min_price[i] = prices[i];
-			} else {
-				min_price[i] = min_price[i - 1];
-			}
+		int maxProfit = 0;
+		int minPrice = prices.front();
+		for (int price: prices) {
+			maxProfit = max(maxProfit, price - minPrice);
+			minPrice = min(minPrice, price);
 		}
 		
-		vector<int> max_price(prices.size(), prices.back());
-		for (int i = static_cast<int>(prices.size()) - 2; i >= 0; --i) {
-			if (prices[i] > max_price[i + 1]) {
-				max_price[i] = prices[i];
-			} else {
-				max_price[i] = max_price[i + 1];
-			}
-		}
-		
-		int max_profit = 0;
-		for (int i = 0; i < prices.size(); ++i) {
-			int profit = max_price[i] - min_price[i];
-			if (profit > max_profit) {
-				max_profit = profit;
-			}
-		}
-		return max_profit;
+		return maxProfit;
 	}
-};
-
-
-void trimLeftTrailingSpaces(string &input) {
-	input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
-		return !isspace(ch);
-	}));
-}
-
-void trimRightTrailingSpaces(string &input) {
-	input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
-		return !isspace(ch);
-	}).base(), input.end());
-}
-
-vector<int> stringToIntegerVector(string input) {
-	vector<int> output;
-	trimLeftTrailingSpaces(input);
-	trimRightTrailingSpaces(input);
-	input = input.substr(1, input.length() - 2);
-	stringstream ss;
-	ss.str(input);
-	string item;
-	char delim = ',';
-	while (getline(ss, item, delim)) {
-		output.push_back(stoi(item));
-	}
-	return output;
-}
-
-int main() {
-	string line;
-	while (getline(cin, line)) {
-		vector<int> prices = stringToIntegerVector(line);
-		
-		int ret = Solution().maxProfit(prices);
-		
-		string out = to_string(ret);
-		cout << out << endl;
-	}
-	return 0;
 }
