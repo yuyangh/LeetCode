@@ -1,8 +1,6 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=122 lang=cpp
- *
  * 122. Best Time to Buy and Sell Stock II
  *
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/
@@ -59,6 +57,7 @@ public:
 	 * based on reference, it is a monotone increase
 	 * continuous increase is: max(0,later - prior)
 	 * peak and valley is also: max(0, later - prior)
+	 * 解法是贪心的思想，因为交易不限次数，只要每次有正收益，就参与买卖，这样的收益最大化。
 	 */
 	int maxProfit(vector<int> &prices) {
 		int ret = 0;
@@ -68,74 +67,4 @@ public:
 		}
 		return ret;
 	}
-	
-	// compare with the min_price and do the update,
-	// same runtime, but a little bit complex
-	int maxProfitOrginal(vector<int> &prices) {
-		int total_profit = 0;
-		int max_profit = 0;
-		int min_price = INT_MAX;
-		
-		for (int price : prices) {
-			// update min_price and update profit
-			if (price < min_price) {
-				total_profit += max_profit;
-				max_profit = 0;
-				min_price = price;
-			} else {
-				int profit = price - min_price;
-				// based on profit to decide to keep or sell
-				if (profit > max_profit) {
-					max_profit = profit;
-				} else {
-					total_profit += max_profit;
-					max_profit = 0;
-					min_price = price;
-				}
-			}
-		}
-		total_profit += max_profit;
-		return total_profit;
-	}
 };
-
-
-void trimLeftTrailingSpaces(string &input) {
-	input.erase(input.begin(), find_if(input.begin(), input.end(), [](int ch) {
-		return !isspace(ch);
-	}));
-}
-
-void trimRightTrailingSpaces(string &input) {
-	input.erase(find_if(input.rbegin(), input.rend(), [](int ch) {
-		return !isspace(ch);
-	}).base(), input.end());
-}
-
-vector<int> stringToIntegerVector(string input) {
-	vector<int> output;
-	trimLeftTrailingSpaces(input);
-	trimRightTrailingSpaces(input);
-	input = input.substr(1, input.length() - 2);
-	stringstream ss;
-	ss.str(input);
-	string item;
-	char delim = ',';
-	while (getline(ss, item, delim)) {
-		output.push_back(stoi(item));
-	}
-	return output;
-}
-
-int main() {
-	string line;
-	while (getline(cin, line)) {
-		vector<int> prices = stringToIntegerVector(line);
-		
-		int ret = Solution().maxProfit(prices);
-		
-		string out = to_string(ret);
-		cout << out << endl;
-	}
-	return 0;
-}
