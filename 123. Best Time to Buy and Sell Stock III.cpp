@@ -50,45 +50,37 @@
  */
 class Solution {
 public:
+	/*
+	 * Time complexity: O(n)
+	 * 最多两次买卖
+	 * 解法是一次买卖的followup，将输入一分为二，left and right. 左右两边分别找最大值。
+	 */
 	int maxProfit(vector<int> &prices) {
-		int total_profit = 0;
-		int max_profit = 0;
-		int min_price = INT_MAX;
-		vector<int> profits;
-		profits.reserve(prices.size());
-		
-		for (int price : prices) {
-			// update min_price and update profit
-			if (price < min_price) {
-				profits.emplace_back(max_profit);
-				max_profit = 0;
-				min_price = price;
-			} else {
-				int profit = price - min_price;
-				// based on profit to decide to keep or sell
-				if (profit > max_profit) {
-					max_profit = profit;
-				} else {
-					profits.emplace_back(max_profit);
-					max_profit = 0;
-					min_price = price;
-				}
-			}
+		if (prices.empty()) {
+			return 0;
 		}
-		profits.emplace_back(max_profit);
 		
-		int largest=0,larger=0;
-		for (const auto &profit : profits) {
-			if(profit>=largest){
-				larger=largest;
-				largest=profit;
-			}else{
-				if(profit>larger){
-					larger=profit;
-				}
-			}
+		int n = prices.size();
+		vector<int> maxLeftProfit(n);
+		vector<int> maxRightProfit(n);
+		
+		int minPrice = prices[0];
+		for (int i = 1; i < n; i++) {
+			maxLeftProfit[i] = max(maxLeftProfit[i - 1], prices[i] - minPrice);
+			minPrice = min(minPrice, prices[i]);
 		}
-		return larger+largest;
+		
+		int maxPrice = prices[n - 1];
+		for (int i = n - 2; i >= 0; i--) {
+			maxRightProfit[i] = max(maxRightProfit[i + 1], maxPrice - prices[i]);
+			maxPrice = max(maxPrice, prices[i]);
+		}
+		
+		int maxProfit = 0;
+		for (int i = 0; i < n; i++) {
+			maxProfit = max(maxProfit, maxLeftProfit[i] + maxRightProfit[i]);
+		}
+		return maxProfit;
 	}
 };
 
