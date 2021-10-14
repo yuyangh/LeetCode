@@ -34,6 +34,7 @@ Summary of LeetCode problems
 - 如果一下子没有idea,先写出recursion的方法
 - 再思考这个recursion是从哪里开始recurse back的, DP iteration就是按照这个顺序 e.g.300, 91, 518
 - dp 最后完成的一个stage是整个的过程结果 e.g.62,63
+- dp 不只是从左上填到右下，也可以left and right，然后取大的，这样可以考虑两个方向 e.g. 1937
 - 要思考所有能够到达最后一个stage的路径都考虑到 e.g.91
 - 如果问一开始的时候需要多少数值才能完成任务,思考bottom up的DP e.g.174
 - 计算到终点有多少种方法,是+=累积能够抵达当前state的走法 e.g.91
@@ -105,6 +106,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 ## stack 使用场景
 - 两两match e.g.20
 - 保存一个个parent e.g.449
+- 从recursion转化过来
 
 ## Math Problem
 - 考虑overflow,是否可以用long来handle e.g. 50
