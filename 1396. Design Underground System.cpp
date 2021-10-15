@@ -2,6 +2,8 @@
 // Created by Yuyang Huang on 10/7/20.
 //
 
+#include <utility>
+
 # include "LeetCodeLib.h"
 
 /*
@@ -34,28 +36,45 @@
  */
 class UndergroundSystem {
 public:
+	/*
+	 * Use two maps to memorize departure info and statistics
+	 */
 	UndergroundSystem() {
 	
 	}
 	
 	void checkIn(int id, string stationName, int t) {
-		departureLocationTimeMap[id] = make_pair(stationName, t);
+		departureLocationTimeMap[id]=DepartInfo(std::move(stationName),t);
 	}
 	
 	void checkOut(int id, string stationName, int t) {
 		auto departureInfo = departureLocationTimeMap[id];
-		stationToStationTravelInfoMap[departureInfo.first][stationName].first += t - departureInfo.second;
-		stationToStationTravelInfoMap[departureInfo.first][stationName].second++;
+		// increase total duration
+		stationToStationTravelInfoMap[departureInfo.station][stationName].duration += t - departureInfo.time;
+		// increase times of taken
+		stationToStationTravelInfoMap[departureInfo.station][stationName].count++;
 	}
 	
 	double getAverageTime(string startStation, string endStation) {
 		auto travelInfo = stationToStationTravelInfoMap[startStation][endStation];
-		return 1.0 * travelInfo.first / travelInfo.second;
+		return 1.0 * travelInfo.duration / travelInfo.count;
 	}
 
 private:
-	unordered_map<int, pair<string, int>> departureLocationTimeMap;
-	unordered_map<string, unordered_map<string, pair<int, int>>> stationToStationTravelInfoMap;
+	struct DepartInfo {
+		string station;
+		int time;
+		DepartInfo(string s,int t):station(std::move(s)),time(t){};
+		DepartInfo()= default;
+	};
+	
+	struct Stat {
+		int duration;
+		int count;
+	};
+	
+	unordered_map<int, DepartInfo> departureLocationTimeMap;
+	unordered_map<string, unordered_map<string, Stat>> stationToStationTravelInfoMap;
 };
 
 /**
