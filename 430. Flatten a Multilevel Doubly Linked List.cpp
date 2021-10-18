@@ -5,19 +5,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=430 lang=cpp
- *
- * [430] Flatten a Multilevel Doubly Linked List
+ * 430. Flatten a Multilevel Doubly Linked List
  *
  * https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/description/
  *
  * algorithms
- * Medium (44.77%)
- * Likes:    1369
- * Dislikes: 155
- * Total Accepted:    99.9K
- * Total Submissions: 184.3K
- * Testcase Example:  '[1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]'
+ * Medium
  *
  * You are given a doubly linked list which in addition to the next and
  * previous pointers, it could have a child pointer, which may or may not point
@@ -27,7 +20,6 @@
  *
  * Flatten the list so that all the nodes appear in a single-level, doubly
  * linked list. You are given the head of the first level of the list.
- *
  *
  * Example 1:
  * Input: head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
@@ -43,11 +35,9 @@
  * Explanation:
  *
  * The input multilevel linked list is as follows:
- *
  *  1---2---NULL
  *  |
  *  3---NULL
- *
  *
  * Example 3:
  * Input: head = []
@@ -73,11 +63,9 @@
  * [null,null,7,8,9,10,null]
  * [null,11,12,null]
  *
- *
  * Merging the serialization of each level and removing trailing nulls we
  * obtain:
  * [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
- *
  *
  * Constraints:
  * Number of Nodes will not exceed 1000.
