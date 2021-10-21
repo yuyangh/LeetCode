@@ -5,19 +5,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=1029 lang=cpp
- *
- * [1029] Two City Scheduling
+ * 1029. Two City Scheduling
  *
  * https://leetcode.com/problems/two-city-scheduling/description/
  *
  * algorithms
- * Easy (55.21%)
- * Likes:    1041
- * Dislikes: 147
- * Total Accepted:    58.7K
- * Total Submissions: 104.8K
- * Testcase Example:  '[[10,20],[30,200],[400,50],[30,20]]'
+ * Easy
  *
  * There are 2N people a company is planning to interview. The cost of flying
  * the i-th person to city A is costs[i][0], and the cost of flying the i-th
@@ -47,40 +40,27 @@
 
 // @lc code=start
 
-/*
- * Time complexity: O(nlogn)
- * greedy approach, sort the cost difference in decreasing order
- * choose the lowest cost one untill fill up n
- */
+
 class Solution {
 public:
+	/*
+	 * Time complexity: O(nlogn)
+	 * greedy approach, sort by the gain of company ascending order
+	 * choose the lowest cost one until fill up n cities each
+	 */
 	int twoCitySchedCost(vector<vector<int>> &costs) {
-		// put larger difference elements at the front
+		// Sort by a gain (positive or neg) which company has by sending a person to city A and not to city B
 		sort(costs.begin(), costs.end(), [](vector<int> &lhs, vector<int> &rhs) {
-			return abs(lhs[0] - lhs[1]) > abs(rhs[0] - rhs[1]);
+			return lhs[0] - lhs[1] < rhs[0] - rhs[1];
 		});
 		int sum = 0;
 		int limit = costs.size() / 2, cityANum = 0, cityBNum = 0;
 		
-		// increase count for different city
-		for (const auto &cost : costs) {
-			if (cost[0] < cost[1]) {
-				if (cityANum < limit) {
-					sum += cost[0];
-					cityANum++;
-				} else {
-					sum += cost[1];
-					cityBNum++;
-				}
-			} else {
-				if (cityBNum < limit) {
-					sum += cost[1];
-					cityBNum++;
-				} else {
-					sum += cost[0];
-					cityANum++;
-				}
-			}
+		// To optimize the company expenses,
+		// send the first n persons to the city A
+		// and the others to the city B
+		for (int i = 0; i < limit; ++i) {
+			sum += costs[i][0] + costs[i + limit][1];
 		}
 		return sum;
 	}
@@ -94,6 +74,7 @@ int main() {
 	         {30,  200},
 	         {400, 50},
 	         {30,  20}};
+	PrintSingleResult(solution.twoCitySchedCost(costs));
 	assert(solution.twoCitySchedCost(costs) == 110);
 	
 	costs = {{259, 770},
