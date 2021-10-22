@@ -44,51 +44,53 @@ public:
 	 * unordered_map<int, pair<int, std::list<int>::iterator>> _record : key to value
 	 * list<int> _order: a list of keys
 	 */
-	LRUCache(int capacity) : _capacity(capacity) {
+	LRUCache(int capacity) : capacity(capacity) {
 		// reserve enough space to decrease number of rehash
-		_record.reserve(2 * capacity);
+		records.reserve(2 * capacity);
 	}
 	
 	int get(int key) {
-		auto it = _record.find(key);
-		if (it == _record.end()) {
+		auto it = records.find(key);
+		if (it == records.end()) {
 			return -1;
 		} else {
 			// if we find the key, update the key's place
-			_order.erase(it->second.second);
-			_order.emplace_front(key);
-			it->second.second=_order.begin();
+			nodeOrder.erase(it->second.second);
+			nodeOrder.emplace_front(key);
+			it->second.second=nodeOrder.begin();
 			
 			return it->second.first;
 		}
 	}
 	
 	void put(int key, int value) {
-		auto it = _record.find(key);
-		if (it != _record.end()) {
+		auto it = records.find(key);
+		if (it != records.end()) {
 			// if we find the key,
 			// update the key's place and value
 			it->second.first=value;
-			_order.erase(it->second.second);
-			_order.emplace_front(key);
-			it->second.second=_order.begin();
+			// same as get() above
+			nodeOrder.erase(it->second.second);
+			nodeOrder.emplace_front(key);
+			it->second.second=nodeOrder.begin();
 		} else {
 			// remove the oldest element
-			if (_record.size() >= _capacity) {
-				int earliest_key = _order.back();
-				_record.erase(earliest_key);
-				_order.pop_back();
+			if (records.size() >= capacity) {
+				int earliest_key = nodeOrder.back();
+				records.erase(earliest_key);
+				nodeOrder.pop_back();
 			}
 			// add the element
-			_order.emplace_front(key);
-			_record.emplace(key, make_pair(value, _order.begin()));
+			nodeOrder.emplace_front(key);
+			records.emplace(key, make_pair(value, nodeOrder.begin()));
 		}
 	}
 
 private:
-	unordered_map<int, pair<int, std::list<int>::iterator>> _record;
-	list<int> _order;
-	int _capacity;
+	// {key,{value,node order iterator}}
+	unordered_map<int, pair<int, std::list<int>::iterator>> records;
+	list<int> nodeOrder;
+	int capacity;
 };
 
 /**
