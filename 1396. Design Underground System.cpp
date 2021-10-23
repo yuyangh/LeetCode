@@ -7,6 +7,9 @@
 # include "LeetCodeLib.h"
 
 /*
+ * 1396. Design Underground System
+ * Medium
+ *
  * Implement the class UndergroundSystem that supports three methods:
  * 1. checkIn(int id, string stationName, int t)
  * A customer with id card equal to id, gets in the station stationName at time t.
