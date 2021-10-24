@@ -7,6 +7,7 @@ Summary of LeetCode problems
 - average runtime 就是amortized runtime,注意这个和runtime的差异
 - 题目没有思路的时候考虑极端情况，或许会有启发
 - 避免int 和 .size()-1 比较（可能会有unsigned overflow），最好改成左侧+1
+- lamda function []里面的variable是不能中途改变的，就是不能有side effect，否则会有undefined behavior
 - 注意观察题目条件，例如所有都是正数,出现次数超过一半，帮助算法思考 e.g.40
 - 类似于"2，3次改变"，可以先拆分成单独一次如何处理，然后多次是由哪些单次组成 e.g.1509
 - 注意边界条件
