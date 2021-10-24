@@ -5,35 +5,21 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=380 lang=cpp
- *
- * [380] Insert Delete GetRandom O(1)
+ * 380. Insert Delete GetRandom O(1)
  *
  * https://leetcode.com/problems/insert-delete-getrandom-o1/description/
  *
- * algorithms
- * Medium (44.18%)
- * Likes:    2330
- * Dislikes: 153
- * Total Accepted:    224.7K
- * Total Submissions: 478.6K
- * Testcase Example:  '["RandomizedSet","insert","remove","insert","getRandom","remove","insert","getRandom"]\n' +
-  '[[],[1],[2],[2],[],[1],[2],[]]'
+ * Medium
  *
  * Design a data structure that supports all following operations in average
  * O(1) time.
- *
- *
  *
  * insert(val): Inserts an item val to the set if not already present.
  * remove(val): Removes an item val from the set if present.
  * getRandom: Returns a random element from current set of elements. Each
  * element must have the same probability of being returned.
  *
- *
- *
  * Example:
- *
  * // Init an empty set.
  * RandomizedSet randomSet = new RandomizedSet();
  *
@@ -57,8 +43,6 @@
  *
  * // Since 2 is the only number in the set, getRandom always return 2.
  * randomSet.getRandom();
- *
- *
  */
 
 // @lc code=start
