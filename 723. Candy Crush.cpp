@@ -5,6 +5,9 @@
 #include "LeetCodeLib.h"
 
 /*
+ * 723. Candy Crush
+ * Medium
+ *
  * This question is about implementing a basic elimination algorithm for Candy Crush.
  *
  * Given a 2D integer array board representing the grid of candy,
