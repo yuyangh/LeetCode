@@ -5,19 +5,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=394 lang=cpp
- *
- * [394] Decode String
+ * 394. Decode String
  *
  * https://leetcode.com/problems/decode-string/description/
  *
  * algorithms
- * Medium (46.26%)
- * Likes:    1830
- * Dislikes: 99
- * Total Accepted:    127K
- * Total Submissions: 274.6K
- * Testcase Example:  '"3[a]2[bc]"'
+ * Medium
  *
  * Given an encoded string, return its decoded string.
  *
