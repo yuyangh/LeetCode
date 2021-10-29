@@ -1,18 +1,11 @@
 #include "LeetCodeLib.h"
 /*
- * @lc app=leetcode id=129 lang=cpp
- *
- * [129] Sum Root to Leaf Numbers
+ * 129. Sum Root to Leaf Numbers
  *
  * https://leetcode.com/problems/sum-root-to-leaf-numbers/description/
  *
  * algorithms
- * Medium (42.59%)
- * Likes:    674
- * Dislikes: 24
- * Total Accepted:    186.9K
- * Total Submissions: 438.4K
- * Testcase Example:  '[1,2,3]'
+ * Medium
  *
  * Given a binary tree containing digits from 0-9 only, each root-to-leaf path
  * could represent a number.
@@ -60,38 +53,29 @@
  * };
  */
 
-
 class Solution {
 public:
-	/*
-	 * Time complexity: O(n)
-	 * dfs
-	 */
 	int sumNumbers(TreeNode *root) {
-		sum = 0;
-		vector<int> result;
-		traverse(result, root, 0);
+		int sum = 0;
+		helper(root, sum, 0);
 		return sum;
 	}
 
 private:
-	
-	int sum;
-	
-	void traverse(vector<int> &result, TreeNode *node, int value) {
+	/*
+	 * go from top to bottom,
+	 * add value at leaf node
+	 */
+	void helper(TreeNode *node, int &sum, int curr) {
 		if (node == nullptr) {
 			return;
 		}
-		// update the current value
-		value *= 10;
-		value += node->val;
-		// leaf node update sum
+		int currVal = curr * 10 + node->val;
 		if (node->left == nullptr && node->right == nullptr) {
-			sum += value;
+			sum += currVal;
 			return;
 		}
-		// go to next node
-		traverse(result, node->left, value);
-		traverse(result, node->right, value);
+		helper(node->left, sum, currVal);
+		helper(node->right, sum, currVal);
 	}
 };
