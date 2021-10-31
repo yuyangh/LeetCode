@@ -1,19 +1,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=43 lang=cpp
- *
- * [43] Multiply Strings
+ * 43. Multiply Strings
  *
  * https://leetcode.com/problems/multiply-strings/description/
  *
  * algorithms
- * Medium (30.78%)
- * Likes:    1012
- * Dislikes: 467
- * Total Accepted:    204.8K
- * Total Submissions: 664.2K
- * Testcase Example:  '"2"\n"3"'
+ * Medium
  *
  * Given two non-negative integers num1 and num2 represented as strings, return
  * the product of num1 and num2, also represented as a string.
