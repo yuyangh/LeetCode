@@ -1,20 +1,12 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=208 lang=cpp
- *
- * [208] Implement Trie (Prefix Tree)
+ * 208. Implement Trie (Prefix Tree)
  *
  * https://leetcode.com/problems/implement-trie-prefix-tree/description/
  *
  * algorithms
- * Medium (39.28%)
- * Likes:    1694
- * Dislikes: 34
- * Total Accepted:    188.5K
- * Total Submissions: 478.6K
- * Testcase Example:  '["Trie","insert","search","search","startsWith","insert","search"]\n' +
-  '[[],["apple"],["apple"],["app"],["app"],["app"],["app"]]'
+ * Medium
  *
  * Implement a trie with insert, search, and startsWith methods.
  *
