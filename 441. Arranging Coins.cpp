@@ -5,25 +5,16 @@
 #include "LeetCodeLib.h"
 
 /*
- * @lc app=leetcode id=441 lang=cpp
- *
- * [441] Arranging Coins
+ * 441. Arranging Coins
  *
  * https://leetcode.com/problems/arranging-coins/description/
  *
  * algorithms
- * Easy (38.80%)
- * Likes:    572
- * Dislikes: 682
- * Total Accepted:    142.5K
- * Total Submissions: 338.9K
- * Testcase Example:  '5'
+ * Easy
  *
  * You have a total of n coins that you want to form in a staircase shape,
  * where every k-th row must have exactly k coins.
- * ⁠
  * Given n, find the total number of full staircase rows that can be formed.
- *
  * n is a non-negative integer and fits within the range of a 32-bit signed
  * integer.
  *
