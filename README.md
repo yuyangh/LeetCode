@@ -411,7 +411,9 @@ void visit(unordered_map<string, multiset<string>> &flightMap, vector<string> &r
     - return: iterator
 - accumulate (iterator begin, iterator end, T initValue)
     - return: T
+- partial_sum (InputIt first, InputIt last, OutputIt d_first)
+  - Computes the partial sums of the elements in the subranges of the range [first, last) and writes them to the range beginning at d_first.
 
 ## Git
 - change most recent commit date
-    -  git commit --amend --date="May 26 17:20:19 2020  -0800"
+    -  git commit --amend --date="Jan 26 17:20:19 2022  -0800"
