@@ -117,6 +117,7 @@ unordered_set<pair<int, int>, decltype(hash)> u_edge_(points.size(), hash);
 - num string的加法是要把string reverse，尾部对齐，并且考虑carry e.g.67
 - 用binary search来查找如何满足一个数字的要求 e.g.69
 - 要计算log(num,base)时，用log(num)/log(base),数学上的换底大法
+- 数学运算的string可以用运算符作为分隔，左右两边继续recursion，直到只剩下数字为止 241
 
 ## Prefix Sum
 - 到当前位置的累积sum，适合计算continuous array e.g. 525
